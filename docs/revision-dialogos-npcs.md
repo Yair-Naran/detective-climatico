@@ -2,7 +2,23 @@
 
 Revisado contra nuestros datos (`data/series.json`, NASA POWER 1981–2025, Mann-Kendall) y las fuentes del proyecto. Los jueces califican **Validez**: ninguna línea del juego puede contradecir lo que muestra el Archivo del detective.
 
-**Estado:** el archivo está en el repo tal cual. **Todavía no se carga en el juego.** El Caso Norte ya usa a Ing. Sofía Garza, Don Homero, la Abuela Chayo y Mateo, pero con textos corregidos (en `i18n/strings.js`). Antes de meter los demás diálogos, hay que corregir lo siguiente.
+**Estado (sáb 14 nov, 14:20):** el juego ya usa voces corregidas y reescritas de estos personajes. **La fuente de verdad es `i18n/strings.js`**; este JSON queda como borrador del equipo y el juego no lo lee.
+
+| Zona | Personaje | Dónde aparece en el juego | Voz |
+|---|---|---|---|
+| Costa | Capitán Ríos | Radio (SIAT-CT) | Formal, firme, frases cortas |
+| Costa | Don Tacho | Periódico (temperatura) | Pescador jarocho, alegre, de tú |
+| Costa | Valeria | Biblioteca (lluvia) | Joven, organizada, práctica |
+| Costa | Dr. Fabián | Videollamada (IPCC) | Investigador, claro y medido |
+| Costa | Doña Meche | Decisión de ayuda (reemplaza a Doña Rosa) | Cariñosa: "corazón", "mi vida" |
+| Centro | Don Rómulo | Radio (onda de calor) | Nostálgico, "joven" |
+| Centro | Profe Aréchiga | Periódico (primavera) | Didáctico: "demuéstramelo" |
+| Centro | Arquitecta Elena | Huerto (lluvia de verano) | Técnica, precisa |
+| Centro | Enfermera Lupita | Centro de Salud (IPCC) y golpe de calor | Profesional y cercana |
+| Centro | Santi | Chat del equipo de fútbol | Jerga juvenil: "qué onda", "la neta" |
+| Norte | Ing. Sofía, Don Homero, Abuela Chayo, Mateo | Presa, rancho, jardín, patio | Técnica / ranchero de usted / abuela / impulsivo |
+
+Las líneas de abajo siguen siendo válidas como lista de lo que NO se debe decir.
 
 ## Lo que contradice nuestros datos (corregir sí o sí)
 | ID | Problema | Corrección sugerida |
