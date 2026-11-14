@@ -9,6 +9,11 @@
   function root() { return document.getElementById('screen-level'); }
   function k(suffix) { return S.cfg.id + '_' + suffix; }
   function place(id) { return S.cfg.places.filter(function (p) { return p.id === id; })[0]; }
+  function byRole(fn) { return S.cfg.places.filter(fn)[0]; }
+  function refugePlace() { return byRole(function (p) { return p.cat === 'refuge'; }); }
+  function packPlace() { return byRole(function (p) { return p.type === 'backpack'; }); }
+  function helpPlace() { return byRole(function (p) { return p.cat === 'help'; }); }
+  function doneOf(p) { return p ? S.done[p.id] : null; }
   function minCost(p) { return p.options && p.cost === undefined ? Math.min.apply(null, p.options.map(function (o) { return o.cost; })) : p.cost; }
   function costLabel(p) {
     if (p.cost !== undefined) return t('costN', { h: p.cost });
@@ -21,13 +26,16 @@
     var sc = S.cfg.scoring, r = { backpack: 0, refuge: 0, info: 0, help: 0, share: 0 };
     Object.keys(S.done).forEach(function (id) {
       var p = place(id), d = S.done[id];
-      if (p.type === 'backpack') r.backpack = Math.min(sc.backpack, d.okCount * 5);
+      if (p.type === 'backpack') {
+        var essentials = p.items.filter(function (i) { return i.ok; }).length;
+        r.backpack = Math.min(sc.backpack, Math.round(d.okCount * sc.backpack / Math.min(p.slots, essentials)));
+      }
       else if (p.type === 'clue') r.info += p.points;
       else if (p.type === 'data') r.info += d.correct ? p.points : 2;
       else if (p.type === 'choice') r[p.cat] = d.opt.pts;
     });
     r.info = Math.min(r.info, sc.info);
-    if (final && !S.done.refuge) r.refuge = S.cfg.refugeFallback;
+    if (final && !doneOf(refugePlace())) r.refuge = S.cfg.refugeFallback;
     var total = 0; Object.keys(r).forEach(function (c) { total += r[c]; });
     return { parts: r, total: Math.round(total) };
   }
@@ -52,7 +60,7 @@
       h('div', { class: 'stat' },
         h('span', { class: 'stat-label', text: '🛡️ ' + t('prep') + ': ' + pct + '%' }),
         h('div', { class: 'bar prep' }, h('i', { style: 'width:' + pct + '%' }))),
-      h('div', { class: 'alert a-' + a, role: 'status' }, t('alertLabel') + ': ' + t('alert_' + a)));
+      h('div', { class: 'alert a-' + a, role: 'status' }, t(S.cfg.alert + 'Label') + ': ' + t(S.cfg.alert + '_' + a)));
   }
 
   /* ---------- phases ---------- */
@@ -75,6 +83,7 @@
   function renderHub(el) {
     el.appendChild(h('h2', { class: 'case-title', text: t(k('title')) }));
     el.appendChild(statusBar());
+    if (S.bonus) el.appendChild(h('p', { class: 'pill bonus', text: '🎁 ' + t('bonusActive', { b: t('bonus_' + S.bonus) }) }));
     el.appendChild(h('p', { class: 'small', text: t('hubIntro') }));
     var grid = h('div', { class: 'places' });
     S.cfg.places.forEach(function (p) {
@@ -98,8 +107,8 @@
     });
     el.appendChild(file);
 
-    if (!S.done.refuge) el.appendChild(h('p', { class: 'warn small', text: t('noRefugeYet') }));
-    el.appendChild(h('button', { class: 'btn primary big', type: 'button', onclick: end, text: '🏫 ' + t('goShelter') }));
+    if (!doneOf(refugePlace())) el.appendChild(h('p', { class: 'warn small', text: t(k('noRefuge')) }));
+    el.appendChild(h('button', { class: 'btn primary big', type: 'button', onclick: end, text: refugePlace().icon + ' ' + t(k('finish')) }));
   }
 
   function spend(hours) { S.hoursLeft = Math.max(0, S.hoursLeft - hours); }
@@ -127,12 +136,12 @@
 
   function backpack(card, p) {
     var d = S.done[p.id];
-    card.appendChild(h('p', { text: t(k(p.id + '_text'), { n: p.slots }) }));
+    card.appendChild(h('p', { text: t(k(p.id + '_text'), { n: slots(p) }) }));
     if (!d) {
       var sel = S.ui.sel || (S.ui.sel = []);
-      card.appendChild(h('p', { class: 'pill', text: '🎒 ' + t('packSelected', { n: sel.length, max: p.slots }) }));
+      card.appendChild(h('p', { class: 'pill', text: '🎒 ' + t('packSelected', { n: sel.length, max: slots(p) }) }));
       card.appendChild(h('div', { class: 'items' }, p.items.map(function (it) {
-        var on = sel.indexOf(it.id) >= 0, full = !on && sel.length >= p.slots;
+        var on = sel.indexOf(it.id) >= 0, full = !on && sel.length >= slots(p);
         return h('button', { class: 'item' + (on ? ' on' : ''), type: 'button', disabled: full, 'aria-pressed': on ? 'true' : 'false',
           onclick: function () { if (on) sel.splice(sel.indexOf(it.id), 1); else sel.push(it.id); render(); },
           text: (on ? '✓ ' : '') + t('item_' + it.id) });
@@ -142,7 +151,7 @@
         S.done[p.id] = { sel: sel.slice(), okCount: okCount }; spend(p.cost); render();
       }, text: t('packConfirm') + ' (−' + p.cost + ' h)' }));
     } else {
-      card.appendChild(h('p', { class: 'ok', text: t('packResult', { ok: d.okCount, max: p.slots }) }));
+      card.appendChild(h('p', { class: 'ok', text: t('packResult', { ok: d.okCount, max: slots(p) }) }));
       card.appendChild(h('ul', { class: 'fb-list' }, d.sel.map(function (id) {
         var ok = p.items.filter(function (i) { return i.id === id; })[0].ok;
         return h('li', { class: ok ? 'ok' : 'bad', text: (ok ? '✓ ' : '✗ ') + t('item_' + id) });
@@ -212,13 +221,14 @@
       var cls = 'opt' + (d && d.opt.id === o.id ? (o.pts === maxPts(p) ? ' good' : o.pts > 0 ? ' mid' : ' bad') : '');
       return h('button', { class: cls, type: 'button', disabled: !!d || tooLong, onclick: function () {
         S.done[p.id] = { opt: o }; spend(cost); render();
-      }, text: t(k(p.id + '_opt_' + o.id)) + ' (−' + cost + ' h)' });
+      }, text: t(k(p.id + '_opt_' + o.id)) + (cost > 0 ? ' (−' + cost + ' h)' : ' (0 h)') });
     })));
     if (d) {
       card.appendChild(h('p', { class: d.opt.pts === maxPts(p) ? 'ok' : d.opt.pts > 0 ? 'ok' : 'warn', text: t(k(p.id + '_fb_' + d.opt.id)) }));
       card.appendChild(continueBtn());
     }
   }
+  function slots(p) { return p.slots + S.extraSlots; }
   function maxPts(p) { return Math.max.apply(null, p.options.map(function (o) { return o.pts; })); }
 
   /* ---------- ending ---------- */
@@ -232,15 +242,16 @@
   }
 
   function playOutro(el) {
-    var refOk = S.done.refuge && S.done.refuge.opt.good;
-    var pack = S.done.home, packOk = pack && pack.okCount >= 4;
-    var helped = S.done.neighbor && S.done.neighbor.opt.pts > 0;
+    var ref = doneOf(refugePlace()), refOk = ref && ref.opt.good;
+    var pack = doneOf(packPlace()), packOk = pack && pack.okCount >= 4;
+    var hp = doneOf(helpPlace()), helped = hp && hp.opt.pts > 0;
+    var I = S.cfg.outroIcons, sc = S.cfg.outroScenes || ['storm', 'storm', 'alert', 'calm', 'calm'];
     var panels = [
-      { icon: '🌀', text: t(k('out1')), scene: 'storm' },
-      { icon: '🌊', text: t(k('out2')), scene: 'storm' },
-      { icon: refOk ? '🏫' : '🚐', text: t(k(refOk ? 'out_ref_ok' : 'out_ref_bad')), scene: 'alert' },
-      { icon: packOk ? '🔦' : '🎒', text: t(k(packOk ? 'out_pack_ok' : 'out_pack_bad')), scene: 'calm' },
-      { icon: helped ? '🤝' : '🌤️', text: t(k(helped ? 'out_help' : 'out_end')), scene: 'calm' }
+      { icon: I.out1, text: t(k('out1')), scene: sc[0] },
+      { icon: I.out2, text: t(k('out2')), scene: sc[1] },
+      { icon: refOk ? I.ref_ok : I.ref_bad, text: t(k(refOk ? 'out_ref_ok' : 'out_ref_bad')), scene: sc[2] },
+      { icon: packOk ? I.pack_ok : I.pack_bad, text: t(k(packOk ? 'out_pack_ok' : 'out_pack_bad')), scene: sc[3] },
+      { icon: helped ? I.help : I.end, text: t(k(helped ? 'out_help' : 'out_end')), scene: sc[4] }
     ];
     Cinematic.play(el, panels, function () { S.phase = 'results'; render(); window.scrollTo(0, 0); });
   }
@@ -262,12 +273,12 @@
       })));
 
     el.appendChild(h('div', { class: 'card' }, h('h3', { text: '🎁 ' + t('bonusTitle') }),
-      h('p', { text: t('bonus_' + S.medal) }), S.medal !== 'none' ? h('p', { class: 'small', text: t('bonusNote') }) : null));
+      h('p', { text: t('bonus_' + S.medal) }), S.medal !== 'none' && S.cfg.nextLevel ? h('p', { class: 'small', text: t('bonusNote', { c: t('case_' + S.cfg.nextLevel) }) }) : null));
 
     var learned = S.cfg.places.filter(function (p) { return p.type === 'data'; }).map(function (p) {
       var r = App.trendFor(S.cfg.city, p.variable, p.season), vd = App.verdict(r.tr);
       return h('li', { text: t('learnedLine', {
-        city: App.data.cities[S.cfg.city].name, variable: t('var_' + p.variable), y0: r.xs[0], y1: r.xs[r.xs.length - 1],
+        city: App.data.cities[S.cfg.city].name, variable: t('var_' + p.variable), season: t('season_' + p.season), y0: r.xs[0], y1: r.xs[r.xs.length - 1],
         rate: App.fmtRate(r.tr, p.variable), p: App.fmtP(r.tr.p), verdict: t('short_' + vd) }) });
     });
     el.appendChild(h('div', { class: 'card' }, h('h3', { text: '🛰️ ' + t('learnedTitle') }), h('ul', null, learned)));
@@ -277,6 +288,7 @@
 
     el.appendChild(h('div', { class: 'card stack' },
       h('button', { class: 'btn primary big', type: 'button', onclick: share, text: '📤 ' + t('shareBtn') }),
+      S.cfg.nextLevel && window.LEVELS[S.cfg.nextLevel] ? h('button', { class: 'btn primary', type: 'button', onclick: function () { Level.start(S.cfg.nextLevel); }, text: '➡️ ' + t('nextCase', { c: t('case_' + S.cfg.nextLevel) }) }) : null,
       h('button', { class: 'btn', type: 'button', onclick: function () { Level.start(S.cfg.id, true); }, text: '🔁 ' + t('retry') }),
       h('button', { class: 'btn', type: 'button', onclick: function () {
         Archive.open({ city: S.cfg.city }, function () { App.show('level'); render(); }, 'backToCase');
@@ -330,7 +342,18 @@
   window.Level = {
     start: function (id, skipIntro) {
       var cfg = window.LEVELS[id];
-      S = { cfg: cfg, hours: cfg.hours, hoursLeft: cfg.hours, done: {}, clues: [], phase: skipIntro ? 'hub' : 'intro', ui: {} };
+      S = { cfg: cfg, hours: cfg.hours, hoursLeft: cfg.hours, done: {}, clues: [], phase: skipIntro ? 'hub' : 'intro', ui: {}, extraSlots: 0, bonus: null };
+      // Bonus earned in the previous case (gold: +2 backpack slots, silver: +1 hour, bronze: first clue for free)
+      var b = App.store.get('bonus');
+      if (b && b.to === id) {
+        S.bonus = b.type;
+        if (b.type === 'gold') S.extraSlots = 2;
+        if (b.type === 'silver') { S.hours += 1; S.hoursLeft += 1; }
+        if (b.type === 'bronze') {
+          var c = cfg.places.filter(function (p) { return p.type === 'clue'; })[0];
+          if (c) { S.done[c.id] = { saved: true, free: true }; S.clues.push({ id: c.id, icon: c.icon }); }
+        }
+      }
       App.show('level'); render();
     },
     init: function () { App.onLang(function () { if (App.current === 'level' && S) render(); }); },

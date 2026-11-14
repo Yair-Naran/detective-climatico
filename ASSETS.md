@@ -17,7 +17,9 @@ Anotar TODO lo usado (código, texto, imágenes, audio, librerías), aunque sea 
 |---|---|
 | SIAT-CT, Sistema Nacional de Protección Civil (manual 2019, gob.mx) | Alertas de 5 colores en el Caso Costa |
 | Protección Civil / CENAPRED, mochila de emergencia | Objetos de la mochila (72 h) |
-| IPCC AR6 WGI (2021), cap. 11 | Lluvia en ciclones, proporción de ciclones intensos, marea de tormenta |
+| IPCC AR6 WGI (2021), cap. 11 | Lluvia en ciclones, proporción de ciclones intensos, marea de tormenta; extremos de calor más frecuentes desde 1950 |
+| Servicio Meteorológico Nacional (Conagua) / CENAPRED | Definición de onda de calor (Caso Centro) |
+| Secretaría de Salud | Evitar sol 11:00–16:00, señales y primeros auxilios de golpe de calor, llamar al 911 (Caso Centro) |
 
 ## Arte / audio
 Temporal: emojis del sistema operativo del usuario (no se distribuyen archivos de imagen).

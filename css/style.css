@@ -121,3 +121,4 @@ ul{margin:6px 0 0;padding-left:18px;color:var(--mute)}li{margin-bottom:6px}
 footer{text-align:center;color:var(--mute);font-size:.8rem;padding:16px}
 @media(min-width:600px){.controls{grid-template-columns:1fr 1fr}fieldset{grid-column:1/-1}.places{grid-template-columns:1fr 1fr 1fr}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.pill.bonus{background:#3b3010;color:var(--acc)}
