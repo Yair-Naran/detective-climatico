@@ -31,11 +31,12 @@ Anotar TODO lo usado (código, texto, imágenes, audio, librerías), aunque sea 
 | `scripts/fetch_nasa_power.py` | Equipo | Descarga cruda de NASA POWER |
 
 ## Arte / audio
-Temporal: emojis del sistema operativo del usuario (no se distribuyen archivos de imagen).
+Ilustraciones, logo y paisajes animados: originales, dibujados en código SVG/CSS (`js/art.js`, `css/style.css`), sin archivos de imagen ni fotos de personas. Íconos pequeños: emojis del sistema del dispositivo del usuario (no se distribuyen archivos). El arte final del compañero (personajes dibujados, estilo animado, sin parecido a personas reales ni a menores) se registra aquí con autor y herramienta.
 | Recurso | Fuente | Licencia | URL | Archivo en repo |
 |---|---|---|---|---|
 | (vacío) | | | | |
 
 ## Uso de IA (Use of SI)
 - Código y textos del juego redactados con Claude (Anthropic).
+- Ilustraciones del juego (`js/art.js`): código SVG escrito con ayuda de Claude; no son imágenes generadas por IA.
 - Imágenes generadas por IA: ninguna hasta ahora (si se usan: marca de agua visible y declararlas aquí).

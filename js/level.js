@@ -68,6 +68,7 @@
   /* ---------- phases ---------- */
   function render() {
     Cinematic.stop();
+    document.body.setAttribute('data-zone', S.cfg.id);
     var el = root(); el.innerHTML = '';
     if (S.phase === 'intro') return playIntro(el);
     if (S.phase === 'hub') return renderHub(el);
@@ -79,7 +80,7 @@
   function playIntro(el) {
     var panels = S.cfg.intro.map(function (p) { return { icon: p.icon, text: t(p.key, { h: S.hours }), scene: p.scene }; });
     panels[panels.length - 1].note = t('fiction');
-    Cinematic.play(el, panels, function () { S.phase = 'hub'; render(); });
+    Cinematic.play(el, panels, function () { S.phase = 'hub'; render(); }, 0, S.cfg.id);
   }
 
   function renderHub(el) {
@@ -258,7 +259,7 @@
       { icon: packOk ? I.pack_ok : I.pack_bad, text: t(k(packOk ? 'out_pack_ok' : 'out_pack_bad')), scene: sc[3] },
       { icon: helped ? I.help : I.end, text: t(k(helped ? 'out_help' : 'out_end')), scene: sc[4] }
     ];
-    Cinematic.play(el, panels, function () { S.phase = 'results'; render(); window.scrollTo(0, 0); });
+    Cinematic.play(el, panels, function () { S.phase = 'results'; render(); window.scrollTo(0, 0); }, 0, S.cfg.id);
   }
 
   function renderResults(el) {

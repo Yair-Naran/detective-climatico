@@ -21,7 +21,7 @@
   function renderLevels() {
     var list = document.getElementById('levelList'); list.innerHTML = '';
     CASES.forEach(function (c) {
-      list.appendChild(h('button', { class: 'levelcard' + (c.ready ? '' : ' off'), type: 'button', disabled: !c.ready || !App.data,
+      list.appendChild(h('button', { class: 'levelcard' + (c.ready ? '' : ' off'), 'data-case': c.id, type: 'button', disabled: !c.ready || !App.data,
         onclick: function () { play(c.id); } },
         h('span', { class: 'lc-icon', 'aria-hidden': 'true', text: c.icon }),
         h('span', { class: 'lc-text' }, h('b', { text: t('case_' + c.id) }), h('span', { class: 'small', text: t('case_' + c.id + '_desc') })),
@@ -37,10 +37,13 @@
     show: function () { App.show('home'); renderLevels(); }
   };
 
+  function showMethod() { App.show('method'); }
+
   var initialHash = location.hash.replace('#', '');
   function route() {
     var hsh = initialHash;
     if (hsh === 'archivo' || hsh === 'archive') Archive.open({}, function () { Home.show(); }, 'back');
+    else if (hsh === 'metodo' || hsh === 'method') showMethod();
     else if (hsh === 'tutorial') Tutorial.start();
     else if (window.LEVELS[hsh]) Level.start(hsh);
     else Home.show();
@@ -56,6 +59,10 @@
     document.getElementById('homeBtn').addEventListener('click', function () { Cinematic.stop(); Home.show(); });
     document.getElementById('playBtn').addEventListener('click', function () { play('costa'); });
     document.getElementById('archiveBtn').addEventListener('click', function () { Archive.open({}, function () { Home.show(); }, 'back'); });
+    var logo = document.getElementById('logoSlot'); logo.appendChild(Art.logo());
+    document.getElementById('heroArt').appendChild(Art.hero());
+    document.getElementById('methodBtn').addEventListener('click', showMethod);
+    document.getElementById('methodBack').addEventListener('click', function () { Home.show(); });
     Home.show();
     document.getElementById('playBtn').disabled = true;
     document.getElementById('archiveBtn').disabled = true;

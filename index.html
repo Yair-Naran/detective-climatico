@@ -5,12 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Climate Detective: a game and tool to investigate climate trends in Mexico with NASA POWER data.">
 <title>Climate Detective</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E🔎%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#080f20">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22%3E%3Crect width=%2248%22 height=%2248%22 rx=%2210%22 fill=%22%230b2545%22/%3E%3Ccircle cx=%2221%22 cy=%2221%22 r=%2213%22 fill=%22none%22 stroke=%22%23ffc247%22 stroke-width=%224%22/%3E%3Cpolyline points=%2213,26 18,20 23,23 30,14%22 fill=%22none%22 stroke=%22%234cc9f0%22 stroke-width=%223.4%22 stroke-linecap=%22round%22/%3E%3Cline x1=%2231%22 y1=%2231%22 x2=%2243%22 y2=%2243%22 stroke=%22%23ffc247%22 stroke-width=%226%22 stroke-linecap=%22round%22/%3E%3C/svg%3E">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <header class="top">
-  <button id="homeBtn" class="brand" type="button"><span aria-hidden="true">🔎</span> <span data-i18n="title"></span></button>
+  <button id="homeBtn" class="brand" type="button"><span id="logoSlot" aria-hidden="true"></span><span data-i18n="title"></span></button>
   <button id="langBtn" class="lang" type="button"></button>
 </header>
 
@@ -18,13 +19,16 @@
   <!-- HOME -->
   <section id="screen-home" class="screen">
     <div class="card hero">
-      <p class="kicker" data-i18n="homeKicker"></p>
-      <h1 data-i18n="title"></h1>
-      <p data-i18n="tagline"></p>
-      <p id="loadMsg" class="small" data-i18n="loading"></p>
-      <div class="stack">
-        <button id="playBtn" class="btn primary big" type="button" data-i18n="play"></button>
-        <button id="archiveBtn" class="btn" type="button" data-i18n="openArchive"></button>
+      <div id="heroArt" class="hero-art" aria-hidden="true"></div>
+      <div class="hero-body">
+        <p class="kicker" data-i18n="homeKicker"></p>
+        <h1 data-i18n="title"></h1>
+        <p data-i18n="tagline"></p>
+        <p id="loadMsg" class="small" data-i18n="loading"></p>
+        <div class="stack">
+          <button id="playBtn" class="btn primary big" type="button" data-i18n="play"></button>
+          <button id="archiveBtn" class="btn" type="button" data-i18n="openArchive"></button>
+        </div>
       </div>
     </div>
     <div class="card">
@@ -32,6 +36,7 @@
       <div id="levelList" class="levels"></div>
     </div>
     <p class="small center" data-i18n="noLogin"></p>
+    <div class="home-links"><button id="methodBtn" class="btn ghost" type="button" data-i18n="methodBtn"></button></div>
   </section>
 
   <!-- TUTORIAL / LEVEL (rendered by JS) -->
@@ -78,6 +83,26 @@
       </ul>
     </div>
   </section>
+
+  <!-- METHOD, SOURCES AND CREDITS -->
+  <section id="screen-method" class="screen" hidden>
+    <div class="row"><button id="methodBack" class="btn ghost" type="button" data-i18n="back"></button></div>
+    <div class="card">
+      <h2 data-i18n="methodScreenTitle"></h2>
+      <p data-i18n="mFiction"></p>
+      <h3 data-i18n="mSecData"></h3>
+      <ul><li data-i18n="method1"></li><li data-i18n="method2"></li><li data-i18n="method4"></li><li data-i18n="method5"></li></ul>
+      <h3 data-i18n="mSecStats"></h3>
+      <ul><li data-i18n="method3"></li><li data-i18n="mStats1"></li><li data-i18n="mStats2"></li></ul>
+      <h3 data-i18n="mSecContent"></h3>
+      <ul><li data-i18n="mRef1"></li><li data-i18n="mRef2"></li><li data-i18n="mRef3"></li><li data-i18n="mRef4"></li><li data-i18n="mRef5"></li><li data-i18n="mRef6"></li><li data-i18n="mRef7"></li></ul>
+      <h3 data-i18n="mSecAI"></h3>
+      <p data-i18n="mAI"></p>
+      <h3 data-i18n="mSecArt"></h3>
+      <p data-i18n="mArt"></p>
+      <p class="small" data-i18n="mCode"></p>
+    </div>
+  </section>
 </main>
 
 <footer data-i18n="footer"></footer>
@@ -86,6 +111,7 @@
 <script src="js/stats.js"></script>
 <script src="js/core.js"></script>
 <script src="js/chart.js"></script>
+<script src="js/art.js"></script>
 <script src="js/cinematic.js"></script>
 <script src="js/levels-data.js"></script>
 <script src="js/archive.js"></script>

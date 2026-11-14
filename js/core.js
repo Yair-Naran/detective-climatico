@@ -45,6 +45,7 @@
 
     show: function (name) {
       document.querySelectorAll('.screen').forEach(function (s) { s.hidden = s.id !== 'screen-' + name; });
+      if (name !== 'level') document.body.removeAttribute('data-zone');
       App.current = name;
       window.scrollTo(0, 0);
     },
