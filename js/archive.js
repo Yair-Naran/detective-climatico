@@ -30,12 +30,16 @@
     fillSelect($('season'), ['annual', 'MAM', 'JJA', 'SON', 'DJF'].map(function (s) { return { value: s, label: t('season_' + s) }; }), keep.season);
   }
 
+  // Only offer years that are complete for the chosen city/variable/season.
   function buildYears(keepFrom, keepTo) {
     var c = DATA.cities[$('city').value];
-    var y0 = c.start[0], y1 = c.end[0];
-    var ys = []; for (var y = y0; y <= y1; y++) ys.push({ value: y, label: String(y) });
-    fillSelect($('from'), ys, keepFrom !== undefined ? keepFrom : y0);
-    fillSelect($('to'), ys, keepTo !== undefined ? keepTo : y1);
+    var agg = Stats.aggregate(c[$('variable').value], c.start, $('season').value);
+    var y0 = agg.years[0], y1 = agg.years[agg.years.length - 1];
+    var ys = agg.years.map(function (y) { return { value: y, label: String(y) }; });
+    var f = keepFrom !== undefined ? Math.min(Math.max(+keepFrom, y0), y1) : y0;
+    var to = keepTo !== undefined ? Math.min(Math.max(+keepTo, y0), y1) : y1;
+    fillSelect($('from'), ys, f);
+    fillSelect($('to'), ys, to);
   }
 
   function fmt(n, d) { return (n >= 0 ? '+' : '') + n.toFixed(d); }
@@ -100,8 +104,10 @@
     $('result').innerHTML = '<strong>' + t('loading') + '</strong>';
     fetch('data/series.json').then(function (r) { return r.json(); }).then(function (j) {
       DATA = j; buildControls(); buildYears(); render();
-      ['variable', 'season', 'from', 'to'].forEach(function (id) { $(id).addEventListener('change', render); });
-      $('city').addEventListener('change', function () { buildYears(); render(); });
+      ['from', 'to'].forEach(function (id) { $(id).addEventListener('change', render); });
+      ['city', 'variable', 'season'].forEach(function (id) {
+        $(id).addEventListener('change', function () { buildYears($('from').value, $('to').value); render(); });
+      });
     }).catch(function () { $('result').innerHTML = '<strong>' + t('loadError') + '</strong>'; });
     $('langBtn').addEventListener('click', function () {
       lang = lang === 'es' ? 'en' : 'es';
