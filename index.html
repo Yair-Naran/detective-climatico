@@ -3,62 +3,80 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Climate Detective: a game and tool to investigate climate trends in Mexico with NASA POWER data.">
 <title>Climate Detective</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E🔎%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <header class="top">
-  <div>
-    <h1 data-i18n="title"></h1>
-    <p class="tag" data-i18n="tagline"></p>
-  </div>
+  <button id="homeBtn" class="brand" type="button"><span aria-hidden="true">🔎</span> <span data-i18n="title"></span></button>
   <button id="langBtn" class="lang" type="button"></button>
 </header>
 
 <main>
-  <section class="card" id="archive">
-    <h2 data-i18n="archiveTitle"></h2>
-    <p data-i18n="archiveIntro"></p>
-
-    <div class="controls">
-      <label><span data-i18n="stepPlace"></span>
-        <select id="city"></select></label>
-      <label><span data-i18n="stepVar"></span>
-        <select id="variable"></select></label>
-      <label><span data-i18n="stepSeason"></span>
-        <select id="season"></select></label>
-      <fieldset>
-        <legend data-i18n="stepPeriod"></legend>
-        <label><span data-i18n="from"></span> <select id="from"></select></label>
-        <label><span data-i18n="to"></span> <select id="to"></select></label>
-      </fieldset>
+  <!-- HOME -->
+  <section id="screen-home" class="screen">
+    <div class="card hero">
+      <p class="kicker" data-i18n="homeKicker"></p>
+      <h1 data-i18n="title"></h1>
+      <p data-i18n="tagline"></p>
+      <p id="loadMsg" class="small" data-i18n="loading"></p>
+      <div class="stack">
+        <button id="playBtn" class="btn primary big" type="button" data-i18n="play"></button>
+        <button id="archiveBtn" class="btn" type="button" data-i18n="openArchive"></button>
+      </div>
     </div>
-    <p id="elev" class="small"></p>
-
-    <h3 data-i18n="chartTitle"></h3>
-    <svg id="chart" viewBox="0 0 360 230" role="img" aria-label="Time series chart"></svg>
-    <p class="legend"><span class="dot"></span> <span data-i18n="legendData"></span>
-      &nbsp; <span class="dash"></span> <span data-i18n="legendTrend"></span></p>
-
-    <div id="result" class="result" aria-live="polite"></div>
+    <div class="card">
+      <h2 data-i18n="casesTitle"></h2>
+      <div id="levelList" class="levels"></div>
+    </div>
+    <p class="small center" data-i18n="noLogin"></p>
   </section>
 
-  <section class="card">
-    <h2 data-i18n="defsTitle"></h2>
-    <dl>
-      <dt data-i18n="def_t2m_name"></dt><dd data-i18n="def_t2m"></dd>
-      <dt data-i18n="def_prec_name"></dt><dd data-i18n="def_prec"></dd>
-      <dt data-i18n="def_trend_name"></dt><dd data-i18n="def_trend"></dd>
-      <dt data-i18n="def_p_name"></dt><dd data-i18n="def_p"></dd>
-    </dl>
-  </section>
+  <!-- TUTORIAL / LEVEL (rendered by JS) -->
+  <section id="screen-tutorial" class="screen" hidden></section>
+  <section id="screen-level" class="screen" hidden></section>
 
-  <section class="card">
-    <h2 data-i18n="methodTitle"></h2>
-    <ul>
-      <li data-i18n="method1"></li><li data-i18n="method2"></li><li data-i18n="method3"></li>
-      <li data-i18n="method4"></li><li data-i18n="method5"></li>
-    </ul>
+  <!-- DETECTIVE'S ARCHIVE (challenge tool) -->
+  <section id="screen-archive" class="screen" hidden>
+    <div class="row"><button id="archiveBack" class="btn ghost" type="button" data-i18n="back"></button></div>
+    <div class="card" id="archive">
+      <h2 data-i18n="archiveTitle"></h2>
+      <p data-i18n="archiveIntro"></p>
+      <div class="controls">
+        <label><span data-i18n="stepPlace"></span><select id="city"></select></label>
+        <label><span data-i18n="stepVar"></span><select id="variable"></select></label>
+        <label><span data-i18n="stepSeason"></span><select id="season"></select></label>
+        <fieldset>
+          <legend data-i18n="stepPeriod"></legend>
+          <label><span data-i18n="from"></span><select id="from"></select></label>
+          <label><span data-i18n="to"></span><select id="to"></select></label>
+        </fieldset>
+      </div>
+      <p id="elev" class="small"></p>
+      <h3 data-i18n="chartTitle"></h3>
+      <svg id="chart" viewBox="0 0 360 230" role="img" aria-label="Time series chart"></svg>
+      <p class="legend"><span class="dot"></span> <span data-i18n="legendData"></span>
+        &nbsp; <span class="dash"></span> <span data-i18n="legendTrend"></span></p>
+      <div id="result" class="result" aria-live="polite"></div>
+    </div>
+    <div class="card">
+      <h2 data-i18n="defsTitle"></h2>
+      <dl>
+        <dt data-i18n="def_t2m_name"></dt><dd data-i18n="def_t2m"></dd>
+        <dt data-i18n="def_prec_name"></dt><dd data-i18n="def_prec"></dd>
+        <dt data-i18n="def_trend_name"></dt><dd data-i18n="def_trend"></dd>
+        <dt data-i18n="def_p_name"></dt><dd data-i18n="def_p"></dd>
+      </dl>
+    </div>
+    <div class="card">
+      <h2 data-i18n="methodTitle"></h2>
+      <ul>
+        <li data-i18n="method1"></li><li data-i18n="method2"></li><li data-i18n="method3"></li>
+        <li data-i18n="method4"></li><li data-i18n="method5"></li><li data-i18n="method6"></li>
+      </ul>
+    </div>
   </section>
 </main>
 
@@ -66,6 +84,13 @@
 
 <script src="i18n/strings.js"></script>
 <script src="js/stats.js"></script>
+<script src="js/core.js"></script>
+<script src="js/chart.js"></script>
+<script src="js/cinematic.js"></script>
+<script src="js/levels-data.js"></script>
 <script src="js/archive.js"></script>
+<script src="js/tutorial.js"></script>
+<script src="js/level.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>

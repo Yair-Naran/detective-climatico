@@ -32,6 +32,14 @@ Ojo con las historias: en Veracruz y Monterrey **no** hay tendencia significativ
 ## Claude
 Repositorio, datos, Archivo del detective, tutorial + Nivel Costa, i18n, Centro/Norte, textos de entrega en inglés, lista de Referencias y "Use of SI".
 
+## Pendiente de diseño (pedido por Naranjo)
+- [ ] **Cambiar el diseño a uno más llamativo** (colores, tipografía, ilustraciones en lugar de emojis). Los emojis son marcadores temporales: cada lugar y escena tiene un `icon` en `js/levels-data.js`, y los estilos están en `css/style.css`.
+
+## Cómo está armado el juego (para editar contenido)
+- Textos del Caso Costa: `i18n/strings.js`, claves `costa_*` (ES y EN).
+- Lugares, tiempos, puntos y medallas: `js/levels-data.js`. Centro y Norte se crean copiando el bloque `costa`.
+- Enlaces directos: `?lang=en` (jueces), `#archivo` (herramienta), `#costa` (nivel), `#tutorial`.
+
 ## Pendiente de confirmar
 - Hora real del juicio local (¿antes de las 12:59 del domingo o 23:59?).
 - Si el nombre de la integrante menor puede aparecer en el demo (pregunta al Local Lead; no puede aparecer su imagen ni voz).
