@@ -25,6 +25,8 @@
       return s;
     },
 
+    has: function (k) { return !!(window.I18N[App.lang] && window.I18N[App.lang][k] !== undefined); },
+
     applyI18n: function () {
       document.documentElement.lang = App.lang;
       document.title = App.t('title');

@@ -8,7 +8,7 @@
   var CASES = [
     { id: 'costa', icon: '🌊', ready: true },
     { id: 'centro', icon: '☀️', ready: true },
-    { id: 'norte', icon: '🌵', ready: false }
+    { id: 'norte', icon: '🌵', ready: true }
   ];
 
   function medalOf(id) {

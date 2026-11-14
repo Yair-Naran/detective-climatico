@@ -35,9 +35,12 @@ Repositorio, datos, Archivo del detective, tutorial + Nivel Costa, i18n, Centro/
 ## Pendiente de diseño (pedido por Naranjo)
 - [ ] **Cambiar el diseño a uno más llamativo** (colores, tipografía, ilustraciones en lugar de emojis). Los emojis son marcadores temporales: cada lugar y escena tiene un `icon` en `js/levels-data.js`, y los estilos están en `css/style.css`.
 
+## Diálogos de NPC
+- `i18n/dialogos_npcs.json` ya está en el repo. **Antes de usarlo en el juego**, aplicar las correcciones de `docs/revision-dialogos-npcs.md` (6 líneas contradicen nuestros datos).
+
 ## Cómo está armado el juego (para editar contenido)
-- Textos del Caso Costa: `i18n/strings.js`, claves `costa_*` (ES y EN).
-- Lugares, tiempos, puntos y medallas: `js/levels-data.js`. Centro y Norte se crean copiando el bloque `costa`.
+- Textos de los casos: `i18n/strings.js`, claves `costa_*`, `centro_*` y `norte_*` (ES y EN).
+- Lugares, tiempos, puntos y medallas: `js/levels-data.js`. Los tres casos usan el mismo molde.
 - Enlaces directos: `?lang=en` (jueces), `#archivo` (herramienta), `#costa` (nivel), `#tutorial`.
 
 ## Pendiente de confirmar

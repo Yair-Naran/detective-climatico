@@ -1,0 +1,640 @@
+{
+  "es": {
+    "meta": {
+      "project": "Detective Climático",
+      "challenge": "¡Sé un detective de tendencias del sistema Tierra!",
+      "author_ref": "Basado en los lineamientos del Dr. James Aker (NASA Goddard Space Flight Center)"
+    },
+    "scientific_definitions": {
+      "T2M": {
+        "name": "Temperatura a 2 Metros (T2M)",
+        "short_desc": "Qué tan caliente o frío se siente el aire a la altura donde vivimos y respiramos.",
+        "impact": "Cuando sube demasiado, afecta la salud, seca cultivos y evapora el agua más rápido."
+      },
+      "PRECTOTCORR": {
+        "name": "Precipitación Total Corregida (PRECTOTCORR)",
+        "short_desc": "Cantidad de agua de lluvia que cae sobre una región, corregida y validada por satélites de la NASA.",
+        "impact": "Permite detectar tanto lluvias extremas e inundaciones como sequías prolongadas."
+      },
+      "trend": {
+        "name": "Tendencia Climática",
+        "short_desc": "Dirección a largo plazo en la que se mueve el clima a través de las décadas.",
+        "impact": "Separa el cambio climático real de un simple día caluroso o lluvioso aislado."
+      },
+      "p_value": {
+        "name": "Significancia Estadística (Valor p)",
+        "short_desc": "La prueba del detective para saber si un cambio es un patrón real o pura coincidencia.",
+        "rule": "Si p < 0.05, la tendencia es estadísticamente significativa. Si p > 0.05, puede requerir más años de datos."
+      },
+      "resolution": {
+        "name": "Resolución Espacial y Temporal",
+        "short_desc": "NASA POWER mide celdas de ~0.5° × 0.625° (~50 km) en promedios mensuales desde 1981.",
+        "limit": "No representa una esquina o estación individual ni muestra cambios hora por hora, sino tendencias regionales."
+      }
+    },
+    "zones": {
+      "costa": {
+        "name": "Veracruz (Costa)",
+        "focus": "Lluvias intensas, inundaciones, ciclones, marea de tormenta y calor húmedo.",
+        "radio_headline": "¡Alerta en la costa! El Frente Frío y los remanentes de humedad golpean el litoral con chubascos intensos, mientras decenas de municipios arrastran déficits históricos de lluvia.",
+        "npcs": [
+          {
+            "id": "costa_npc_1",
+            "name": "Don Tacho",
+            "role": "Pescador veterano del malecón",
+            "greeting": "¡Qué hubo, detective! Mira el horizonte. Antes los 'Nortes' avisaban con calmita, pero ahora el Golfo hierve y las tormentas nos sueltan toda el agua de un jalón.",
+            "askMore": {
+              "question": "¿Cómo afecta el calor al mar?",
+              "answer": "Cuando la temperatura de la superficie (T2M) sube, el agua del mar también se calienta. Eso es pura gasolina para los ciclones y hace que la marea de tormenta se meta hasta las calles. Revisa la tendencia de temperatura en tu Archivo y verás que no exagero."
+            }
+          },
+          {
+            "id": "costa_npc_2",
+            "name": "Valeria",
+            "role": "Estudiante de preparatoria y brigadista escolar",
+            "greeting": "¡Hola! En mi escuela armamos un mapa de refugios porque cada vez que llueve fuerte, el patio se vuelve laguna en veinte minutos y suspenden clases.",
+            "askMore": {
+              "question": "¿Llueve más que antes?",
+              "answer": "Eso es lo curioso: si ves los datos mensuales de precipitación (PRECTOTCORR) de la NASA, hay meses súper secos y de repente un mes rompe récord. El agua cae mal distribuida y el drenaje no aguanta."
+            }
+          },
+          {
+            "id": "costa_npc_3",
+            "name": "Capitán Ríos",
+            "role": "Coordinador de Protección Civil en el puerto",
+            "greeting": "Atención, joven. Mi trabajo es decidir cuándo cerramos el puerto y activamos albergues, pero no puedo basarme en chismes; necesito datos con significancia estadística.",
+            "askMore": {
+              "question": "¿Qué es la significancia estadística?",
+              "answer": "En tu herramienta verás el valor p (p-value). Si es menor a 0.05, significa que el cambio en el clima de Veracruz es una tendencia real y no simple casualidad. Con ese dato en mano, justifico el presupuesto de emergencia."
+            }
+          },
+          {
+            "id": "costa_npc_4",
+            "name": "Doña Meche",
+            "role": "Comerciante de antojitos en zona baja",
+            "greeting": "Pásale, corazón. Aquí tengo costales de arena detrás del mostrador. Si no es el agua que baja del río Jamapa, es el bochorno que echa a perder la masa antes del mediodía.",
+            "askMore": null
+          },
+          {
+            "id": "costa_npc_5",
+            "name": "Dr. Fabián",
+            "role": "Investigador del arrecife veracruzano",
+            "greeting": "Qué tal. Monitoreo los corales frente a la costa; son nuestra primera barrera natural contra el oleaje de los huracanes, pero el estrés térmico los está debilitando.",
+            "askMore": {
+              "question": "¿De dónde sacan los datos satelitales?",
+              "answer": "Usamos satélites de la NASA que miden la Tierra desde el espacio. Ojo con un detalle técnico: el satélite mide celdas grandes de unos 50 km (0.5° × 0.625°), no una esquina específica, pero es perfecto para ver tendencias de décadas."
+            }
+          }
+        ],
+        "interactions": [
+          {
+            "id": "costa_int_1",
+            "participants": [
+              "Don Tacho",
+              "Dr. Fabián"
+            ],
+            "dialogue": [
+              {
+                "speaker": "Don Tacho",
+                "line": "Oiga, doctor, usted con tanta computadora... ¿por qué la pesca se aleja tanto de la orilla cuando pega el calorón?"
+              },
+              {
+                "speaker": "Dr. Fabián",
+                "line": "Porque el agua caliente pierde oxígeno, Don Tacho. Lo que usted ve en su lancha coincide exacto con la curva de calentamiento que registran los satélites de la NASA desde 1981."
+              },
+              {
+                "speaker": "Don Tacho",
+                "line": "¡Ja! Para que vea el detective: mis canas y los satélites dicen la misma verdad."
+              }
+            ]
+          },
+          {
+            "id": "costa_int_2",
+            "participants": [
+              "Doña Meche",
+              "Valeria",
+              "Capitán Ríos"
+            ],
+            "dialogue": [
+              {
+                "speaker": "Doña Meche",
+                "line": "¡Capitán! Valeria me dice que viene otra onda tropical. ¿Subo los refrigeradores en ladrillos de una vez?"
+              },
+              {
+                "speaker": "Valeria",
+                "line": "En la radio dijeron que las lluvias de este mes van a superar el promedio histórico."
+              },
+              {
+                "speaker": "Capitán Ríos",
+                "line": "Tranquilas. El detective está revisando la serie de tiempo de PRECTOTCORR en el Archivo. Si la tendencia confirma riesgo alto, activamos la alerta preventiva hoy mismo."
+              }
+            ]
+          }
+        ]
+      },
+      "centro": {
+        "name": "Pachuca (Centro)",
+        "focus": "Calor extremo, radiación solar, amplitud térmica diaria y viento.",
+        "radio_headline": "El altiplano se desacopla: Pachuca experimenta mañanas frías típicas de la sierra pero picos de calor vespertino cada vez más prolongados.",
+        "npcs": [
+          {
+            "id": "centro_npc_1",
+            "name": "Profe Aréchiga",
+            "role": "Maestro de física y encargado del club de astronomía",
+            "greeting": "¡Bienvenido a la Bella Airosa! Aquí el reto tiene truco: en un mismo día sales a las 7 AM temblando de frío y a las 2 PM el sol te quema la piel.",
+            "askMore": {
+              "question": "¿Por qué no se ve ese frío/calor diario en la gráfica mensual?",
+              "answer": "¡Excelente pregunta de detective! Para ver tendencias de muchos años es mejor usar promedios mensuales. El promedio mensual oculta el salto entre la mañana y la tarde (amplitud térmica), pero sí te muestra cómo toda la ciudad se está calentando década tras década."
+            }
+          },
+          {
+            "id": "centro_npc_2",
+            "name": "Santi",
+            "role": "Skater de 15 años en la plaza del Reloj",
+            "greeting": "¿Qué onda? Antes patinábamos desde la una de la tarde sin bronca, pero ahora el cemento refleja un calor insoportable y no hay ni un árbol donde cubrirse.",
+            "askMore": null
+          },
+          {
+            "id": "centro_npc_3",
+            "name": "Arquitecta Elena",
+            "role": "Especialista en vivienda bioclimática",
+            "greeting": "Hola. El problema en Pachuca es que seguimos construyendo casas con techos delgados que parecen hornos al mediodía y congeladores en la madrugada.",
+            "askMore": {
+              "question": "¿Cómo ayudan los datos de la NASA a construir mejor?",
+              "answer": "Si analizas la variable T2M (temperatura a 2 metros del suelo) desde los años 80 hasta hoy, verás una pendiente positiva clara. Con esa pendiente calculamos qué grosor de aislante térmico necesitan las escuelas nuevas."
+            }
+          },
+          {
+            "id": "centro_npc_4",
+            "name": "Enfermera Lupita",
+            "role": "Centro de Salud del centro",
+            "greeting": "Buenas tardes. En primavera y verano nos llegan cada vez más adolescentes con deshidratación y golpes de calor tras hacer deporte al aire libre.",
+            "askMore": {
+              "question": "¿Qué pasa si el valor p es mayor a 0.05 en un periodo corto?",
+              "answer": "Los médicos también usamos estadística. Si eliges solo 5 años en tu herramienta, quizá el valor p salga mayor a 0.05. Eso no significa que el calor no exista, sino que necesitas seleccionar más años en tu serie de tiempo para confirmar la tendencia."
+            }
+          },
+          {
+            "id": "centro_npc_5",
+            "name": "Don Rómulo",
+            "role": "Vendedor tradicional de pastes",
+            "greeting": "Joven, llevo cuarenta años horneando pastes aquí. Antes el viento siempre era helado; ahora en mayo ni el aire refresca y mis hornos calientan todo el local el doble.",
+            "askMore": null
+          }
+        ],
+        "interactions": [
+          {
+            "id": "centro_int_1",
+            "participants": [
+              "Santi",
+              "Enfermera Lupita"
+            ],
+            "dialogue": [
+              {
+                "speaker": "Santi",
+                "line": "Seño Lupita, mi compa se mareó gacho después de tres trucos en la explanada. Dice que nomás fue el sol."
+              },
+              {
+                "speaker": "Enfermera Lupita",
+                "line": "Nada de 'nomás el sol', Santi. A esta altitud la radiación pega directo y las temperaturas máximas han subido. ¡Tráelo a la sombra a tomar electrolitos y no patinen entre las 12 y las 4!"
+              }
+            ]
+          },
+          {
+            "id": "centro_int_2",
+            "participants": [
+              "Don Rómulo",
+              "Arquitecta Elena",
+              "Profe Aréchiga"
+            ],
+            "dialogue": [
+              {
+                "speaker": "Don Rómulo",
+                "line": "Arquitecta, antes aquí nadie pedía ventiladores. ¡Éramos tierra fría!"
+              },
+              {
+                "speaker": "Arquitecta Elena",
+                "line": "El clima del altiplano está cambiando, Don Rómulo. Tenemos islas de calor urbanas porque falta vegetación."
+              },
+              {
+                "speaker": "Profe Aréchiga",
+                "line": "Exacto. Detective, abre tu Archivo de datos en Pachuca, grafica T2M y muéstrales cuántos grados por década ha subido la línea de tendencia."
+              }
+            ]
+          }
+        ]
+      },
+      "norte": {
+        "name": "Monterrey (Norte)",
+        "focus": "Sequía prolongada, calor extremo, crisis hídrica y frentes fríos extremos.",
+        "radio_headline": "Monterrey bajo presión: Las series de precipitación de largo plazo muestran estrés hídrico severo. El reto exige gestión inteligente del agua.",
+        "npcs": [
+          {
+            "id": "norte_npc_1",
+            "name": "Ing. Sofía Garza",
+            "role": "Hidróloga del sistema de presas",
+            "greeting": "Qué tal, detective. Aquí en el norte cada milímetro de lluvia vale oro. Cuando las lluvias fallan dos años seguidos, las presas bajan a niveles críticos.",
+            "askMore": {
+              "question": "¿Cómo se mide la sequía con NASA POWER?",
+              "answer": "Combinamos dos variables: PRECTOTCORR (cuánta lluvia cae) y T2M (temperatura). Si llueve poco y además el calor rompe récords, el agua de las presas y del suelo se evapora mucho más rápido."
+            }
+          },
+          {
+            "id": "norte_npc_2",
+            "name": "Mateo",
+            "role": "Estudiante de secundaria y gamer",
+            "greeting": "¡Bro! En mi colonia hubo cortes de agua y tuvimos que llenar cubetas a las cinco de la mañana. Además, si prendemos el clima todo el día por el calorón, se bota la pastilla de la luz.",
+            "askMore": null
+          },
+          {
+            "id": "norte_npc_3",
+            "name": "Don Homero",
+            "role": "Ganadero de las afueras de la zona metropolitana",
+            "greeting": "Bienvenido al semidesierto, muchacho. El monte es duro, pero últimamente o nos achicharramos a más de 40 grados o nos cae una helada loca que quema todo el pasto.",
+            "askMore": {
+              "question": "¿Por qué hay tanto calor y también frío extremo?",
+              "answer": "Porque el cambio climático no quita el invierno, pero altera las estaciones. La tendencia general de temperatura va hacia arriba, aunque de repente bajen frentes árticos intensos de golpe."
+            }
+          },
+          {
+            "id": "norte_npc_4",
+            "name": "Lic. Carla Treviño",
+            "role": "Gerente de sustentabilidad industrial",
+            "greeting": "Hola. Las fábricas de Monterrey necesitamos agua para operar, pero sabemos que la prioridad es el consumo humano. Estamos migrando a agua tratada y reciclada.",
+            "askMore": {
+              "question": "¿Cómo se usa la herramienta de tendencias para planear a futuro?",
+              "answer": "Seguimos los 5 pasos del detective de la NASA: elegimos la variable, seleccionamos Monterrey, ponemos el periodo completo desde 1981, graficamos la serie y revisamos la pendiente. Eso nos dice cuánta agua tendremos en 2030."
+            }
+          },
+          {
+            "id": "norte_npc_5",
+            "name": "Abuela Chayo",
+            "role": "Cuidadora de un jardín comunitario de plantas nativas",
+            "greeting": "Mira mis mezquites y huizaches, hijo. Los vecinos querían pasto inglés verdecito, pero ese traga litros y litros de agua. Las plantas del desierto sí saben resistir.",
+            "askMore": null
+          }
+        ],
+        "interactions": [
+          {
+            "id": "norte_int_1",
+            "participants": [
+              "Mateo",
+              "Abuela Chayo"
+            ],
+            "dialogue": [
+              {
+                "speaker": "Mateo",
+                "line": "Abuela, ¿por qué no ponemos una alberca inflable en el patio? ¡Estamos a 41 grados!"
+              },
+              {
+                "speaker": "Abuela Chayo",
+                "line": "¡Ni lo mande Dios, Mateo! ¿Ya se te olvidó cuando no salía ni una gota de la regadera? Mejor siéntate bajo la sombra del mezquite; ahí baja hasta cinco grados la temperatura sin gastar un litro."
+              }
+            ]
+          },
+          {
+            "id": "norte_int_2",
+            "participants": [
+              "Don Homero",
+              "Ing. Sofía Garza",
+              "Lic. Carla Treviño"
+            ],
+            "dialogue": [
+              {
+                "speaker": "Don Homero",
+                "line": "Ingeniera, en el rancho decimos que ya no llueve como en los ochenta, pero luego cae un huracán y todos creen que ya se acabó el problema para siempre."
+              },
+              {
+                "speaker": "Ing. Sofía Garza",
+                "line": "Ese es el peligro, Don Homero: confundir una tormenta aislada con el fin de la sequía. Hay que ver la tendencia de 40 años."
+              },
+              {
+                "speaker": "Lic. Carla Treviño",
+                "line": "Detective, ayúdanos a comprobarlo en tu Archivo: corre la prueba estadística de precipitación y temperatura en Monterrey para diseñar el plan de acción de la ciudad."
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "en": {
+    "meta": {
+      "project": "Climate Detective",
+      "challenge": "Be an Earth Systems Trend Detective!",
+      "author_ref": "Based on guidelines by Dr. James Aker (NASA Goddard Space Flight Center)"
+    },
+    "scientific_definitions": {
+      "T2M": {
+        "name": "Temperature at 2 Meters (T2M)",
+        "short_desc": "How hot or cold the air feels right at the height where we live and breathe.",
+        "impact": "When it rises too much, it affects health, dries out crops, and evaporates water faster."
+      },
+      "PRECTOTCORR": {
+        "name": "Corrected Total Precipitation (PRECTOTCORR)",
+        "short_desc": "Amount of rainwater falling over a region, corrected and validated by NASA satellites.",
+        "impact": "Helps detect both extreme rainfall/floods and prolonged droughts."
+      },
+      "trend": {
+        "name": "Climate Trend",
+        "short_desc": "The long-term direction in which the climate moves across decades.",
+        "impact": "Separates real climate change from a single isolated hot or rainy day."
+      },
+      "p_value": {
+        "name": "Statistical Significance (p-value)",
+        "short_desc": "The detective's test to know if a detected change is a real planetary pattern or pure coincidence.",
+        "rule": "If p < 0.05, the trend is statistically significant. If p > 0.05, a longer time series may be needed."
+      },
+      "resolution": {
+        "name": "Spatial and Temporal Resolution",
+        "short_desc": "NASA POWER measures grid cells of ~0.5° × 0.625° (~50 km) in monthly averages since 1981.",
+        "limit": "It does not represent a single street corner or station, nor hour-by-hour swings, but regional trends."
+      }
+    },
+    "zones": {
+      "costa": {
+        "name": "Veracruz (Coast)",
+        "focus": "Heavy rainfall, floods, cyclones, storm surge, and humid heat.",
+        "radio_headline": "Coastal Alert! Cold Fronts and tropical moisture hit the coast with intense downpours, while dozens of municipalities face severe historical rainfall deficits.",
+        "npcs": [
+          {
+            "id": "costa_npc_1",
+            "name": "Don Tacho",
+            "role": "Veteran boardwalk fisherman",
+            "greeting": "Hey there, detective! Look at the horizon. 'Nortes' used to give us a calm warning, but now the Gulf boils and storms dump all the water at once.",
+            "askMore": {
+              "question": "How does heat affect the sea?",
+              "answer": "When surface temperature (T2M) rises, ocean water warms up too. That's pure fuel for cyclones and pushes storm surges right into the streets. Check the temperature trend in your File and you'll see I'm not exaggerating."
+            }
+          },
+          {
+            "id": "costa_npc_2",
+            "name": "Valeria",
+            "role": "High school student & school brigade leader",
+            "greeting": "Hi! At my school we mapped out shelters because every time it rains hard, the courtyard turns into a lagoon in twenty minutes and classes get canceled.",
+            "askMore": {
+              "question": "Does it rain more than before?",
+              "answer": "That's the tricky part: if you look at NASA's monthly precipitation data (PRECTOTCORR), there are super dry months and suddenly one month breaks records. Water falls unevenly and the drainage can't handle it."
+            }
+          },
+          {
+            "id": "costa_npc_3",
+            "name": "Captain Ríos",
+            "role": "Port Civil Protection Coordinator",
+            "greeting": "Attention, detective. My job is deciding when to close the port and open shelters, but I can't rely on rumors; I need statistically significant data.",
+            "askMore": {
+              "question": "What is statistical significance?",
+              "answer": "In your tool you'll see the p-value. If it's less than 0.05, it means the climate shift in Veracruz is a real trend and not random chance. With that number, I can justify emergency budgets."
+            }
+          },
+          {
+            "id": "costa_npc_4",
+            "name": "Doña Meche",
+            "role": "Street food vendor in low-lying area",
+            "greeting": "Come on in, sweetheart. I keep sandbags behind the counter. If it's not floodwater from the Jamapa River, it's the humid heat spoiling my corn dough before noon.",
+            "askMore": null
+          },
+          {
+            "id": "costa_npc_5",
+            "name": "Dr. Fabián",
+            "role": "Veracruz Reef Researcher",
+            "greeting": "Hello. I monitor coral reefs off the coast; they are our first natural barrier against hurricane waves, but thermal stress is weakening them.",
+            "askMore": {
+              "question": "Where does satellite data come from?",
+              "answer": "We use NASA satellites measuring Earth from space. Keep a technical detail in mind: satellites measure large grid cells about 50 km wide (0.5° × 0.625°), not a single street corner, which is ideal for multi-decade trends."
+            }
+          }
+        ],
+        "interactions": [
+          {
+            "id": "costa_int_1",
+            "participants": [
+              "Don Tacho",
+              "Dr. Fabián"
+            ],
+            "dialogue": [
+              {
+                "speaker": "Don Tacho",
+                "line": "Hey Doctor, with all your computers... why do fish swim so far from shore when the heatwave hits?"
+              },
+              {
+                "speaker": "Dr. Fabián",
+                "line": "Because warm water loses oxygen, Don Tacho. What you see from your boat matches the exact warming curve NASA satellites have recorded since 1981."
+              },
+              {
+                "speaker": "Don Tacho",
+                "line": "Ha! See that, detective? My gray hairs and NASA satellites tell the exact same truth."
+              }
+            ]
+          },
+          {
+            "id": "costa_int_2",
+            "participants": [
+              "Doña Meche",
+              "Valeria",
+              "Captain Ríos"
+            ],
+            "dialogue": [
+              {
+                "speaker": "Doña Meche",
+                "line": "Captain! Valeria says another tropical wave is coming. Should I put my fridges up on bricks right now?"
+              },
+              {
+                "speaker": "Valeria",
+                "line": "The radio said this month's rainfall is going to beat the historical average."
+              },
+              {
+                "speaker": "Captain Ríos",
+                "line": "Stay calm. The detective is checking the PRECTOTCORR time series in the File. If the trend confirms high risk, we'll activate the preventive alert today."
+              }
+            ]
+          }
+        ]
+      },
+      "centro": {
+        "name": "Pachuca (Central Highlands)",
+        "focus": "Extreme heat, solar radiation, daily thermal amplitude, and wind.",
+        "radio_headline": "Highland shift: Pachuca experiences chilly mountain mornings but increasingly prolonged afternoon heat peaks.",
+        "npcs": [
+          {
+            "id": "centro_npc_1",
+            "name": "Prof. Aréchiga",
+            "role": "Physics teacher & astronomy club advisor",
+            "greeting": "Welcome to the Windy City! Here the climate has a trick: in a single day you leave home at 7 AM shivering and by 2 PM the sun burns your skin.",
+            "askMore": {
+              "question": "Why doesn't that daily cold/heat swing show up in the monthly chart?",
+              "answer": "Great detective question! To spot multi-year trends, monthly averages work best. Monthly averages hide the jump between morning and afternoon (thermal amplitude), but clearly reveal how the city is warming decade after decade."
+            }
+          },
+          {
+            "id": "centro_npc_2",
+            "name": "Santi",
+            "role": "15-year-old skater at Clock Tower Plaza",
+            "greeting": "What's up? We used to skate starting at 1 PM with no issue, but now the concrete reflects unbearable heat and there's not a single tree for shade.",
+            "askMore": null
+          },
+          {
+            "id": "centro_npc_3",
+            "name": "Architect Elena",
+            "role": "Bioclimatic housing specialist",
+            "greeting": "Hello. The problem in Pachuca is that we keep building houses with thin roofs that feel like ovens at noon and freezers at dawn.",
+            "askMore": {
+              "question": "How does NASA data help build better houses?",
+              "answer": "If you analyze the T2M variable (temperature at 2 meters) from the 1980s to today, you'll see a clear upward slope. Using that slope, we calculate how much thermal insulation new schools need."
+            }
+          },
+          {
+            "id": "centro_npc_4",
+            "name": "Nurse Lupita",
+            "role": "Downtown Health Center nurse",
+            "greeting": "Good afternoon. Every spring and summer we treat more teenagers for dehydration and heat exhaustion after playing sports outdoors.",
+            "askMore": {
+              "question": "What if the p-value is greater than 0.05 over a short period?",
+              "answer": "In medicine we use statistics too. If you only select 5 years in your tool, the p-value might be above 0.05. That doesn't mean warming isn't happening—it just means you need more years in your time series to confirm the trend."
+            }
+          },
+          {
+            "id": "centro_npc_5",
+            "name": "Don Rómulo",
+            "role": "Traditional paste baker",
+            "greeting": "Detective, I've been baking pastes here for forty years. The wind used to be icy all year; now in May not even the breeze cools us down, and my ovens heat the shop twice as much.",
+            "askMore": null
+          }
+        ],
+        "interactions": [
+          {
+            "id": "centro_int_1",
+            "participants": [
+              "Santi",
+              "Nurse Lupita"
+            ],
+            "dialogue": [
+              {
+                "speaker": "Santi",
+                "line": "Nurse Lupita, my friend got super dizzy after three tricks on the plaza. He says it was just the sun."
+              },
+              {
+                "speaker": "Nurse Lupita",
+                "line": "There's no 'just the sun', Santi. At this altitude radiation hits hard and peak temperatures have risen. Bring him to the shade for electrolytes and don't skate between 12 and 4 PM!"
+              }
+            ]
+          },
+          {
+            "id": "centro_int_2",
+            "participants": [
+              "Don Rómulo",
+              "Architect Elena",
+              "Prof. Aréchiga"
+            ],
+            "dialogue": [
+              {
+                "speaker": "Don Rómulo",
+                "line": "Architect, nobody used to ask for fans here. We were a cold-weather town!"
+              },
+              {
+                "speaker": "Architect Elena",
+                "line": "The highland climate is shifting, Don Rómulo. We have urban heat islands because we lack green areas."
+              },
+              {
+                "speaker": "Prof. Aréchiga",
+                "line": "Exactly. Detective, open your Data File for Pachuca, plot T2M, and show them how many degrees per decade the trend line has climbed."
+              }
+            ]
+          }
+        ]
+      },
+      "norte": {
+        "name": "Monterrey (North)",
+        "focus": "Prolonged drought, extreme heat, water crisis in reservoirs, and arctic cold fronts.",
+        "radio_headline": "Monterrey under pressure: Long-term precipitation series show severe water stress. The challenge requires smart water management.",
+        "npcs": [
+          {
+            "id": "norte_npc_1",
+            "name": "Eng. Sofía Garza",
+            "role": "Reservoir System Hydrologist",
+            "greeting": "Hello, detective. Up north, every millimeter of rain is worth gold. When rains fail two years in a row, reservoirs drop to critical levels.",
+            "askMore": {
+              "question": "How do you measure drought with NASA POWER?",
+              "answer": "We combine two variables: PRECTOTCORR (how much rain falls) and T2M (temperature). When rainfall drops and heat breaks records, water in reservoirs and soil evaporates much faster."
+            }
+          },
+          {
+            "id": "norte_npc_2",
+            "name": "Mateo",
+            "role": "Middle school student & gamer",
+            "greeting": "Bro! Our neighborhood had water shutoffs and we had to fill buckets at 5 AM. Plus, if we run the AC all day because of the heat, the power breaker trips.",
+            "askMore": null
+          },
+          {
+            "id": "norte_npc_3",
+            "name": "Don Homero",
+            "role": "Rancher on the outskirts of the metro area",
+            "greeting": "Welcome to the semi-desert, kid. The brushland is tough, but lately we either roast above 40°C or get hit by a freak freeze that burns all the pasture.",
+            "askMore": {
+              "question": "Why is there both extreme heat and extreme cold?",
+              "answer": "Because climate change doesn't erase winter, it destabilizes seasons. The overall temperature trend goes up, even if intense arctic fronts suddenly drop down."
+            }
+          },
+          {
+            "id": "norte_npc_4",
+            "name": "Carla Treviño",
+            "role": "Industrial Sustainability Manager",
+            "greeting": "Hi. Monterrey's factories need water to operate, but human consumption comes first. We are shifting to treated and recycled water.",
+            "askMore": {
+              "question": "How is the trend tool used to plan for the future?",
+              "answer": "We follow the NASA detective's 5 steps: choose the variable, select Monterrey, set the full period since 1981, plot the time series, and check the slope. That tells us how much water we can expect by 2030."
+            }
+          },
+          {
+            "id": "norte_npc_5",
+            "name": "Grandma Chayo",
+            "role": "Caretaker of a native plant community garden",
+            "greeting": "Look at my mesquites and huizaches, kiddo. The neighbors wanted green English grass, but that guzzles liters and liters of water. Desert plants know how to endure.",
+            "askMore": null
+          }
+        ],
+        "interactions": [
+          {
+            "id": "norte_int_1",
+            "participants": [
+              "Mateo",
+              "Grandma Chayo"
+            ],
+            "dialogue": [
+              {
+                "speaker": "Mateo",
+                "line": "Grandma, why don't we set up an inflatable pool in the yard? It's 41 degrees out!"
+              },
+              {
+                "speaker": "Grandma Chayo",
+                "line": "Heaven forbid, Mateo! Did you already forget when not a single drop came out of the shower? Sit under the mesquite shade instead; it's five degrees cooler there without wasting a single liter."
+              }
+            ]
+          },
+          {
+            "id": "norte_int_2",
+            "participants": [
+              "Don Homero",
+              "Eng. Sofía Garza",
+              "Carla Treviño"
+            ],
+            "dialogue": [
+              {
+                "speaker": "Don Homero",
+                "line": "Engineer, at the ranch we say it doesn't rain like it did in the eighties, but then one hurricane hits and everyone thinks the problem is solved forever."
+              },
+              {
+                "speaker": "Eng. Sofía Garza",
+                "line": "That's the danger, Don Homero: confusing an isolated storm with the end of a drought. We have to look at the 40-year trend."
+              },
+              {
+                "speaker": "Carla Treviño",
+                "line": "Detective, help us prove it in your File: run the statistical test for precipitation and temperature in Monterrey so we can design the city's action plan."
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

@@ -8,6 +8,8 @@
 
   function root() { return document.getElementById('screen-level'); }
   function k(suffix) { return S.cfg.id + '_' + suffix; }
+  /* level-specific text if it exists, otherwise the generic key */
+  function lt(suffix, generic, vars) { var key = k(suffix); return App.has(key) ? t(key, vars) : t(generic, vars); }
   function place(id) { return S.cfg.places.filter(function (p) { return p.id === id; })[0]; }
   function byRole(fn) { return S.cfg.places.filter(fn)[0]; }
   function refugePlace() { return byRole(function (p) { return p.cat === 'refuge'; }); }
@@ -156,8 +158,8 @@
         var ok = p.items.filter(function (i) { return i.id === id; })[0].ok;
         return h('li', { class: ok ? 'ok' : 'bad', text: (ok ? '✓ ' : '✗ ') + t('item_' + id) });
       })));
-      if (d.okCount < d.sel.length) card.appendChild(h('p', { class: 'warn', text: t('packTipBad') }));
-      card.appendChild(h('p', { class: 'small', text: t('packSource') }));
+      if (d.okCount < d.sel.length) card.appendChild(h('p', { class: 'warn', text: lt(p.id + '_tip', 'packTipBad') }));
+      card.appendChild(h('p', { class: 'small', text: lt(p.id + '_source', 'packSource') }));
       card.appendChild(continueBtn());
     }
   }
@@ -203,7 +205,8 @@
       card.appendChild(h('p', { class: d.correct ? 'ok' : 'warn', text: (d.correct ? t('dataOk') : t('dataNo')) + ' ' +
         t(right === 'up' ? 'verdictUp' : right === 'down' ? 'verdictDown' : 'verdictNone') }));
       if (right === 'none') card.appendChild(h('p', { class: 'note', text: t('verdictNoneNote') }));
-      card.appendChild(h('p', { text: t(k(p.id + '_after')) }));
+      var maxI = r.ys.indexOf(Math.max.apply(null, r.ys)), minI = r.ys.indexOf(Math.min.apply(null, r.ys));
+      card.appendChild(h('p', { text: t(k(p.id + '_after'), { maxY: r.xs[maxI], minY: r.xs[minI] }) }));
     }
     card.appendChild(h('button', { class: 'btn ghost', type: 'button', onclick: function () {
       Archive.open({ city: S.cfg.city, variable: p.variable, season: p.season }, function () { App.show('level'); render(); }, 'backToCase');
@@ -237,13 +240,15 @@
     S.medal = medalFor(S.final.total);
     var best = App.store.get('best_' + S.cfg.id) || 0;
     if (S.final.total > best) App.store.set('best_' + S.cfg.id, S.final.total);
-    if (S.medal !== 'none') App.store.set('bonus', { from: S.cfg.id, to: S.cfg.nextLevel, type: S.medal });
+    if (S.medal !== 'none' && S.cfg.nextLevel) App.store.set('bonus', { from: S.cfg.id, to: S.cfg.nextLevel, type: S.medal });
     S.phase = 'outro'; render(); window.scrollTo(0, 0);
   }
 
   function playOutro(el) {
     var ref = doneOf(refugePlace()), refOk = ref && ref.opt.good;
-    var pack = doneOf(packPlace()), packOk = pack && pack.okCount >= 4;
+    var pp = packPlace(), pack = doneOf(pp);
+    var essentials = pp.items.filter(function (i) { return i.ok; }).length;
+    var packOk = pack && pack.okCount >= Math.ceil(0.66 * Math.min(pp.slots, essentials));
     var hp = doneOf(helpPlace()), helped = hp && hp.opt.pts > 0;
     var I = S.cfg.outroIcons, sc = S.cfg.outroScenes || ['storm', 'storm', 'alert', 'calm', 'calm'];
     var panels = [
@@ -268,11 +273,12 @@
     el.appendChild(h('div', { class: 'card' }, h('h3', { text: t('breakdown') }),
       Object.keys(sc).map(function (c) {
         return h('div', { class: 'brk' },
-          h('div', { class: 'row between' }, h('span', { text: t('cat_' + c) }), h('b', { text: f.parts[c] + ' / ' + sc[c] })),
+          h('div', { class: 'row between' }, h('span', { text: lt('cat_' + c, 'cat_' + c) }), h('b', { text: f.parts[c] + ' / ' + sc[c] })),
           h('div', { class: 'bar prep' }, h('i', { style: 'width:' + (f.parts[c] / sc[c] * 100) + '%' })));
       })));
 
-    el.appendChild(h('div', { class: 'card' }, h('h3', { text: '🎁 ' + t('bonusTitle') }),
+    if (!S.cfg.nextLevel) el.appendChild(h('div', { class: 'card' }, h('h3', { text: '🏆 ' + t('allDoneTitle') }), h('p', { text: t('allDone') })));
+    else el.appendChild(h('div', { class: 'card' }, h('h3', { text: '🎁 ' + t('bonusTitle') }),
       h('p', { text: t('bonus_' + S.medal) }), S.medal !== 'none' && S.cfg.nextLevel ? h('p', { class: 'small', text: t('bonusNote', { c: t('case_' + S.cfg.nextLevel) }) }) : null));
 
     var learned = S.cfg.places.filter(function (p) { return p.type === 'data'; }).map(function (p) {
