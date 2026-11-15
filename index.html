@@ -17,11 +17,12 @@
 <header class="top">
   <div class="top-in">
     <button id="homeBtn" class="brand" type="button"><span id="logoSlot" aria-hidden="true"></span><span data-i18n="title"></span></button>
-    <button id="langBtn" class="lang" type="button"></button>
+    <div class="top-right"><button id="soundBtn" class="sound" type="button" aria-pressed="false"></button><button id="langBtn" class="lang" type="button"></button></div>
   </div>
 </header>
 
 <main>
+  <h1 id="srH1" class="sr-only" hidden></h1>
   <!-- HOME -->
   <section id="screen-home" class="screen screen-home intro">
     <div id="stripesHero" class="stripes-hero bleed">
@@ -70,12 +71,22 @@
           <label><span data-i18n="to"></span><select id="to"></select></label>
         </fieldset>
       </div>
+      <div id="customBox"></div>
+      <p id="archiveStatus" class="small status" role="status" aria-live="polite" hidden></p>
       <p id="elev" class="small"></p>
+      <p id="maxminNote" class="small note" data-i18n="maxminNote" hidden></p>
       <h3 data-i18n="chartTitle"></h3>
       <div id="chartTypes" class="seg" role="group"></div>
       <svg id="chart" viewBox="0 0 360 230" role="img" aria-label="Chart"></svg>
       <div id="chartLegend"></div>
+      <div id="tools" class="tools" hidden></div>
       <div id="result" class="result" aria-live="polite"></div>
+    </div>
+    <div class="card" id="compareCard">
+      <h2 data-i18n="cmpTitle"></h2>
+      <p class="small" data-i18n="cmpIntro"></p>
+      <p id="compareHint" class="small"></p>
+      <div id="compareBody"></div>
     </div>
     <div class="card">
       <h2 data-i18n="defsTitle"></h2>
@@ -115,6 +126,10 @@
       <p data-i18n="mAI"></p>
       <h3 data-i18n="mSecArt"></h3>
       <p data-i18n="mArt"></p>
+      <h3 data-i18n="mSecSound"></h3>
+      <p data-i18n="mSound"></p>
+      <h3 data-i18n="mSecTeam"></h3>
+      <p data-i18n="mTeam"></p>
       <p class="small" data-i18n="mCode"></p>
     </div>
   </section>
@@ -132,6 +147,8 @@
 <script src="js/art.js"></script>
 <script src="js/cinematic.js"></script>
 <script src="js/levels-data.js"></script>
+<script src="js/power.js"></script>
+<script src="js/audio.js"></script>
 <script src="js/glossary.js"></script>
 <script src="js/archive.js"></script>
 <script src="js/tutorial.js"></script>

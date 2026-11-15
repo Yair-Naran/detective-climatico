@@ -1,45 +1,55 @@
-# Registro de recursos (para el campo "References" y "Use of SI")
+# Asset register (feeds the "References" and "Use of SI" fields)
 
-Anotar TODO lo usado (código, texto, imágenes, audio, librerías), aunque sea libre.
+Everything used in the project (code, text, images, audio, libraries), including free and open-source material.
 
-## Datos
-| Recurso | Fuente | Licencia / términos | URL |
+## Data
+| Resource | Source | Terms | URL |
 |---|---|---|---|
-| Series mensuales T2M y PRECTOTCORR | NASA POWER (MERRA-2; precipitación corregida con GPM IMERG) | Datos abiertos de NASA | https://power.larc.nasa.gov |
+| Monthly T2M, T2M_MAX, T2M_MIN, PRECTOTCORR, RH2M | NASA POWER (MERRA-2; precipitation bias-corrected with GPM IMERG) | NASA open data | https://power.larc.nasa.gov |
 
-## Código
-| Recurso | Autor | Licencia | Nota |
+The three built-in places are stored in `data/series.json` (T2M and PRECTOTCORR). Any other place and the extra variables are requested live from the POWER API by `js/power.js` and cached in the browser for 30 days.
+
+## Code
+| Resource | Author | License | Note |
 |---|---|---|---|
-| js/stats.js, js/archive.js, index.html, css/ | Equipo, escrito con ayuda de Claude (IA) | MIT | Declarar uso de IA en "Use of SI". Mann-Kendall validado contra scipy. |
+| `js/*.js`, `index.html`, `css/`, `sw.js`, `tests/` | Team, written with help from Claude (AI) | MIT | Declare AI use in "Use of SI". Mann-Kendall validated against scipy and pymannkendall. |
+| No third-party code is shipped | | | Dev-only: `playwright-core` (Apache-2.0) and `axe-core` (MPL-2.0) for tests; scipy and pymannkendall for validation. |
 
-## Contenido de preparación (texto propio basado en)
-| Fuente | Uso |
+## Preparedness content (our own text, based on)
+| Source | Use |
 |---|---|
-| SIAT-CT, Sistema Nacional de Protección Civil (manual 2019, gob.mx) | Alertas de 5 colores en el Caso Costa |
-| Protección Civil / CENAPRED, mochila de emergencia | Objetos de la mochila (72 h) |
-| IPCC AR6 WGI (2021), cap. 11 | Lluvia en ciclones, proporción de ciclones intensos, marea de tormenta; extremos de calor más frecuentes desde 1950 |
-| Servicio Meteorológico Nacional (Conagua) / CENAPRED | Definición de onda de calor (Caso Centro) |
-| Monitor de Sequía de México (Conagua – SMN) | Categorías D0–D4 (Caso Norte) |
-| Secretaría de Salud | Recipientes de agua limpios y tapados (Caso Norte) |
-| Protección Civil Nuevo León | No usar anafres ni braseros dentro de casa (Caso Norte) |
-| Organización Meteorológica Mundial (OMM) | Periodo de referencia 1991–2020 para anomalías y franjas |
-| Ed Hawkins (2018), "warming stripes" | Idea de la gráfica de franjas de clima (dibujada por el equipo en código) |
-| Protección Civil / CENAPRED | Prioridades de la mochila (vital / útil) y riesgo de velas |
-| Secretaría de Salud | Evitar sol 11:00–16:00, señales y primeros auxilios de golpe de calor, llamar al 911 (Caso Centro) |
+| SIAT-CT, National Civil Protection System (2019 manual, gob.mx) | 5-color alerts in the Coast case |
+| Civil Protection / CENAPRED, emergency backpack | Backpack items (72 h) and priorities (vital / useful), candle risk |
+| IPCC AR6 WGI (2021), ch. 11 | Rain in cyclones, share of intense cyclones, storm surge, more frequent heat extremes since 1950 |
+| National Weather Service (Conagua) / CENAPRED | Heat wave definition (Center case) |
+| Mexico Drought Monitor (Conagua - SMN) | Drought categories D0-D4 (North case) |
+| Ministry of Health | Clean covered water containers; avoid sun 11:00-16:00, heatstroke signs and first aid, call 911 |
+| Civil Protection Nuevo León | No charcoal stoves or braziers indoors (North case) |
+| World Meteorological Organization | 1991-2020 reference period for anomalies and stripes |
+| Ed Hawkins (2018), "warming stripes" | Stripes chart idea (drawn by the team in code) |
 
-## Contenido del equipo
-| Recurso | Autor | Nota |
+## Team content
+| Resource | Author | Note |
 |---|---|---|
-| `i18n/dialogos_npcs.json` | Equipo | Diálogos de NPC (ES/EN); ver `docs/revision-dialogos-npcs.md` |
-| `scripts/fetch_nasa_power.py` | Equipo | Descarga cruda de NASA POWER |
+| `i18n/strings.js` | Team + Claude | All texts, Spanish and English |
+| `i18n/dialogos_npcs.json` | Team | NPC dialogue (ES/EN), edited with AI assistance for tone |
+| `scripts/fetch_power.py`, `scripts/fetch_nasa_power.py` | Team | Download from NASA POWER |
 
-## Arte / audio
-Ilustraciones, logo y paisajes animados: originales, dibujados en código SVG/CSS (`js/art.js`, `css/style.css`), sin archivos de imagen ni fotos de personas. Íconos: dibujados en código SVG por el equipo (`js/icons.js`); las franjas de clima de la portada se calculan de los datos de NASA POWER (`js/stripes.js`). Tipografías: Climate Crisis (Daniel Coull / Helsingin Sanomat; eje variable YEAR basado en datos de hielo marino ártico) para el título, Anybody (Etcetera Type Co) para titulares, botones y etiquetas, y Atkinson Hyperlegible Next (Braille Institute) para leer; todas SIL Open Font License 1.1, alojadas en `fonts/` junto con sus licencias (Climate Crisis y Anybody descargadas del paquete npm de Fontsource 5.3.0; Atkinson de Google Fonts). El arte final del compañero (personajes dibujados, estilo animado, sin parecido a personas reales ni a menores) se registra aquí con autor y herramienta.
-| Recurso | Fuente | Licencia | URL | Archivo en repo |
+## Art, audio and fonts
+Illustrations, logo and animated landscapes: original, drawn in code as SVG and CSS (`js/art.js`, `css/style.css`); no image files, no photos of people. Icons: drawn in code (`js/icons.js`). The climate stripes on the home screen are computed from the NASA POWER data (`js/stripes.js`).
+
+**Music and sound effects:** generated live in the browser by `js/audio.js` (Web Audio API oscillators, filters and noise). Original composition by algorithm: no samples, recordings or third-party music, so there is no copyright to clear. Not AI-generated audio.
+
+| Resource | Source | License | URL | File in repo |
 |---|---|---|---|---|
-| (vacío) | | | | |
+| Climate Crisis (title font) | Daniel Coull / Helsingin Sanomat | SIL OFL 1.1 | https://github.com/fontsource/font-files (Fontsource 5.3.0) | `fonts/ClimateCrisis-YEAR.woff2`, `fonts/OFL-ClimateCrisis.txt` |
+| Anybody (headlines, buttons) | Etcetera Type Co | SIL OFL 1.1 | Fontsource 5.3.0 | `fonts/Anybody-*.woff2`, `fonts/OFL-Anybody.txt` |
+| Atkinson Hyperlegible Next (reading) | Braille Institute | SIL OFL 1.1 | Google Fonts | `fonts/AtkinsonHyperlegibleNext-*.woff2`, `fonts/OFL-AtkinsonHyperlegibleNext.txt` |
 
-## Uso de IA (Use of SI)
-- Código y textos del juego redactados con Claude (Anthropic).
-- Ilustraciones del juego (`js/art.js`): código SVG escrito con ayuda de Claude; no son imágenes generadas por IA.
-- Imágenes generadas por IA: ninguna hasta ahora (si se usan: marca de agua visible y declararlas aquí).
+Final character and zone art from the team (original, animated or drawn style, no likeness of real people or minors) goes in this table with author and tool when it is added.
+
+## Use of AI (Use of SI)
+- Code, tests and texts written with Claude (Anthropic); reviewed and tested by the team.
+- Illustrations (`js/art.js`): SVG code written with Claude's help; not AI-generated images.
+- Audio: synthesized by code (see above); not AI-generated audio.
+- AI-generated images: none so far (if used: visible watermark and listed here).

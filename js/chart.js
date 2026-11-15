@@ -22,7 +22,7 @@
   function signed(v, d) { return (v > 0 ? '+' : v < 0 ? '−' : '') + fmt(Math.abs(v), d); }
   function hex(c) { return [parseInt(c.slice(1, 3), 16), parseInt(c.slice(3, 5), 16), parseInt(c.slice(5, 7), 16)]; }
   function mix(a, b, k) { return 'rgb(' + a.map(function (v, i) { return Math.round(v + (b[i] - v) * k); }).join(',') + ')'; }
-  function poles(variable) { return variable === 't2m' ? { pos: C.warm, neg: C.cool } : { pos: C.wet, neg: C.dry }; }
+  function poles(variable) { return App.isTemp(variable) ? { pos: C.warm, neg: C.cool } : { pos: C.wet, neg: C.dry }; }
 
   function scaleX(x0, x1) { return function (x) { return L + (x - x0) / (x1 - x0 || 1) * (W - L - R); }; }
   function scaleY(y0, y1) { return function (y) { return T + (1 - (y - y0) / (y1 - y0 || 1)) * (H - T - B); }; }
@@ -146,7 +146,7 @@
   function cycle(r, v, d, ctx) {
     var cd = cycleData(ctx.city, v, r.xs[0], r.xs[r.xs.length - 1]);
     var all = cd.early.concat(cd.late), yr = padRange(Math.min.apply(null, all), Math.max.apply(null, all), 0.1, 0.5);
-    if (v !== 't2m') yr[0] = Math.max(0, yr[0]);
+    if (!App.isTemp(v)) yr[0] = Math.max(0, yr[0]);
     var X = scaleX(0, 11), Y = scaleY(yr[0], yr[1]), M = t('monthsShort').split(',');
     var s = yGrid(Y, yr[0], yr[1], d) + unitText(t('unit_' + v));
     M.forEach(function (m, i) { s += '<text x="' + X(i) + '" y="' + (H - 9) + '" text-anchor="middle">' + m + '</text>'; });
@@ -198,11 +198,11 @@
   /* Render chart type into svg. ctx = {city, variable, season, from, to}. Returns trend info r (+ chart extras). */
   function render(svg, type, ctx) {
     type = BODIES[type] ? type : 'line';
-    var v = ctx.variable, d = v === 't2m' ? 1 : 2;
+    var v = ctx.variable, d = App.isTemp(v) ? 1 : 2;
     var r = App.trendFor(ctx.city, v, ctx.season, ctx.from, ctx.to);
     if (r.xs.length < 8) { svg.innerHTML = ''; return r; }
     var out = BODIES[type](r, v, d, ctx);
-    svg.setAttribute('aria-label', t('chartType_' + type) + '. ' + t('var_' + v) + ', ' + App.data.cities[ctx.city].name);
+    svg.setAttribute('aria-label', t('chartType_' + type) + '. ' + t('var_' + v) + ', ' + App.cityName(ctx.city));
     svg.innerHTML = out.svg;
     addTip(svg, out);
     r.chart = out;

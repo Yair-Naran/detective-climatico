@@ -60,12 +60,12 @@
       var city = App.data.cities[s.id].name;
       var val = h('span', { class: 'srow-val' });
       var row = h('button', { class: 'srow', type: 'button', 'data-case': CASE_OF[s.id],
-        'aria-label': t('case_' + CASE_OF[s.id]) + '. ' + t('stripesCap_t2m') + ': ' + App.fmtRate(s.tr, 't2m'),
         onclick: function () { if (onPick) onPick(CASE_OF[s.id]); } });
       row.innerHTML = rects(s, m);
       row.appendChild(h('span', { class: 'srow-label' },
         h('b', { text: city }), h('span', { class: 'srow-rate', text: App.fmtRate(s.tr, 't2m') })));
       row.appendChild(val);
+      row.appendChild(h('span', { class: 'sr-only', text: '. ' + t('case_' + CASE_OF[s.id]) }));
       return { s: s, el: row, val: val };
     });
     var yearChip = h('span', { class: 'year-chip' });
