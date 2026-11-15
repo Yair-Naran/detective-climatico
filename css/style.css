@@ -620,3 +620,4 @@ table.cmp tr.v-up td:last-child{color:#f4a582}table.cmp tr.v-down td:last-child{
   .brand [data-i18n]{white-space:nowrap}
   .sound{min-width:44px;padding:0}
 }
+[hidden]{display:none!important}

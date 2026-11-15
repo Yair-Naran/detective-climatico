@@ -216,6 +216,12 @@ const STEP = () => {
     });
   }
 
+  await test('Spanish version: tutorial-free playthrough of the Costa case has no errors and no English leftovers in the hub', async () => {
+    const { page, errors, ctx } = await newPage(); await ready(page, '?lang=es#costa'); await page.reload(); await page.waitForSelector('#screen-level:not([hidden])');
+    for (let i = 0; i < 400; i++) { const r = await page.evaluate(STEP); if (r === 'results') break; if (i === 40) { const hub = await page.evaluate(() => document.getElementById('screen-level').innerText); assert.ok(!/\b(Home|Radio station|Continue|Choose where)\b/.test(hub), hub.slice(0, 200)); } await page.waitForTimeout(10); }
+    assert.ok(await page.isVisible('.result-card')); assert.match(await page.textContent('.ending'), /de 7/); assert.deepStrictEqual(errors, []); await ctx.close();
+  });
+
   await test('offline: after one visit the game, built-in data and the Archive work with no network', async () => {
     const { page, ctx } = await newPage({ serviceWorkers: 'allow' }); await ready(page);
     await page.evaluate(() => navigator.serviceWorker.ready); await page.waitForTimeout(800);
