@@ -183,7 +183,7 @@ const STEP = () => {
   await test('Method screen lists the team and the sound credit; glossary search works', async () => {
     const { page, ctx } = await newPage(); await ready(page, '?lang=en#metodo'); await page.reload(); await page.waitForSelector('#screen-method:not([hidden])');
     const txt = await page.textContent('#screen-method');
-    for (const n of ['Rafael Alfredo Pérez Acosta', 'Evelyn Amairani Torres Valdez', 'Yair Alejandro Naranjo Rodríguez', 'Burros Espaciales']) assert.ok(txt.includes(n), n);
+    for (const n of ['Rafael Alfredo Pérez Acosta', 'Evelyn Amairani Torres Valdez', 'Yair Alejandro Naranjo Rodríguez', 'Obsidiana Orbital']) assert.ok(txt.includes(n), n);
     assert.match(txt, /no copyright/i); assert.ok(!/NASA logo|meatball/i.test(txt));
     await page.goto(url + '?lang=en#glosario'); await page.reload(); await page.waitForSelector('#screen-glossary:not([hidden])');
     await page.fill('#screen-glossary input', 'mann'); assert.match(await page.textContent('#screen-glossary'), /Mann-Kendall/);

@@ -40,7 +40,7 @@ window.I18N = {
     hunchScore: 'Corazonadas correctas: {n} de {m}.',
     soundOn: 'Sonido: sí', soundOff: 'Sonido: no', soundLabel: 'Música y sonidos',
     mSecTeam: 'Equipo',
-    mTeam: 'Equipo Burros Espaciales (Pachuca, Hidalgo, México): Rafael Alfredo Pérez Acosta, Evelyn Amairani Torres Valdez y Yair Alejandro Naranjo Rodríguez. Proyecto para el reto «¡Sé un detective de tendencias del sistema Tierra!» de NASA Space Apps Challenge 2026.',
+    mTeam: 'Equipo Obsidiana Orbital (Pachuca, Hidalgo, México): Rafael Alfredo Pérez Acosta, Evelyn Amairani Torres Valdez y Yair Alejandro Naranjo Rodríguez. Proyecto para el reto «¡Sé un detective de tendencias del sistema Tierra!» de NASA Space Apps Challenge 2026.',
     mSecSound: 'Música y sonidos',
     mSound: 'La música y los efectos los genera en vivo nuestro propio código con el navegador (síntesis de sonido, composición original, sin muestras ni archivos de audio). Por eso no tienen derechos de autor. Empiezan apagados; actívalos con el botón de sonido.',
     mArt: 'Los personajes, los mapas de cada caso, la portada, las medallas y los íconos de las fuentes de información y de las variables son ilustraciones generadas con inteligencia artificial por el equipo. Las animaciones, el logo del encabezado y los demás íconos están dibujados en código (SVG y CSS). Tipografías con licencia SIL Open Font License: Climate Crisis (título), Anybody (titulares) y Atkinson Hyperlegible Next (lectura). Idea de las franjas de clima: Ed Hawkins; las dibujamos nosotros con datos de NASA POWER.',
@@ -74,9 +74,9 @@ window.I18N = {
     loading: 'Cargando datos…',
     loadError: 'No se pudieron cargar los datos. Abre esta página desde un servidor (no desde un archivo).',
     footer: 'Proyecto para NASA Space Apps Challenge 2026. No es un producto oficial de la NASA. Ilustraciones generadas con IA.',
-    footerTeam: 'Equipo Burros Espaciales: Rafael Alfredo Pérez Acosta, Evelyn Amairani Torres Valdez y Yair Alejandro Naranjo Rodríguez.',
+    footerTeam: 'Equipo Obsidiana Orbital: Rafael Alfredo Pérez Acosta, Evelyn Amairani Torres Valdez y Yair Alejandro Naranjo Rodríguez.',
     teamKicker: 'Creado por',
-    teamName: 'Burros Espaciales',
+    teamName: 'Obsidiana Orbital',
     fiction: 'Historia ficticia basada en datos y recomendaciones reales.',
 
     /* ---- Archive (tool) ---- */
@@ -747,7 +747,7 @@ window.I18N = {
     hunchScore: 'Hunches right: {n} of {m}.',
     soundOn: 'Sound: on', soundOff: 'Sound: off', soundLabel: 'Music and sounds',
     mSecTeam: 'Team',
-    mTeam: 'Team Burros Espaciales (Pachuca, Hidalgo, Mexico): Rafael Alfredo Pérez Acosta, Evelyn Amairani Torres Valdez and Yair Alejandro Naranjo Rodríguez. A project for the challenge "Be an Earth System Trend Detective!" at NASA Space Apps Challenge 2026.',
+    mTeam: 'Team Obsidiana Orbital (Pachuca, Hidalgo, Mexico): Rafael Alfredo Pérez Acosta, Evelyn Amairani Torres Valdez and Yair Alejandro Naranjo Rodríguez. A project for the challenge "Be an Earth System Trend Detective!" at NASA Space Apps Challenge 2026.',
     mSecSound: 'Music and sounds',
     mSound: 'The music and sound effects are generated live by our own code in your browser (sound synthesis, original composition, no samples or audio files), so they carry no copyright. They start muted; turn them on with the sound button.',
     mArt: 'The characters, the case maps, the cover, the medals and the icons for information sources and variables are illustrations generated with artificial intelligence by the team. The animations, the header logo and the other icons are drawn in code (SVG and CSS). Fonts under the SIL Open Font License: Climate Crisis (title), Anybody (headlines) and Atkinson Hyperlegible Next (reading). The climate stripes idea is by Ed Hawkins; we redraw them ourselves with NASA POWER data.',
@@ -781,9 +781,9 @@ window.I18N = {
     loading: 'Loading data…',
     loadError: 'Could not load the data. Open this page from a server (not from a file).',
     footer: 'Project for NASA Space Apps Challenge 2026. Not an official NASA product. Illustrations generated with AI.',
-    footerTeam: 'Team Burros Espaciales: Rafael Alfredo Pérez Acosta, Evelyn Amairani Torres Valdez and Yair Alejandro Naranjo Rodríguez.',
+    footerTeam: 'Team Obsidiana Orbital: Rafael Alfredo Pérez Acosta, Evelyn Amairani Torres Valdez and Yair Alejandro Naranjo Rodríguez.',
     teamKicker: 'Created by',
-    teamName: 'Burros Espaciales',
+    teamName: 'Obsidiana Orbital',
     fiction: 'Fictional story based on real data and recommendations.',
 
     /* ---- Archive (tool) ---- */

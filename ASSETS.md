@@ -51,9 +51,10 @@ App icons (`icons/icon-192.png`, `icons/icon-512.png`) are rendered from the tea
 ### Team illustrations (`assets/`, AI-generated; no real people, no minors, no NASA marks)
 | Folder | Content |
 |---|---|
-| `assets/chars/` | Adult characters: Capitán Ríos, Don Tacho, Doña Meche, Doctora (unused so far), Prof. Aréchiga, Don Rómulo, Arq. Elena, Enfermera Lupita, Chela (unused), Abuela Chayo, Don Homero, Ing. Sofía Garza, two extras (unused) and the mascot astronaut donkey |
+| `assets/chars/` | Adult characters: Capitán Ríos, Don Tacho, Doña Meche, Doctora (unused so far), Prof. Aréchiga, Don Rómulo, Arq. Elena, Enfermera Lupita, Chela (unused), Abuela Chayo, Don Homero, Ing. Sofía Garza, and two extras (unused) |
 | `assets/maps/` | Case maps: Veracruz (coast, storm, pier, plaza), Pachuca (center, heat), Monterrey (view, street, snow) |
 | `assets/icons/` | Medals (gold, silver, bronze) and icons: radio, newspaper, chat, health center, temperature (mean, max, min), rain, humidity |
+| `assets/team/` | Team logo of Obsidiana Orbital (team-provided image, cropped to a square) |
 | `assets/cover/` | Cover image (also the social-share image `icons/og.jpg`) |
 
 ## Use of AI (Use of SI)

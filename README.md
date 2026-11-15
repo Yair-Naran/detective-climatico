@@ -1,7 +1,7 @@
 # The Climate Case Files
 
 **An investigation game and data tool about Mexico's changing climate, built with NASA POWER data.**
-Team *Burros Espaciales* · NASA Space Apps Challenge 2026 · Challenge: *"Be an Earth System Trend Detective!"*
+Team *Obsidiana Orbital* · NASA Space Apps Challenge 2026 · Challenge: *"Be an Earth System Trend Detective!"*
 
 **Play (no sign-up, works on phones):** https://yair-naran.github.io/detective-climatico/?lang=en · Spanish: remove `?lang=en`
 

@@ -9,7 +9,7 @@
 
   function guide(textKey, vars) {
     return h('div', { class: 'guide' },
-      h('div', { class: 'avatar burro-av', 'aria-hidden': 'true' }, Assets.char('burro', 'burro-img')),
+      h('div', { class: 'avatar', 'aria-hidden': 'true' }, Icons.el('🔎')),
       h('div', { class: 'bubble' }, h('b', { text: t('inspector') }), h('p', { text: t(textKey, vars) })));
   }
 
