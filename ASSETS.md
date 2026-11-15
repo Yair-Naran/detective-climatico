@@ -34,7 +34,7 @@ Anotar TODO lo usado (código, texto, imágenes, audio, librerías), aunque sea 
 | `scripts/fetch_nasa_power.py` | Equipo | Descarga cruda de NASA POWER |
 
 ## Arte / audio
-Ilustraciones, logo y paisajes animados: originales, dibujados en código SVG/CSS (`js/art.js`, `css/style.css`), sin archivos de imagen ni fotos de personas. Íconos pequeños: emojis del sistema del dispositivo del usuario (no se distribuyen archivos). El arte final del compañero (personajes dibujados, estilo animado, sin parecido a personas reales ni a menores) se registra aquí con autor y herramienta.
+Ilustraciones, logo y paisajes animados: originales, dibujados en código SVG/CSS (`js/art.js`, `css/style.css`), sin archivos de imagen ni fotos de personas. Íconos: dibujados en código SVG por el equipo (`js/icons.js`); las franjas de clima de la portada se calculan de los datos de NASA POWER (`js/stripes.js`). Tipografías: Archivo (Omnibus-Type) y Atkinson Hyperlegible Next (Braille Institute), SIL Open Font License 1.1, alojadas en `fonts/` junto con sus licencias (descargadas de Google Fonts). El arte final del compañero (personajes dibujados, estilo animado, sin parecido a personas reales ni a menores) se registra aquí con autor y herramienta.
 | Recurso | Fuente | Licencia | URL | Archivo en repo |
 |---|---|---|---|---|
 | (vacío) | | | | |

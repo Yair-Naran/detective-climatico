@@ -16,7 +16,7 @@
       var dots = panels.map(function (_, k) { return h('span', { class: 'cdot' + (k === i ? ' on' : '') }); });
       container.appendChild(h('div', { class: 'cine scene-' + (p.scene || 'calm'), onclick: next },
         window.Art ? Art.scene(zone || 'home', p.scene || 'calm') : null,
-        h('div', { class: 'cine-icon', 'aria-hidden': 'true', text: p.icon }),
+        h('div', { class: 'cine-icon', 'aria-hidden': 'true' }, Icons.el(p.icon)),
         h('div', { class: 'cine-panel' },
           h('p', { class: 'cine-text', text: p.text }),
           p.note ? h('p', { class: 'cine-note', text: p.note }) : null,

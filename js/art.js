@@ -1,6 +1,5 @@
 /* Original vector art (drawn in code by the team, no external images, no real people).
-   Art.logo()            -> small magnifier + trend line logo
-   Art.hero()            -> night-sky hero for the home screen
+   Art.logo()            -> magnifier whose lens holds climate stripes
    Art.scene(zone, mood) -> layered landscape: zone = costa | centro | norte | home, mood = calm | storm | alert */
 (function () {
   'use strict';
@@ -14,11 +13,12 @@
   }
 
   function logo() {
-    return svg('<defs><linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd166"/><stop offset="1" stop-color="#ff7b54"/></linearGradient></defs>' +
-      '<circle cx="21" cy="21" r="15" fill="#0b2545" stroke="url(#lg1)" stroke-width="4"/>' +
-      '<polyline points="11,27 17,20 22,23 31,12" fill="none" stroke="#4cc9f0" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>' +
-      '<circle cx="31" cy="12" r="2.4" fill="#ffd166"/>' +
-      '<line x1="32" y1="32" x2="43" y2="43" stroke="url(#lg1)" stroke-width="6" stroke-linecap="round"/>', '0 0 48 48', 'art-logo');
+    var cols = ['#2166ac', '#4393c3', '#92c5de', '#f7f7f7', '#f4a582', '#d6604d', '#b2182b'], st = '';
+    cols.forEach(function (c, i) { st += '<rect x="' + (7 + i * 4.3) + '" y="6" width="4.4" height="30" fill="' + c + '"/>'; });
+    return svg('<defs><clipPath id="lensClip"><circle cx="21" cy="21" r="13"/></clipPath></defs>' +
+      '<g clip-path="url(#lensClip)">' + st + '</g>' +
+      '<circle cx="21" cy="21" r="14.5" fill="none" stroke="#f3f5f8" stroke-width="3.4"/>' +
+      '<line x1="31.5" y1="31.5" x2="43" y2="43" stroke="#f3f5f8" stroke-width="5.5" stroke-linecap="round"/>', '0 0 48 48', 'art-logo');
   }
 
   function stars(n, w, h, seed) {
@@ -29,20 +29,6 @@
       s += '<circle cx="' + (a * w).toFixed(1) + '" cy="' + (b * h).toFixed(1) + '" r="' + (0.6 + (i % 3) * 0.5) + '" fill="#fff" opacity="' + (0.35 + (i % 4) * 0.15) + '"' + (i % 5 === 0 ? ' class="twinkle"' : '') + '/>';
     }
     return s;
-  }
-
-  function hero() {
-    return svg('<defs><radialGradient id="eg" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#6ee7ff"/><stop offset=".6" stop-color="#1d6fd1"/><stop offset="1" stop-color="#0a2a66"/></radialGradient>' +
-      '<linearGradient id="hg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#070d1c"/><stop offset="1" stop-color="#16345f"/></linearGradient></defs>' +
-      '<rect width="400" height="180" fill="url(#hg)"/>' + stars(48, 400, 180, 7) +
-      '<g transform="translate(290 108)"><circle r="62" fill="url(#eg)"/>' +
-      '<path d="M-38,-30 q14,-14 30,-6 q10,8 0,20 q-14,10 -22,24 q-10,-8 -8,-38z M12,-4 q16,-6 26,8 q-2,16 -18,22 q-12,-10 -8,-30z" fill="#3ddc97" opacity=".85"/>' +
-      '<circle r="62" fill="none" stroke="#9be7ff" stroke-opacity=".35" stroke-width="3"/></g>' +
-      '<g class="orbit"><ellipse cx="290" cy="108" rx="96" ry="26" fill="none" stroke="#ffd166" stroke-opacity=".5" stroke-dasharray="3 5"/>' +
-      '<g transform="translate(386 108)"><rect x="-5" y="-3" width="10" height="6" rx="1.5" fill="#eaf1fb"/><rect x="-14" y="-2" width="7" height="4" fill="#4cc9f0"/><rect x="7" y="-2" width="7" height="4" fill="#4cc9f0"/></g></g>' +
-      '<g transform="translate(70 96)"><circle r="34" fill="#0b2545" fill-opacity=".6" stroke="#ffd166" stroke-width="5"/>' +
-      '<polyline points="-20,14 -8,0 4,8 22,-16" fill="none" stroke="#4cc9f0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>' +
-      '<line x1="24" y1="26" x2="46" y2="48" stroke="#ffd166" stroke-width="9" stroke-linecap="round"/></g>', '0 0 400 180', 'art-hero');
   }
 
   var SKY = {
@@ -125,5 +111,5 @@
     return svg(parts, '0 0 400 240', 'scene-art');
   }
 
-  window.Art = { logo: logo, hero: hero, scene: scene };
+  window.Art = { logo: logo, scene: scene };
 })();

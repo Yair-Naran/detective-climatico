@@ -52,8 +52,8 @@
     var m = S.cfg.medals;
     return pct >= m.gold ? 'gold' : pct >= m.silver ? 'silver' : pct >= m.bronze ? 'bronze' : 'none';
   }
-  var MEDAL_ICON = { gold: '🥇', silver: '🥈', bronze: '🥉', none: '🔎' };
   var ENDING_ICON = { legend: '🏆', gossip: '📢', lucky: '🍀', tourist: '🧳', scientist: '🔬', hero: '🤝', rookie: '🔎' };
+  var MEDAL_COLOR = { gold: '#f2c14e', silver: '#d5dde6', bronze: '#d98a52', none: '#92c5de' };
 
   function alertLevel() {
     var f = S.hoursLeft / S.hours;
@@ -65,10 +65,10 @@
     var a = alertLevel(), pct = score(false).total;
     return h('div', { class: 'status' },
       h('div', { class: 'stat' },
-        h('span', { class: 'stat-label', text: '⏱️ ' + t('hoursLeft', { h: S.hoursLeft }) }),
+        h('span', { class: 'stat-label' }, Icons.label('⏱️', t('hoursLeft', { h: S.hoursLeft }))),
         h('div', { class: 'bar' }, h('i', { style: 'width:' + (S.hoursLeft / S.hours * 100) + '%' }))),
       h('div', { class: 'stat' },
-        h('span', { class: 'stat-label', text: '🛡️ ' + t('prep') + ': ' + pct + '%' }),
+        h('span', { class: 'stat-label' }, Icons.label('🛡️', t('prep') + ': ' + pct + '%')),
         h('div', { class: 'bar prep' }, h('i', { style: 'width:' + pct + '%' }))),
       h('div', { class: 'alert a-' + a, role: 'status' }, t(S.cfg.alert + 'Label') + ': ' + t(S.cfg.alert + '_' + a)));
   }
@@ -78,6 +78,8 @@
     Cinematic.stop();
     document.body.setAttribute('data-zone', S.cfg.id);
     var el = root(); el.innerHTML = '';
+    var view = S.phase + ':' + (S.placeId || '');
+    if (view !== S.view) { S.view = view; if (window.Motion) Motion.enter(el); }
     if (S.phase === 'intro') return playIntro(el);
     if (S.phase === 'hub') return renderHub(el);
     if (S.phase === 'place') return renderPlace(el);
@@ -95,33 +97,33 @@
   function renderHub(el) {
     el.appendChild(h('h2', { class: 'case-title', text: t(k('title')) }));
     el.appendChild(statusBar());
-    if (S.bonus) el.appendChild(h('p', { class: 'pill bonus', text: '🎁 ' + t('bonusActive', { b: t('bonus_' + S.bonus) }) }));
+    if (S.bonus) el.appendChild(h('p', { class: 'pill bonus' }, Icons.label('🎁', t('bonusActive', { b: t('bonus_' + S.bonus) }))));
     el.appendChild(h('p', { class: 'small', text: t('hubIntro') }));
     var grid = h('div', { class: 'places' });
     S.cfg.places.forEach(function (p) {
       var done = !!S.done[p.id], noTime = !done && S.hoursLeft < minCost(p);
       grid.appendChild(h('button', {
-        class: 'place' + (done ? ' done' : '') + (noTime ? ' off' : ''), type: 'button',
+        class: 'place tilt' + (done ? ' done' : '') + (noTime ? ' off' : ''), type: 'button',
         disabled: done || noTime, onclick: function () { S.phase = 'place'; S.placeId = p.id; S.ui = {}; render(); }
       },
-        h('span', { class: 'place-icon', 'aria-hidden': 'true', text: p.icon }),
+        h('span', { class: 'place-icon', 'aria-hidden': 'true' }, Icons.el(p.icon)),
         h('span', { class: 'place-name', text: t(k(p.id + '_name')) }),
-        h('span', { class: 'place-cost', text: done ? '✓ ' + t('done') : noTime ? t('notEnoughTime') : '⏱️ ' + costLabel(p) })));
+        h('span', { class: 'place-cost' }, done ? Icons.label('✓', t('done')) : noTime ? t('notEnoughTime') : Icons.label('⏱️', costLabel(p)))));
     });
     el.appendChild(grid);
 
     // Case file (collected clues)
-    var file = h('details', { class: 'casefile' }, h('summary', { text: '🗂️ ' + t('caseFile') + ' (' + S.clues.length + ')' }));
+    var file = h('details', { class: 'casefile' }, h('summary', null, Icons.label('🗂️', t('caseFile') + ' (' + S.clues.length + ')')));
     if (!S.clues.length) file.appendChild(h('p', { class: 'small', text: t('caseFileEmpty') }));
     S.clues.forEach(function (c) {
-      file.appendChild(h('div', { class: 'cf-item' }, h('b', { text: c.icon + ' ' + t(k(c.id + '_title')) }),
+      file.appendChild(h('div', { class: 'cf-item' }, h('b', null, Icons.label(c.icon, t(k(c.id + '_title')))),
         h('p', { class: 'small', text: t(k(c.id + '_short'), c.vars) })));
     });
     el.appendChild(file);
-    el.appendChild(h('button', { class: 'btn ghost', type: 'button', onclick: openGloss, text: '📖 ' + t('glossBtn') }));
+    el.appendChild(h('button', { class: 'btn ghost', type: 'button', onclick: openGloss }, Icons.label('📖', t('glossBtn'))));
 
     if (!doneOf(refugePlace())) el.appendChild(h('p', { class: 'warn small', text: t(k('noRefuge')) }));
-    el.appendChild(h('button', { class: 'btn primary big', type: 'button', onclick: end, text: refugePlace().icon + ' ' + t(k('finish')) }));
+    el.appendChild(h('button', { class: 'btn primary big', type: 'button', onclick: end }, Icons.label(refugePlace().icon, t(k('finish')))));
   }
 
   function spend(hours) { S.hoursLeft = Math.max(0, S.hoursLeft - hours); }
@@ -137,8 +139,10 @@
     var ev = S.cfg.event, d = S.event;
     el.appendChild(statusBar());
     var card = h('div', { class: 'card event' });
-    card.appendChild(h('p', { class: 'kicker', text: '⚡ ' + t('eventKicker') }));
-    card.appendChild(h('h2', null, h('span', { 'aria-hidden': 'true', text: ev.icon + ' ' }), t(k('ev_title'))));
+    card.appendChild(h('div', { class: 'event-head' },
+      h('span', { class: 'event-icon', 'aria-hidden': 'true' }, Icons.el(ev.icon)),
+      h('h2', { text: t(k('ev_title')) }),
+      h('span', { class: 'badge badge-warn' }, Icons.label('⚡', t('eventKicker')))));
     card.appendChild(h('p', { text: t(k('ev_text')) }));
     card.appendChild(h('div', { class: 'options' }, ev.options.map(function (o) {
       var cls = 'opt' + (d && d.id === o.id ? (o.good ? ' good' : ' bad') : '');
@@ -158,7 +162,7 @@
   function placeHeader(el, p) {
     el.appendChild(statusBar());
     el.appendChild(h('div', { class: 'row between' },
-      h('h2', { class: 'place-title' }, h('span', { 'aria-hidden': 'true', text: p.icon + ' ' }), t(k(p.id + '_name'))),
+      h('h2', { class: 'place-title' }, h('span', { class: 'place-icon sm', 'aria-hidden': 'true' }, Icons.el(p.icon)), t(k(p.id + '_name'))),
       S.done[p.id] ? null : h('button', { class: 'btn ghost', type: 'button', onclick: backToHub, text: t('back') })));
   }
   function continueBtn() {
@@ -181,12 +185,12 @@
     if (!d) {
       var sel = S.ui.sel || (S.ui.sel = []);
       card.appendChild(h('p', { class: 'small', text: t('packHint') }));
-      card.appendChild(h('p', { class: 'pill', text: '🎒 ' + t('packSelected', { n: sel.length, max: slots(p) }) }));
+      card.appendChild(h('p', { class: 'pill' }, Icons.label('🎒', t('packSelected', { n: sel.length, max: slots(p) }))));
       card.appendChild(h('div', { class: 'items' }, p.items.map(function (it) {
         var on = sel.indexOf(it.id) >= 0, full = !on && sel.length >= slots(p);
         return h('button', { class: 'item' + (on ? ' on' : ''), type: 'button', disabled: full, 'aria-pressed': on ? 'true' : 'false', 'data-item': it.id,
           onclick: function () { if (on) sel.splice(sel.indexOf(it.id), 1); else sel.push(it.id); render(); },
-          text: (on ? '✓ ' : '') + t('item_' + it.id) });
+        }, on ? Icons.el('✓') : null, t('item_' + it.id));
       })));
       card.appendChild(h('button', { class: 'btn primary', type: 'button', disabled: !sel.length, onclick: function () {
         S.done[p.id] = { sel: sel.slice(), pts: packPoints(p, sel) }; spend(p.cost); render();
@@ -216,7 +220,7 @@
         S.done[p.id] = { saved: true }; S.clues.push({ id: p.id, icon: p.icon }); spend(p.cost); render();
       }, text: t('saveClue') + ' (−' + p.cost + ' h)' }));
     } else {
-      card.appendChild(h('p', { class: 'ok', text: '✓ ' + t('clueSaved') }));
+      card.appendChild(h('p', { class: 'ok' }, Icons.label('✓', t('clueSaved'))));
       card.appendChild(continueBtn());
     }
   }
@@ -241,7 +245,7 @@
     var m = Chart.mini(S.cfg.city, p.variable, p.season, p.chart), r = m.info, tr = r.tr, right = App.verdict(tr);
     card.appendChild(h('h3', { text: t(k(p.id + '_title')) }));
     card.appendChild(h('p', { text: t(k(p.id + '_text')) }));
-    card.appendChild(h('p', { class: 'kicker', text: '📊 ' + t('chartType_' + (p.chart || 'line')) }));
+    card.appendChild(h('p', { class: 'badge' }, Icons.label('📊', t('chartType_' + (p.chart || 'line')))));
     card.appendChild(m.svg);
     card.appendChild(m.legend);
     card.appendChild(h('div', { class: 'nums' },
@@ -267,7 +271,7 @@
       if (right === 'none') card.appendChild(h('p', { class: 'note', text: t('verdictNoneNote') }));
       if (S.cfg.quiz) {
         var qz = quizFor(p, tr, right);
-        card.appendChild(h('h3', { text: '🧠 ' + t('quizKicker') }));
+        card.appendChild(h('h3', null, Icons.label('🧠', t('quizKicker'))));
         card.appendChild(h('p', { text: qz.q }));
         card.appendChild(h('div', { class: 'options' }, qz.opts.map(function (o) {
           var cls = 'opt' + (d.quiz && d.quiz.id === o.id ? (o.ok ? ' good' : ' bad') : '') + (d.quiz && !d.quiz.ok && o.ok ? ' good' : '');
@@ -285,8 +289,8 @@
     card.appendChild(h('div', { class: 'row wrap' },
       h('button', { class: 'btn ghost', type: 'button', onclick: function () {
         Archive.open({ city: S.cfg.city, variable: p.variable, season: p.season, chart: p.chart }, function () { App.show('level'); render(); }, 'backToCase');
-      }, text: '📊 ' + t('openFull') }),
-      h('button', { class: 'btn ghost', type: 'button', onclick: openGloss, text: '📖 ' + t('glossWhat') })));
+      } }, Icons.label('📊', t('openFull'))),
+      h('button', { class: 'btn ghost', type: 'button', onclick: openGloss }, Icons.label('📖', t('glossWhat')))));
     if (ready) card.appendChild(continueBtn());
   }
 
@@ -358,18 +362,18 @@
   function renderResults(el) {
     var f = S.final, sc = S.cfg.scoring;
     el.appendChild(h('div', { class: 'card result-card' },
-      h('p', { class: 'kicker', text: t(k('title')) }),
-      h('div', { class: 'medal', 'aria-hidden': 'true', text: MEDAL_ICON[S.medal] }),
+      h('p', { class: 'badge' }, t(k('title'))),
+      h('div', { class: 'medal', 'aria-hidden': 'true' }, Icons.medal(S.medal)),
       h('h2', { text: t('medal_' + S.medal) }),
       h('p', { class: 'big-pct', text: f.total + '%' }),
       h('p', { class: 'small', text: t('prepLong') })));
 
     var seen = (App.store.get('endings_' + S.cfg.id) || []).length;
     el.appendChild(h('div', { class: 'card ending e-' + S.ending },
-      h('p', { class: 'kicker', text: (S.newEnding ? '✨ ' + t('endingNew') : t('endingKicker')) }),
       h('div', { class: 'ending-row' },
-        h('span', { class: 'ending-icon', 'aria-hidden': 'true', text: ENDING_ICON[S.ending] }),
-        h('h2', { text: t('end_' + S.ending) })),
+        h('span', { class: 'ending-icon', 'aria-hidden': 'true' }, Icons.el(ENDING_ICON[S.ending])),
+        h('h2', { text: t('end_' + S.ending) }),
+        h('span', { class: 'badge' + (S.newEnding ? ' badge-new' : '') }, S.newEnding ? Icons.label('✨', t('endingNew')) : t('endingKicker'))),
       h('p', { text: t(k('end_' + S.ending)) }),
       h('p', { class: 'small', text: t('endingCount', { n: seen, total: window.ENDINGS.length }) + (seen < window.ENDINGS.length ? ' ' + t('endingTry') : ' ' + t('endingAll')) })));
 
@@ -380,8 +384,8 @@
           h('div', { class: 'bar prep' }, h('i', { style: 'width:' + (f.parts[c] / sc[c] * 100) + '%' })));
       })));
 
-    if (!S.cfg.nextLevel) el.appendChild(h('div', { class: 'card' }, h('h3', { text: '🏆 ' + t('allDoneTitle') }), h('p', { text: t('allDone') })));
-    else el.appendChild(h('div', { class: 'card' }, h('h3', { text: '🎁 ' + t('bonusTitle') }),
+    if (!S.cfg.nextLevel) el.appendChild(h('div', { class: 'card' }, h('h3', null, Icons.label('🏆', t('allDoneTitle'))), h('p', { text: t('allDone') })));
+    else el.appendChild(h('div', { class: 'card' }, h('h3', null, Icons.label('🎁', t('bonusTitle'))),
       h('p', { text: t('bonus_' + S.medal) }), S.medal !== 'none' && S.cfg.nextLevel ? h('p', { class: 'small', text: t('bonusNote', { c: t('case_' + S.cfg.nextLevel) }) }) : null));
 
     var learned = S.cfg.places.filter(function (p) { return p.type === 'data'; }).map(function (p) {
@@ -390,18 +394,18 @@
         city: App.data.cities[S.cfg.city].name, variable: t('var_' + p.variable), season: t('season_' + p.season), y0: r.xs[0], y1: r.xs[r.xs.length - 1],
         rate: App.fmtRate(r.tr, p.variable), p: App.fmtP(r.tr.p), verdict: t('short_' + vd) }) });
     });
-    el.appendChild(h('div', { class: 'card' }, h('h3', { text: '🛰️ ' + t('learnedTitle') }), h('ul', null, learned)));
+    el.appendChild(h('div', { class: 'card' }, h('h3', null, Icons.label('🛰️', t('learnedTitle'))), h('ul', null, learned)));
 
-    el.appendChild(h('div', { class: 'card' }, h('h3', { text: '✅ ' + t('actionsTitle') }),
+    el.appendChild(h('div', { class: 'card' }, h('h3', null, Icons.label('✅', t('actionsTitle'))),
       h('ul', null, [1, 2, 3, 4, 5].map(function (i) { return h('li', { text: t(k('act' + i)) }); }))));
 
     el.appendChild(h('div', { class: 'card stack' },
-      h('button', { class: 'btn primary big', type: 'button', onclick: share, text: '📤 ' + t('shareBtn') }),
-      S.cfg.nextLevel && window.LEVELS[S.cfg.nextLevel] ? h('button', { class: 'btn primary', type: 'button', onclick: function () { Level.start(S.cfg.nextLevel); }, text: '➡️ ' + t('nextCase', { c: t('case_' + S.cfg.nextLevel) }) }) : null,
-      h('button', { class: 'btn', type: 'button', onclick: function () { Level.start(S.cfg.id, true); }, text: '🔁 ' + t('retry') }),
+      h('button', { class: 'btn primary big', type: 'button', onclick: share }, Icons.label('📤', t('shareBtn'))),
+      S.cfg.nextLevel && window.LEVELS[S.cfg.nextLevel] ? h('button', { class: 'btn primary', type: 'button', onclick: function () { Level.start(S.cfg.nextLevel); } }, Icons.label('➡️', t('nextCase', { c: t('case_' + S.cfg.nextLevel) }))) : null,
+      h('button', { class: 'btn', type: 'button', onclick: function () { Level.start(S.cfg.id, true); } }, Icons.label('🔁', t('retry'))),
       h('button', { class: 'btn', type: 'button', onclick: function () {
         Archive.open({ city: S.cfg.city }, function () { App.show('level'); render(); }, 'backToCase');
-      }, text: '📊 ' + t('openArchive') }),
+      } }, Icons.label('📊', t('openArchive'))),
       h('button', { class: 'btn ghost', type: 'button', onclick: function () { Home.show(); }, text: t('home') })));
   }
 
@@ -417,22 +421,31 @@
   }
   function makeCard() {
     var c = document.createElement('canvas'); c.width = 1080; c.height = 1350;
-    var x = c.getContext('2d');
-    var g = x.createLinearGradient(0, 0, 0, 1350); g.addColorStop(0, '#0f1b2d'); g.addColorStop(1, '#1d3b66');
-    x.fillStyle = g; x.fillRect(0, 0, 1080, 1350);
+    var x = c.getContext('2d'), D = '"Archivo", system-ui, sans-serif', B = '"Atkinson Hyperlegible Next", system-ui, sans-serif';
+    x.fillStyle = '#0e1116'; x.fillRect(0, 0, 1080, 1350);
+    // the case city's real temperature stripes across the top
+    var st = Stripes.series(S.cfg.city), m = Math.max.apply(null, st.anom.map(Math.abs)) || 1, w = 1080 / st.anom.length;
+    st.anom.forEach(function (a, i) { x.fillStyle = Stripes.color(a / m); x.fillRect(Math.floor(i * w), 0, Math.ceil(w) + 1, 300); });
+    x.fillStyle = '#0e1116'; x.fillRect(0, 300, 1080, 6);
+    x.textAlign = 'left';
+    x.fillStyle = 'rgba(14,17,22,.82)'; x.fillRect(60, 236, 420, 48);
+    x.fillStyle = '#f3f5f8'; x.font = '600 26px ' + D; x.fillText(App.data.cities[S.cfg.city].name + ' · ' + st.years[0] + '–' + st.years[st.years.length - 1], 80, 269);
     x.textAlign = 'center';
-    x.fillStyle = '#ffb703'; x.font = 'bold 72px system-ui, sans-serif'; x.fillText(t('title'), 540, 150);
-    x.fillStyle = '#9fb3cf'; x.font = '44px system-ui, sans-serif'; x.fillText(t(k('title')), 540, 230);
-    x.font = '220px system-ui, sans-serif'; x.fillText(MEDAL_ICON[S.medal], 540, 510);
-    x.fillStyle = '#eaf1fb'; x.font = 'bold 64px system-ui, sans-serif'; x.fillText(t('medal_' + S.medal), 540, 620);
-    x.fillStyle = '#ffc247'; x.font = '38px system-ui, sans-serif'; x.fillText(ENDING_ICON[S.ending] + ' ' + t('endingKicker') + ': ' + t('end_' + S.ending), 540, 672);
-    x.fillStyle = '#06d6a0'; x.font = 'bold 150px system-ui, sans-serif'; x.fillText(S.final.total + '%', 540, 820);
-    x.fillStyle = '#9fb3cf'; x.font = '40px system-ui, sans-serif'; x.fillText(t('prep'), 540, 875);
+    x.fillStyle = '#f3f5f8'; x.font = 'bold 76px ' + D; x.fillText(t('title'), 540, 410);
+    x.fillStyle = '#a7b0bc'; x.font = '40px ' + B; x.fillText(t(k('title')), 540, 470);
+    // medal
+    var MC = MEDAL_COLOR[S.medal];
+    x.beginPath(); x.arc(540, 610, 92, 0, Math.PI * 2); x.fillStyle = MC; x.fill();
+    x.lineWidth = 10; x.strokeStyle = 'rgba(0,0,0,.25)'; x.stroke();
+    x.fillStyle = '#0e1116'; x.font = 'bold 84px ' + D; x.fillText(S.final.total + '%', 540, 640);
+    x.fillStyle = '#f3f5f8'; x.font = 'bold 60px ' + D; x.fillText(t('medal_' + S.medal), 540, 830);
+    x.fillStyle = '#f4a582'; x.font = '38px ' + B; x.fillText(t('endingKicker') + ': ' + t('end_' + S.ending), 540, 892);
+    x.fillStyle = '#a7b0bc'; x.font = '34px ' + B; x.fillText(t('prep'), 540, 748);
     var r = App.trendFor(S.cfg.city, 't2m', 'annual');
-    x.fillStyle = '#eaf1fb'; x.font = '42px system-ui, sans-serif';
-    var y = wrap(x, t('cardFact', { city: App.data.cities[S.cfg.city].name, rate: App.fmtRate(r.tr, 't2m'), y0: r.xs[0], y1: r.xs[r.xs.length - 1] }), 540, 980, 900, 56);
-    x.fillStyle = '#ffb703'; x.font = 'bold 44px system-ui, sans-serif'; wrap(x, t('cardCta'), 540, y + 40, 900, 56);
-    x.fillStyle = '#9fb3cf'; x.font = '30px system-ui, sans-serif'; x.fillText('yair-naran.github.io/detective-climatico', 540, 1290);
+    x.fillStyle = '#f3f5f8'; x.font = '42px ' + B;
+    var y = wrap(x, t('cardFact', { city: App.data.cities[S.cfg.city].name, rate: App.fmtRate(r.tr, 't2m'), y0: r.xs[0], y1: r.xs[r.xs.length - 1] }), 540, 1010, 900, 56);
+    x.fillStyle = '#92c5de'; x.font = 'bold 44px ' + D; wrap(x, t('cardCta'), 540, y + 40, 900, 56);
+    x.fillStyle = '#a7b0bc'; x.font = '30px ' + B; x.fillText('yair-naran.github.io/detective-climatico', 540, 1290);
     return c;
   }
   function share() {

@@ -17,7 +17,7 @@
     var h = App.h, root = document.getElementById('screen-glossary'); root.innerHTML = '';
     root.appendChild(h('div', { class: 'row' }, h('button', { class: 'btn ghost', type: 'button', onclick: back, text: t('back') })));
     var card = h('div', { class: 'card' });
-    card.appendChild(h('h2', { text: '📖 ' + t('glossTitle') }));
+    card.appendChild(h('h2', null, Icons.label('📖', t('glossTitle'))));
     card.appendChild(h('p', { class: 'small', text: t('glossIntro') }));
     var input = h('input', { type: 'search', class: 'search', placeholder: t('glossSearch'), 'aria-label': t('glossSearch'), value: query });
     input.addEventListener('input', function () { query = input.value; list(); });

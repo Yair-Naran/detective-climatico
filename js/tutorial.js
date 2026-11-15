@@ -9,7 +9,7 @@
 
   function guide(textKey, vars) {
     return h('div', { class: 'guide' },
-      h('div', { class: 'avatar', 'aria-hidden': 'true', text: '🔎' }),
+      h('div', { class: 'avatar', 'aria-hidden': 'true' }, Icons.el('🔎')),
       h('div', { class: 'bubble' }, h('b', { text: t('inspector') }), h('p', { text: t(textKey, vars) })));
   }
 
@@ -28,9 +28,9 @@
       card.appendChild(guide('tut2'));
       if (!S.saved) {
         card.appendChild(h('button', { class: 'clue pulse', type: 'button', onclick: function () { S.saved = true; render(); } },
-          h('span', { class: 'clue-icon', 'aria-hidden': 'true', text: '📰' }), h('span', { text: t('tut2_card') })));
+          h('span', { class: 'clue-icon', 'aria-hidden': 'true' }, Icons.el('📰')), h('span', { text: t('tut2_card') })));
       } else {
-        card.appendChild(h('p', { class: 'ok', text: '✓ ' + t('tut2_saved') }));
+        card.appendChild(h('p', { class: 'ok' }, Icons.label('✓', t('tut2_saved'))));
         card.appendChild(h('button', { class: 'btn primary', type: 'button', onclick: go(2), text: t('next') }));
       }
     } else if (S.step === 2) {
@@ -49,12 +49,15 @@
       }
     } else {
       card.appendChild(guide('tut4'));
-      card.appendChild(h('div', { class: 'clockdemo', 'aria-hidden': 'true' }, '⏱️ 9 h → 🎒 −2 h → 📻 −1 h → …'));
+      card.appendChild(h('div', { class: 'clockdemo', 'aria-hidden': 'true' },
+        h('span', { class: 'cd-step' }, Icons.label('⏱️', '9 h')), Icons.el('arrowRight', 'cd-arrow'),
+        h('span', { class: 'cd-step' }, Icons.label('🎒', '−2 h')), Icons.el('arrowRight', 'cd-arrow'),
+        h('span', { class: 'cd-step' }, Icons.label('📻', '−1 h')), Icons.el('arrowRight', 'cd-arrow'), h('span', { class: 'cd-step', text: '…' })));
       card.appendChild(h('button', { class: 'btn primary big', type: 'button', onclick: done, text: t('tut_start') }));
     }
   }
 
-  function go(n) { return function () { S.step = n; render(); window.scrollTo(0, 0); }; }
+  function go(n) { return function () { S.step = n; render(); if (window.Motion) Motion.enter(root()); window.scrollTo(0, 0); }; }
   function done() { App.store.set('tutorialDone', true); Level.start('costa'); }
 
   window.Tutorial = {
