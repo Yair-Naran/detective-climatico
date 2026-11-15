@@ -17,7 +17,7 @@
       var dots = panels.map(function (_, k) { return h('span', { class: 'cdot' + (k === i ? ' on' : '') }); });
       container.appendChild(h('div', { class: 'cine scene-' + (p.scene || 'calm'), onclick: next, tabindex: '0', role: 'button',
           'aria-label': p.text, onkeydown: function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); next(); } } },
-        window.Art ? Art.scene(zone || 'home', p.scene || 'calm') : null,
+        p.img ? window.Assets.map(p.img, 'cine-img') : (window.Art ? Art.scene(zone || 'home', p.scene || 'calm') : null),
         h('div', { class: 'cine-icon', 'aria-hidden': 'true' }, Icons.el(p.icon)),
         h('div', { class: 'cine-panel' },
           h('p', { class: 'cine-text', text: p.text }),

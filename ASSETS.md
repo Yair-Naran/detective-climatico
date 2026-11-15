@@ -36,7 +36,7 @@ The three built-in places are stored in `data/series.json` (T2M and PRECTOTCORR)
 | `scripts/fetch_power.py`, `scripts/fetch_nasa_power.py` | Team | Download from NASA POWER |
 
 ## Art, audio and fonts
-Illustrations, logo and animated landscapes: original, drawn in code as SVG and CSS (`js/art.js`, `css/style.css`); no image files, no photos of people. Icons: drawn in code (`js/icons.js`). The climate stripes on the home screen are computed from the NASA POWER data (`js/stripes.js`).
+Animated landscapes, the header logo and most line icons: original, drawn in code as SVG and CSS (`js/art.js`, `js/icons.js`, `css/style.css`). Icons: drawn in code (`js/icons.js`). The climate stripes on the home screen are computed from the NASA POWER data (`js/stripes.js`).
 
 **Music and sound effects:** generated live in the browser by `js/audio.js` (Web Audio API oscillators, filters and noise). Original composition by algorithm: no samples, recordings or third-party music, so there is no copyright to clear. Not AI-generated audio.
 
@@ -48,10 +48,16 @@ Illustrations, logo and animated landscapes: original, drawn in code as SVG and 
 
 App icons (`icons/icon-192.png`, `icons/icon-512.png`) are rendered from the team's own logo SVG. The social-share image (`icons/og.png`) uses the Pachuca annual temperature from `data/series.json` as colored stripes plus the project fonts; made with a script, no third-party artwork.
 
-Final character and zone art from the team (original, animated or drawn style, no likeness of real people or minors) goes in this table with author and tool when it is added.
+### Team illustrations (`assets/`, AI-generated; no real people, no minors, no NASA marks)
+| Folder | Content |
+|---|---|
+| `assets/chars/` | Adult characters: Capitán Ríos, Don Tacho, Doña Meche, Doctora (unused so far), Prof. Aréchiga, Don Rómulo, Arq. Elena, Enfermera Lupita, Chela (unused), Abuela Chayo, Don Homero, Ing. Sofía Garza, two extras (unused) and the mascot astronaut donkey |
+| `assets/maps/` | Case maps: Veracruz (coast, storm, pier, plaza), Pachuca (center, heat), Monterrey (view, street, snow) |
+| `assets/icons/` | Medals (gold, silver, bronze) and icons: radio, newspaper, chat, health center, temperature (mean, max, min), rain, humidity |
+| `assets/cover/` | Cover image (also the social-share image `icons/og.jpg`) |
 
 ## Use of AI (Use of SI)
 - Code, tests and texts written with Claude (Anthropic); reviewed and tested by the team.
-- Illustrations (`js/art.js`): SVG code written with Claude's help; not AI-generated images.
+- Illustrations in `assets/` (characters, case maps, cover, medals, information and variable icons): AI-generated images made by the team with an AI image generator [TEAM: add tool/model name]. Optimized to WebP for the web with a script. Labeled as AI-generated in the game.
 - Audio: synthesized by code (see above); not AI-generated audio.
-- AI-generated images: none so far (if used: visible watermark and listed here).
+- Header logo, animations and the other icons: SVG code written with Claude's help; not AI-generated images.

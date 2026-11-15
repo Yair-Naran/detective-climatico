@@ -87,7 +87,9 @@
     '🚚': 'truck', '💦': 'drops', '🚱': 'noDrop', '❄️': 'snowflake', '✓': 'check', '▶': 'play'
   };
 
-  function el(key, cls) {
+  function el(key, cls, level, place) {
+    var art = window.Assets && Assets.artIcon(key, level, place);
+    if (art) return Assets.icon(art, 'ic ico-art ' + (cls || ''));
     var name = P[key] ? key : MAP[key];
     if (!name) { var s = document.createElement('span'); s.className = 'ic-text ' + (cls || ''); s.textContent = key || ''; return s; }
     var svg = document.createElementNS(NS, 'svg');
@@ -102,6 +104,7 @@
   var MEDAL = { gold: ['#f2c14e', '#a8741a'], silver: ['#d5dde6', '#7c8a99'], bronze: ['#d98a52', '#8a4a22'] };
   function medal(kind, cls) {
     if (!MEDAL[kind]) { var m = el('magnifier', 'medal-none ' + (cls || '')); return m; }
+    if (window.Assets) return Assets.icon('medal-' + kind, 'medal-svg m-' + kind + ' ' + (cls || ''));
     var c = MEDAL[kind], svg = document.createElementNS(NS, 'svg');
     svg.setAttribute('viewBox', '0 0 48 56'); svg.setAttribute('class', 'medal-svg m-' + kind + ' ' + (cls || ''));
     svg.setAttribute('aria-hidden', 'true'); svg.setAttribute('focusable', 'false');

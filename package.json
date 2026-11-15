@@ -2,7 +2,7 @@
   "name": "detective-climatico",
   "version": "2.0.0",
   "private": true,
-  "description": "Climate Detective - NASA Space Apps 2026. Tests: unit (stats vs scipy) and end-to-end (Playwright + Chrome).",
+  "description": "The Climate Case Files - NASA Space Apps 2026. Tests: unit (stats vs scipy) and end-to-end (Playwright + Chrome).",
   "scripts": {
     "test": "node tests/stats.test.js && node tests/e2e.js && node tests/a11y.js",
     "test:stats": "node tests/stats.test.js",
