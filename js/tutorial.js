@@ -23,6 +23,7 @@
 
     if (S.step === 0) {
       card.appendChild(guide('tut1'));
+      card.appendChild(scrubber());
       card.appendChild(h('button', { class: 'btn primary', type: 'button', onclick: go(1), text: t('next') }));
     } else if (S.step === 1) {
       card.appendChild(guide('tut2'));
@@ -55,6 +56,31 @@
         h('span', { class: 'cd-step' }, Icons.label('📻', '−1 h')), Icons.el('arrowRight', 'cd-arrow'), h('span', { class: 'cd-step', text: '…' })));
       card.appendChild(h('button', { class: 'btn primary big', type: 'button', onclick: done, text: t('tut_start') }));
     }
+  }
+
+  /* first touch of the data: Pachuca's real stripes, scrubbable by pointer or arrow keys, with a live readout */
+  function scrubber() {
+    var se = Stripes.series('pachuca'), n = se.years.length, mx = Math.max.apply(null, se.anom.map(Math.abs)) || 1;
+    var read = h('span', { class: 'tut-read', 'aria-live': 'polite' }), line = h('i', { class: 'tut-line', 'aria-hidden': 'true' });
+    var strip = h('div', { class: 'tut-strip', tabindex: '0', role: 'group', 'aria-label': t('tut1_try') }, Stripes.strip('pachuca'), line);
+    function at(i) {
+      i = Math.max(0, Math.min(n - 1, i)); strip._i = i;
+      var a = se.anom[i], pct = (i + 0.5) / n * 100;
+      line.style.left = pct + '%';
+      read.innerHTML = '';
+      read.appendChild(h('i', { style: '--sw:' + Stripes.color(a / mx) }));
+      read.appendChild(h('b', { text: String(se.years[i]) }));
+      read.appendChild(document.createTextNode(' ' + (a > 0 ? '+' : a < 0 ? '−' : '±') + Math.abs(a).toFixed(1) + ' ' + t('unit_t2m')));
+    }
+    function from(e) { var r = strip.getBoundingClientRect(); return Math.floor((e.clientX - r.left) / r.width * n); }
+    strip.addEventListener('pointermove', function (e) { at(from(e)); });
+    strip.addEventListener('pointerdown', function (e) { at(from(e)); });
+    strip.addEventListener('keydown', function (e) {
+      var d = e.key === 'ArrowLeft' ? -1 : e.key === 'ArrowRight' ? 1 : e.key === 'Home' ? -n : e.key === 'End' ? n : 0;
+      if (d) { e.preventDefault(); at(strip._i + d); }
+    });
+    at(n - 1);
+    return h('div', { class: 'tut-scrub' }, h('p', { class: 'small', text: t('tut1_try') }), strip, read);
   }
 
   function go(n) { return function () { S.step = n; render(); if (window.Motion) Motion.enter(root()); window.scrollTo(0, 0); }; }

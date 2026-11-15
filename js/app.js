@@ -112,6 +112,26 @@
     document.getElementById('methodBtn').addEventListener('click', showMethod);
     document.getElementById('glossBtn').addEventListener('click', function () { Glossary.open(); });
     document.getElementById('methodBack').addEventListener('click', function () { Home.show(); });
+    /* browser Back / Forward move between screens instead of leaving the game */
+    var show = App.show, popping = false;
+    App.show = function (name) {
+      var changed = App.current !== name;
+      show.apply(App, arguments);
+      if (popping) return;
+      var st = { screen: name };
+      try { if (!history.state || !history.state.screen) history.replaceState(st, ''); else if (changed) history.pushState(st, ''); } catch (e) { /* sandboxed */ }
+    };
+    window.addEventListener('popstate', function (e) {
+      var st = e.state || { screen: 'home' };
+      if (App.current === 'level') Cinematic.stop();
+      popping = true;
+      if (st.screen === 'home' || !App.data) Home.show();
+      else {
+        App.show(st.screen);
+        if (st.screen === 'level' && Level._state()) document.body.setAttribute('data-zone', Level._state().cfg.id);
+      }
+      popping = false;
+    });
     Home.show();
     document.getElementById('playBtn').disabled = true;
     document.getElementById('archiveBtn').disabled = true;

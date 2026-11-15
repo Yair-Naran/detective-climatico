@@ -98,6 +98,7 @@ dd{margin:3px 0 0;color:var(--ink-2);max-width:70ch;text-wrap:pretty}
 main{position:relative;padding:0 0 32px}
 .screen{display:grid;gap:18px;padding:24px var(--gutter) 0;max-width:calc(var(--maxw) + 2*var(--gutter));margin-inline:auto}
 .screen[hidden]{display:none}
+.screen:focus{outline:none}
 .screen>*{min-width:0}
 .screen>.btn:not(.big){justify-self:start}
 .screen-home{padding:0;gap:0;max-width:none;overflow-x:clip}
@@ -391,6 +392,19 @@ main{position:relative;padding:0 0 32px}
 @keyframes shake{0%,100%{transform:none}20%{transform:translateX(-5px) rotate(-.4deg)}40%{transform:translateX(5px) rotate(.4deg)}60%{transform:translateX(-2px)}80%{transform:translateX(2px)}}
 
 /* ---------- cinematic ---------- */
+.cine-ctrl{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-start}
+.cine-ctrl .cine-skip{margin-left:auto}
+.btn.finish.armed{font-size:.98rem;font-weight:750;font-stretch:96%;line-height:1.3;text-wrap:balance;border-color:var(--warm-2);background:color-mix(in srgb,var(--warm-2) 16%,var(--panel-2));animation:pick .5s var(--ease)}
+/* tutorial step 1: Pachuca's real stripes, scrubbable */
+.tut-scrub{display:grid;gap:10px;margin:6px 0 18px}
+.tut-scrub>.small{margin:0}
+.tut-strip{position:relative;height:clamp(84px,14vw,120px);border-radius:var(--r-sm);overflow:hidden;cursor:crosshair;touch-action:pan-y;box-shadow:var(--sh-2)}
+.tut-strip .strip-svg{position:absolute;inset:0;width:100%;height:100%;display:block;animation:wipe 1.1s var(--ease) both}
+.tut-strip:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.tut-line{position:absolute;top:0;bottom:0;width:2px;margin-left:-1px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.45);pointer-events:none}
+.tut-read{display:inline-flex;align-items:center;gap:8px;justify-self:start;padding:6px 12px;border-radius:999px;background:var(--ground-deep);border:1px solid var(--line-2);font-family:var(--display);font-weight:700;font-variant-numeric:tabular-nums}
+.tut-read i{width:12px;height:12px;border-radius:3px;background:var(--sw);box-shadow:0 0 0 1px rgba(255,255,255,.3)}
+.tut-read b{font-weight:900}
 .cine:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
 .cine{position:relative;min-height:clamp(380px,58vh,520px);border-radius:var(--r);display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;cursor:pointer;overflow:hidden;animation:cinein .8s var(--ease);border:1px solid var(--line);box-shadow:var(--sh-3)}
 .cine .scene-art{position:absolute;inset:0;width:100%;height:100%;animation:kenburns 9s linear forwards}

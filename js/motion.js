@@ -16,6 +16,12 @@
     el.classList.add('enter');
     clearTimeout(el._enterT);
     el._enterT = setTimeout(function () { el.classList.remove('enter'); }, 900);
+    /* the control that was pressed is usually gone after a re-render: give focus (and screen readers) the new view */
+    var a = document.activeElement;
+    if (!a || a === document.body || !document.body.contains(a) || (a.closest('.screen') && !a.closest('.screen').contains(el) && a.closest('.screen') !== el)) {
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '-1');
+      el.focus({ preventScroll: true });
+    }
   }
   /* the RdBu ramp, cold to warm: drops over the old screen and sweeps away from the new one */
   var RAMP = ['#2166ac', '#4393c3', '#92c5de', '#d1e5f0', '#f7f7f7', '#fddbc7', '#f4a582', '#d6604d', '#b2182b'];
@@ -88,10 +94,10 @@
   mo.observe(document.body, { childList: true, subtree: true, characterData: true });
   wrapAll(document.body);
 
-  /* ---- big buttons lean toward the pointer ---- */
+  /* ---- the two home actions lean toward the pointer ---- */
   document.addEventListener('pointermove', function (e) {
     if (!finePointer.matches || reduce.matches) return;
-    var el = e.target.closest('.btn.big, .btn.big-2');
+    var el = e.target.closest('.home-actions .btn');
     document.querySelectorAll('.btn.magnet').forEach(function (b) { if (b !== el) { b.classList.remove('magnet'); b.style.removeProperty('--tx'); b.style.removeProperty('--ty'); } });
     if (!el || el.disabled) return;
     var r = el.getBoundingClientRect();

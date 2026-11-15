@@ -345,6 +345,10 @@ Spacing rhythm is a tight 4–6–10–14–18–24 ladder. Use 10px between sta
 - **Data ticker:** a slanted Normal-White crawl of each city's real Sen slope sits between the intro and the cases; it pauses on hover and becomes a static wrapped row under reduced motion.
 - **Celebration:** an earned medal throws stripe confetti in RdBu and BrBG colours; a right answer throws a small teal burst. Nothing celebrates an ordinary click.
 - **First paint:** `html.boot` keeps `main` invisible until the first synchronous render, the hero reserves its final height and the ticker its row, so the page does not jump (CLS ≈ 0.02).
+- **Cinematic controls:** under the stage sit Back, Pause/Play (`aria-pressed`) and Skip, as ghost buttons; a paused panel never advances.
+- **Finishing early:** the hub's finish action is a secondary button; with hours left the first press turns it into an inline confirmation (warm tint, balanced text), and the second press ends the case.
+- **Tutorial step 1:** Pachuca's real stripes, scrubbable by pointer or arrow keys, with a pill readout (swatch, year, anomaly).
+- **Navigation:** each screen change pushes a history entry, so the browser's Back and Forward move between screens; screens keep their last render. Focus moves to the new screen or view when the pressed control disappears.
 - **Reduced motion:** all animation and transitions off, no curtain, confetti, magnetism or label roll; colour and fill changes still confirm state.
 
 ## Elevation & Depth

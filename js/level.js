@@ -125,7 +125,16 @@
     el.appendChild(h('button', { class: 'btn ghost', type: 'button', onclick: openGloss }, Icons.label('📖', t('glossBtn'))));
 
     if (!doneOf(refugePlace())) el.appendChild(h('p', { class: 'warn small', text: t(k('noRefuge')) }));
-    el.appendChild(h('button', { class: 'btn big-2 finish', type: 'button', onclick: end }, Icons.label(refugePlace().icon, t(k('finish')))));
+    var armed = false;
+    /* with hours still on the clock, the first press asks; the second one ends the case */
+    var fin = h('button', { class: 'btn big-2 finish', type: 'button', onclick: function () {
+      if (S.hoursLeft <= 0 || armed) return end();
+      armed = true;
+      fin.classList.add('armed');
+      fin.textContent = '';
+      Icons.label('⏱️', t('finishConfirm', { h: S.hoursLeft })).forEach(function (n) { fin.appendChild(n); });
+    } }, Icons.label(refugePlace().icon, t(k('finish'))));
+    el.appendChild(fin);
   }
 
   function spend(hours) { S.hoursLeft = Math.max(0, S.hoursLeft - hours); }
