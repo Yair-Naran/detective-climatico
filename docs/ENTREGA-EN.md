@@ -54,7 +54,7 @@ https://yair-naran.github.io/detective-climatico/?lang=en
 - World Meteorological Organization: 1991–2020 climatological standard normal (reference period for anomalies).
 - Ed Hawkins (2018): the "warming stripes" visualization idea (redrawn by the team in code).
 - Code: scipy (used only to validate the tests, not shipped with the game). No third-party libraries or images are shipped with the game.
-- Fonts: Archivo (Omnibus-Type) and Atkinson Hyperlegible Next (Braille Institute), SIL Open Font License 1.1, self-hosted in `fonts/` with their licenses. Icons: line icons drawn in code by the team (`js/icons.js`).
+- Fonts: Climate Crisis (Daniel Coull / Helsingin Sanomat, variable YEAR axis based on Arctic sea-ice data) for the title, Anybody (Etcetera Type Co) for headlines, buttons and labels, and Atkinson Hyperlegible Next (Braille Institute) for reading; SIL Open Font License 1.1, self-hosted in `fonts/` with their licenses. Icons: line icons drawn in code by the team (`js/icons.js`).
 
 ## Demo plan (30-second video or 7 slides)
 Must show: team name, member names (adults only or as the Local Lead allows), challenge name, the project, the user experience, and how NASA data make it possible. No NASA logos, no images or voices of minors, English subtitles.

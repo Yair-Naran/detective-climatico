@@ -38,6 +38,8 @@ The data tool is the core mechanic, not a quiz on top: the player must read the 
 - Not an official NASA product: no NASA logos; footer disclaimer stays.
 - Emojis may be replaced by drawn SVG icons; logo, hero illustration and animated landscapes may be redrawn.
 - Tone confirmed by the team: must not feel childish (primary-school), corporate/governmental, or hard to read.
+- Tone update confirmed by the user (Nov 2026): less formal. A youthful game with attitude for 12–17-year-olds: playful energy, humour in motion and type, premium finish; still not primary-school, and the science (charts, p-value, verdicts) stays clear and serious.
+- The climate-stripes identity (real NASA POWER data) stays the core of the brand; type, buttons and motion may change.
 
 ## Evidence on Hand
 
