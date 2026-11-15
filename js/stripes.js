@@ -52,6 +52,7 @@
   function hero(container, onPick) {
     var h = App.h, t = App.t, list = CITIES.map(series), m = scaleMax(list);
     var years = list[0].years, n = years.length, idx = n - 1, user = false, sweepTimer = null;
+    var title = document.getElementById('homeTitle'); /* only the title re-renders per frame, not the whole page */
     container.innerHTML = '';
 
     var line = h('div', { class: 'scrub-line', 'aria-hidden': 'true' });
@@ -89,7 +90,7 @@
       axis.classList.toggle('near-end', pct > 91);
       yearChip.textContent = years[idx];
       /* the game's title melts to the scrubbed year (Climate Crisis YEAR axis) */
-      document.documentElement.style.setProperty('--year', years[idx]);
+      if (title) title.style.setProperty('--year', years[idx]);
       rows.forEach(function (r) {
         var a = r.s.anom[idx];
         r.val.textContent = signed(a, 1) + ' ' + t('unit_t2m');

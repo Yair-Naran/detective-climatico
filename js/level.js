@@ -125,7 +125,7 @@
     el.appendChild(h('button', { class: 'btn ghost', type: 'button', onclick: openGloss }, Icons.label('📖', t('glossBtn'))));
 
     if (!doneOf(refugePlace())) el.appendChild(h('p', { class: 'warn small', text: t(k('noRefuge')) }));
-    el.appendChild(h('button', { class: 'btn primary big', type: 'button', onclick: end }, Icons.label(refugePlace().icon, t(k('finish')))));
+    el.appendChild(h('button', { class: 'btn big-2 finish', type: 'button', onclick: end }, Icons.label(refugePlace().icon, t(k('finish')))));
   }
 
   function spend(hours) { S.hoursLeft = Math.max(0, S.hoursLeft - hours); }

@@ -46,6 +46,8 @@ body[data-zone=centro]{--zone:#d6604d;--zone-hi:#f4a582;--zone-deep:#b2182b}
 body[data-zone=norte]{--zone:#bf812d;--zone-hi:#dfc27d;--zone-deep:#8c510a}
 
 *{box-sizing:border-box}
+/* the app renders its first screen synchronously at the end of <body>; until then main stays invisible so nothing jumps */
+.boot main{visibility:hidden}
 html{-webkit-text-size-adjust:100%;background:var(--ground);color-scheme:dark;scrollbar-color:var(--line-2) var(--ground);scroll-behavior:smooth}
 body{margin:0;font:17px/1.6 var(--body);color:var(--ink);min-height:100vh;background:var(--ground);caret-color:var(--zone-hi);accent-color:var(--zone);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 ::selection{background:var(--cold-3);color:#fff}
@@ -60,9 +62,9 @@ a{color:var(--cold-1);text-underline-offset:.2em;text-decoration-thickness:1px}
 h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
 h1{font-size:clamp(2.5rem,7.2vw,5.4rem);line-height:.92;font-weight:900;font-stretch:125%;letter-spacing:-.02em}
 h2{font-size:clamp(1.5rem,3vw,2.15rem);line-height:1.05;font-weight:900;font-style:italic;font-stretch:122%;letter-spacing:-.015em;margin-bottom:14px}
-h3{font-size:.98rem;line-height:1.3;font-weight:800;font-stretch:72%;text-transform:uppercase;letter-spacing:.07em;margin:26px 0 8px;color:var(--zone-hi);display:flex;align-items:center;gap:.5em}
+h3{font-size:1.12rem;line-height:1.3;font-weight:800;font-stretch:100%;letter-spacing:0;margin:26px 0 8px;color:var(--zone-hi);display:flex;align-items:center;gap:.5em}
 h3 .ic{margin:0}
-p{margin:0 0 10px;max-width:70ch}
+p{margin:0 0 10px;max-width:70ch;text-wrap:pretty}
 b,strong{font-weight:700}
 .small{font-size:.9rem;color:var(--mute);line-height:1.5}
 .center{text-align:center}
@@ -70,10 +72,10 @@ b,strong{font-weight:700}
 .note{font-size:.9rem;color:var(--mid);margin:6px 0 0}
 .ok,.warn,.bad{font-weight:600}
 ul{margin:8px 0 0;padding-left:20px;color:var(--ink-2)}
-li{margin-bottom:8px;padding-left:4px}
+li{margin-bottom:8px;padding-left:4px;max-width:72ch;text-wrap:pretty}
 li::marker{color:var(--zone)}
 dt{font-family:var(--display);font-weight:800;font-stretch:108%;font-size:1.05rem;margin-top:16px;color:var(--ink)}
-dd{margin:3px 0 0;color:var(--ink-2)}
+dd{margin:3px 0 0;color:var(--ink-2);max-width:70ch;text-wrap:pretty}
 
 /* ---------- icons ---------- */
 .ic{width:1.25em;height:1.25em;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.25em;margin-inline-end:.45em}
@@ -88,7 +90,7 @@ dd{margin:3px 0 0;color:var(--ink-2)}
 .brand:hover .art-logo{transform:rotate(-14deg) scale(1.12)}
 .brand:hover .art-logo .lens{transform:translateX(-12.9px)}
 .brand:active .art-logo{transform:rotate(-14deg) scale(.92);transition-duration:.1s}
-.lang{font-family:var(--display);font-weight:800;font-stretch:90%;font-size:.92rem;letter-spacing:.03em;min-height:44px;padding:8px 18px;border-radius:999px;border:1px solid var(--line-2);background:var(--panel);color:var(--ink);cursor:pointer;position:relative;overflow:hidden;isolation:isolate;box-shadow:var(--sh-1);transition:border-color .25s,transform .45s var(--spring),box-shadow .25s}
+.lang{min-width:104px;font-family:var(--display);font-weight:800;font-stretch:90%;font-size:.92rem;letter-spacing:.03em;min-height:44px;padding:8px 18px;border-radius:999px;border:1px solid var(--line-2);background:var(--panel);color:var(--ink);cursor:pointer;position:relative;overflow:hidden;isolation:isolate;box-shadow:var(--sh-1);transition:border-color .25s,transform .45s var(--spring),box-shadow .25s}
 .lang:hover{border-color:var(--cold-1);transform:translateY(-2px) rotate(-2deg);box-shadow:var(--sh-2)}
 .lang:active{transform:scale(.94);transition-duration:.08s}
 
@@ -105,7 +107,7 @@ main{position:relative;padding:0 0 32px}
 
 /* ---------- surfaces ---------- */
 .card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,3vw,30px);box-shadow:var(--hl),var(--sh-2)}
-.card>svg{display:block;margin:12px 0 10px;max-width:640px}
+.card>svg{display:block;margin:12px 0 10px;max-width:760px}
 .card>h3:first-child,.card>p:first-child+h3{margin-top:0}
 .card>.btn{margin-top:14px}
 .card.stack{display:grid;gap:10px}
@@ -143,6 +145,8 @@ main{position:relative;padding:0 0 32px}
 .btn.big.primary>.foot{position:absolute;left:0;right:0;bottom:0;height:5px;z-index:-1;background:var(--rdbu);background-size:50% 100%;animation:foot 6s linear infinite}
 @keyframes foot{to{background-position:100% 0}}
 .btn.big-2{min-height:58px;width:100%;font-stretch:112%;font-weight:800}
+.btn.finish{border-color:color-mix(in srgb,var(--warm-2) 60%,transparent)}
+.btn.finish .ic{color:var(--warm-1)}
 .btn.ghost{background:transparent;border-color:transparent;color:var(--ink-2);box-shadow:none}
 .btn.ghost::after{left:22px;right:22px;bottom:9px;height:3px;border-radius:2px}
 .btn.ghost:hover:not(:disabled){background:var(--panel-2);border-color:var(--line-2);color:var(--ink);box-shadow:none}
@@ -162,8 +166,8 @@ main{position:relative;padding:0 0 32px}
 @keyframes ripple{to{transform:scale(1);opacity:0}}
 
 /* ---------- home: stripes hero ---------- */
-.stripes-hero{position:relative;background:var(--ground-deep);border-bottom:1px solid var(--line);padding-bottom:6px}
-.band{position:relative;display:grid;grid-template-rows:repeat(3,1fr);gap:3px;height:clamp(210px,40vh,400px);cursor:crosshair;touch-action:pan-y;outline-offset:-3px}
+.stripes-hero{position:relative;background:var(--ground-deep);border-bottom:1px solid var(--line);padding-bottom:6px;min-height:calc(clamp(180px,31vh,340px) + 77px)}
+.band{position:relative;display:grid;grid-template-rows:repeat(3,1fr);gap:3px;height:clamp(180px,31vh,340px);cursor:crosshair;touch-action:pan-y;outline-offset:-3px}
 .band:focus-visible{outline:3px solid var(--focus);border-radius:0}
 .band-skeleton span{display:block;background:linear-gradient(90deg,var(--panel) 0,var(--panel-3) 50%,var(--panel) 100%);background-size:200% 100%;animation:shimmer 1.4s linear infinite}
 @keyframes shimmer{to{background-position:-200% 0}}
@@ -196,10 +200,10 @@ main{position:relative;padding:0 0 32px}
 
 /* ---------- home: title + actions ---------- */
 .home-copy{display:grid;gap:14px}
-.home-intro{display:grid;gap:clamp(18px,3vw,28px);padding:clamp(26px,4.5vw,52px) 0 clamp(26px,4vw,44px);align-items:end}
+.home-intro{display:grid;gap:clamp(16px,2.4vw,24px);padding:clamp(20px,3vw,36px) 0 clamp(26px,4vw,44px);align-items:end}
 .home-title{display:grid;gap:14px}
 /* the game's name in Climate Crisis: its YEAR axis follows the scrubbed year, so the letters melt as the years warm */
-.home-title h1{font-family:var(--title);font-weight:400;font-stretch:100%;font-size:clamp(2.6rem,8.4vw,6rem);line-height:1.04;letter-spacing:-.01em;text-transform:uppercase;font-variation-settings:"YEAR" var(--year,2025);transition:font-variation-settings .3s var(--ease);margin:0 0 4px;max-width:none}
+.home-title h1{font-family:var(--title);font-weight:400;font-stretch:100%;font-size:clamp(2.5rem,7.4vw,5.4rem);line-height:1.04;letter-spacing:-.01em;text-transform:uppercase;font-variation-settings:"YEAR" var(--year,2025);transition:font-variation-settings .3s var(--ease);margin:0 0 4px;max-width:none}
 .home-title h1 .ttl-line{display:block;overflow:hidden;padding:.08em 0 .04em;margin-top:-.08em}
 .home-title h1 .ttl-line>span{display:block}
 .home-sub{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-style:italic;font-stretch:112%;font-size:clamp(1.05rem,1.7vw,1.3rem);color:var(--warm-1);margin:0}
@@ -207,6 +211,10 @@ main{position:relative;padding:0 0 32px}
 .lead{font-size:clamp(1.06rem,1.5vw,1.22rem);color:var(--ink-2);max-width:48ch;margin:0}
 .home-actions{display:grid;gap:12px}
 .home-actions .small{margin:0}
+/* the loading note sits over the no-sign-up line instead of taking its own row, so nothing moves when data arrives */
+.home-actions{position:relative}
+#loadMsg{position:absolute;left:0;right:0;bottom:0;background:var(--ground);min-height:100%}
+#loadMsg[hidden]{display:none}
 .home-cases{padding:clamp(20px,4vw,44px) 0 8px}
 .home-cases h2{display:flex;align-items:center;gap:16px;font-size:clamp(1.9rem,4vw,2.8rem);margin-bottom:22px}
 .home-cases h2::after{content:"";flex:1;height:6px;border-radius:3px;background:var(--rdbu);opacity:.9;transform-origin:left;animation:grow 1.1s .2s var(--ease) both}
@@ -216,6 +224,9 @@ main{position:relative;padding:0 0 32px}
 
 /* ---------- home: data ticker (each city's real Sen slope, slanted like a broadcast crawl) ---------- */
 .ticker{position:relative;overflow:hidden;margin:clamp(6px,2vw,18px) -3vw 0;width:calc(100% + 6vw);padding:0;transform:rotate(-1.6deg);background:#f7f7f7;color:var(--ground);box-shadow:var(--sh-2);font-family:var(--display);font-weight:850;font-style:italic;font-stretch:118%;font-size:clamp(.95rem,1.6vw,1.2rem);text-transform:uppercase;letter-spacing:.01em;white-space:nowrap}
+.ticker[hidden]{display:block;visibility:hidden}
+.ticker{min-height:calc(1.6em + 22px)}
+.ticker:active .ticker-track{animation-play-state:paused}
 .ticker-track{display:flex;width:max-content;animation:crawl 38s linear infinite}
 .ticker:hover .ticker-track{animation-play-state:paused}
 .ticker-run{display:flex;align-items:center;gap:30px;padding:11px 15px}
@@ -228,12 +239,8 @@ main{position:relative;padding:0 0 32px}
 /* ---------- home: first-load choreography (content is visible by default; .intro only plays it once) ---------- */
 .screen-home.intro .home-title h1 .ttl-line>span{animation:rise-up 1s var(--ease) both}
 .screen-home.intro .home-title h1 .ttl-line+.ttl-line>span{animation-delay:.12s}
-.screen-home.intro .home-sub,.screen-home.intro .lead{animation:rise .8s .35s var(--ease) both}
-.screen-home.intro .lead{animation-delay:.45s}
-.screen-home.intro .home-actions>*{animation:pop-in .7s var(--spring) both}
-.screen-home.intro .home-actions>:nth-child(1){animation-delay:.55s}
-.screen-home.intro .home-actions>:nth-child(2){animation-delay:.65s}
-.screen-home.intro .home-actions>:nth-child(n+3){animation-delay:.75s}
+.screen-home.intro .home-actions>.btn{animation:pop-in .7s .45s var(--ease) both}
+.screen-home.intro .home-actions>.btn+.btn{animation-delay:.55s}
 .screen-home.intro .ticker{animation:slam .9s .7s var(--ease) both}
 @keyframes rise-up{from{transform:translateY(105%)}to{transform:none}}
 @keyframes pop-in{from{opacity:0;transform:translateY(16px) scale(.94)}to{opacity:1;transform:none}}
@@ -384,6 +391,7 @@ main{position:relative;padding:0 0 32px}
 @keyframes shake{0%,100%{transform:none}20%{transform:translateX(-5px) rotate(-.4deg)}40%{transform:translateX(5px) rotate(.4deg)}60%{transform:translateX(-2px)}80%{transform:translateX(2px)}}
 
 /* ---------- cinematic ---------- */
+.cine:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
 .cine{position:relative;min-height:clamp(380px,58vh,520px);border-radius:var(--r);display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;cursor:pointer;overflow:hidden;animation:cinein .8s var(--ease);border:1px solid var(--line);box-shadow:var(--sh-3)}
 .cine .scene-art{position:absolute;inset:0;width:100%;height:100%;animation:kenburns 9s linear forwards}
 @keyframes kenburns{from{transform:scale(1.02)}to{transform:scale(1.1) translateY(-6px)}}
@@ -393,7 +401,7 @@ main{position:relative;padding:0 0 32px}
 .cine-icon .ic{width:34px;height:34px;margin:0}
 .scene-storm .cine-icon .ic{animation:spin 6s linear infinite}
 .cine-panel{position:relative;width:100%;padding:44px clamp(20px,4vw,40px) 20px;background:linear-gradient(180deg,transparent,rgba(10,12,16,.88) 46%)}
-.cine-text{font-family:var(--display);font-size:clamp(1.2rem,2.6vw,1.65rem);font-weight:800;font-style:italic;font-stretch:108%;line-height:1.35;max-width:36ch;margin:0 auto 10px;text-shadow:0 2px 8px rgba(0,0,0,.6);animation:rise .7s .15s var(--ease) both}
+.cine-text{font-family:var(--body);font-size:clamp(1.12rem,2.2vw,1.4rem);font-weight:700;line-height:1.35;max-width:36ch;margin:0 auto 10px;text-shadow:0 2px 8px rgba(0,0,0,.6);animation:rise .7s .15s var(--ease) both}
 .cine-note{font-size:.8rem;color:var(--ink-2);margin:0 auto 10px}
 .cdots{display:flex;gap:4px;justify-content:center;max-width:280px;margin:0 auto}
 .cdot{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.25)}
@@ -417,7 +425,7 @@ main{position:relative;padding:0 0 32px}
 .result-card{display:grid;justify-items:center;text-align:center;gap:4px;overflow:hidden;padding-top:0}
 .rc-strip{justify-self:stretch;height:44px;margin:0 calc(-1*clamp(18px,3vw,30px)) 18px;position:relative;overflow:hidden;animation:wipe 1.1s var(--ease) both}
 .rc-strip .strip-svg{position:absolute;inset:0;width:100%;height:100%;display:block}
-.rc-case{font-family:var(--display);font-stretch:66%;font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:.86rem;color:var(--ink-2);margin:8px 0 0}
+.rc-case{font-family:var(--display);font-stretch:76%;font-weight:800;letter-spacing:.04em;text-transform:uppercase;font-size:.98rem;color:var(--ink-2);margin:8px 0 0}
 .result-card h2{margin:4px 0 0}
 .medal{width:118px;height:134px;display:grid;place-items:center;animation:pop .9s var(--ease) both}
 .medal-svg{width:100%;height:100%;filter:drop-shadow(0 12px 18px rgba(0,0,0,.5))}
@@ -462,7 +470,7 @@ svg .tip-bg{fill:var(--ink);stroke:none}
 svg .tip-t{fill:var(--ground);font-size:9.5px;font-weight:700;text-anchor:middle}
 svg .hit{cursor:crosshair}
 .seg{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0 10px;padding:4px;background:var(--ground-deep);border:1px solid var(--line);border-radius:12px;width:max-content;max-width:100%}
-.seg-btn{font-family:var(--display);font-weight:800;font-stretch:96%;font-size:.88rem;min-height:40px;padding:6px 14px;border-radius:9px;border:0;background:transparent;color:var(--ink-2);cursor:pointer;position:relative;overflow:hidden;transition:background-color .25s,color .25s,transform .45s var(--spring)}
+.seg-btn{font-family:var(--display);font-weight:800;font-stretch:96%;font-size:.88rem;min-height:44px;padding:6px 14px;border-radius:9px;border:0;background:transparent;color:var(--ink-2);cursor:pointer;position:relative;overflow:hidden;transition:background-color .25s,color .25s,transform .45s var(--spring)}
 .seg-btn:hover{background:var(--panel-2);color:var(--ink)}
 .seg-btn:active{transform:scale(.92);transition-duration:.08s}
 .seg-btn.on{background:var(--zone);color:#fff;box-shadow:var(--sh-1)}
@@ -513,8 +521,14 @@ footer a{color:var(--mute)}
   .home-actions{grid-column:2;align-self:start}
   .levels{grid-template-columns:repeat(3,1fr)}
 }
+@media(max-width:859px){
+  .home-title,.home-copy{display:contents}
+  .home-intro>*,.home-title>*,.home-copy>*{min-width:0}
+  #homeTitle{order:1}.home-sub{order:2}.home-actions{order:3}.lead{order:4}
+}
 @media(max-width:520px){
   body{font-size:16px}
+  .stripes-hero{min-height:calc(clamp(180px,31vh,340px) + 105px)}
   .brand{font-size:.98rem;white-space:nowrap;font-stretch:108%}
   .brand .art-logo{width:32px;height:32px}
   .btn.big{font-size:1.02rem;letter-spacing:.03em;font-stretch:105%}
@@ -523,7 +537,7 @@ footer a{color:var(--mute)}
   svg .tip-t{font-size:12.5px}
   svg .tip-bg{height:21px}
   .srow-label{padding:5px 10px;gap:0;flex-direction:column;align-items:flex-start;line-height:1.15}
-  .srow-rate{font-size:.74rem}
+  .srow-rate{font-size:.8rem;font-stretch:76%}
   .srow-val{font-size:.78rem}
   .band-legend{flex-direction:column}
   .places{grid-template-columns:1fr 1fr;gap:10px}

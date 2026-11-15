@@ -311,7 +311,7 @@ An 11-step diverging ramp, `rdbu-cold-4` (Abyssal Blue) through `rdbu-neutral` (
 - **Figure** (Anybody 900 italic, width 135%, clamp(3.8rem, 11vw, 6rem), tabular): result percentage in Sea-glass.
 - **Section** (Anybody 900 italic, width 122%, clamp(1.5rem, 3vw, 2.15rem)): h2 on cards and screens; "Cases" on home grows to 2.8rem and is followed by a 6px RdBu rule.
 - **Card title** (Anybody 900 italic, width 115%, 1.32rem): case-card names. Place names: Anybody 800, width 92%.
-- **Sub-heading** (Anybody 800, width 72%, uppercase, .07em, .98rem, zone highlight): h3 inside cards, often led by an icon.
+- **Sub-heading** (Anybody 800, width 100%, sentence case, 1.12rem, zone highlight): h3 inside cards, often led by an icon. It also carries place titles and character lines, so it is never set in condensed caps.
 - **Body** (Atkinson 400, 17px / 1.6; 16px under 520px), capped at 70ch, leads at 48ch.
 - **Button** (Anybody 750, width 108%, 1.02rem) / **Primary** (850, width 112%) / **Hero** (900 italic, width 128%, uppercase, clamp(1.15rem, 1.9vw, 1.4rem)).
 - **Label** (Anybody 800, width 66–74%, uppercase, .06em): field labels, legends, badges, chips, stripe rates.
@@ -344,6 +344,7 @@ Spacing rhythm is a tight 4–6–10–14–18–24 ladder. Use 10px between sta
 - **Screen change:** a stripe curtain (the 9-step RdBu ramp, cold to warm) drops and sweeps away in 0.62s while the new screen's blocks rise in sequence. Content is never delayed or hidden by default.
 - **Data ticker:** a slanted Normal-White crawl of each city's real Sen slope sits between the intro and the cases; it pauses on hover and becomes a static wrapped row under reduced motion.
 - **Celebration:** an earned medal throws stripe confetti in RdBu and BrBG colours; a right answer throws a small teal burst. Nothing celebrates an ordinary click.
+- **First paint:** `html.boot` keeps `main` invisible until the first synchronous render, the hero reserves its final height and the ticker its row, so the page does not jump (CLS ≈ 0.02).
 - **Reduced motion:** all animation and transitions off, no curtain, confetti, magnetism or label roll; colour and fill changes still confirm state.
 
 ## Elevation & Depth
@@ -420,7 +421,7 @@ Every chart is an SVG drawn into a 360×230 viewBox, on Graphite Deep with a Hai
 A sticky header in Graphite Ground at 94% opacity with a Hairline bottom border. The brand button (logo plus Anybody 900 italic, width 118%) returns home; on hover its logo tilts −14°, scales up, and three warmer stripes slide into the lens. The language toggle sits to the right. There is no other chrome. Navigation within a screen uses ghost back buttons.
 
 ### Cinematic
-A framed stage (`rounded.md`, Lifted shadow, Hairline border, clamp(380px, 58vh, 520px)) that unwipes from the top over 0.8s. The scene sky is the case city's real stripes. They are muted when calm (72%), nearly hidden in a storm (16%) and at full strength in a heat alert (95%). Graphite ridge silhouettes sit below, outlined in the zone highlight. Scenes move with Ken Burns (9s), drifting stratus lines, falling rain, orbiting sun rays and a spinning cyclone icon. A floating 64px icon disc sits top-left. The narration is Anybody 800 italic over a gradient to Graphite Deep and rises in. Progress dots go from white at 25% to solid white.
+A framed stage (`rounded.md`, Lifted shadow, Hairline border, clamp(380px, 58vh, 520px)) that unwipes from the top over 0.8s. The scene sky is the case city's real stripes. They are muted when calm (72%), nearly hidden in a storm (16%) and at full strength in a heat alert (95%). Graphite ridge silhouettes sit below, outlined in the zone highlight. Scenes move with Ken Burns (9s), drifting stratus lines, falling rain, orbiting sun rays and a spinning cyclone icon. A floating 64px icon disc sits top-left. The narration is Atkinson Hyperlegible Next 700 (it is reading text); each panel stays at least 5 s or about 350 ms per word, and the stage is a keyboard-operable button (Enter or Space advances) over a gradient to Graphite Deep and rises in. Progress dots go from white at 25% to solid white.
 
 ### Guide and Clue (tutorial)
 A 54px circular avatar in the zone deep step, with a double ring (panel plus zone at 55%), beside a Panel Raised speech bubble with one sharp corner. The clue is a dashed zone-coloured card. A beacon outline pulses around it (2.2s), and on hover it lifts 3px, tilts -0.4° and turns its border solid.

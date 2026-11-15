@@ -115,6 +115,7 @@
     Home.show();
     document.getElementById('playBtn').disabled = true;
     document.getElementById('archiveBtn').disabled = true;
+    document.documentElement.classList.remove('boot');
 
     fetch('data/series.json').then(function (r) { return r.json(); }).then(function (j) {
       App.data = j;
