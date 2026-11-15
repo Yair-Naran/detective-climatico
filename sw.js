@@ -1,7 +1,7 @@
 /* Offline support: cache the app shell and the built-in data on first visit; network-first so updates always win when online.
    NASA POWER requests (live places / extra variables) are not cached here: js/power.js keeps its own 30-day cache. */
-const CACHE = 'detective-v2';
-const SHELL = ['./', 'index.html', 'css/style.css', 'i18n/strings.js', 'data/series.json',
+const CACHE = 'detective-v3';
+const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'css/style.css', 'i18n/strings.js', 'data/series.json',
   'js/stats.js', 'js/core.js', 'js/motion.js', 'js/icons.js', 'js/stripes.js', 'js/chart.js', 'js/art.js', 'js/cinematic.js', 'js/levels-data.js',
   'js/power.js', 'js/audio.js', 'js/glossary.js', 'js/archive.js', 'js/tutorial.js', 'js/level.js', 'js/app.js',
   'fonts/ClimateCrisis-YEAR.woff2', 'fonts/Anybody-normal.woff2', 'fonts/Anybody-italic.woff2', 'fonts/AtkinsonHyperlegibleNext-normal.woff2', 'fonts/AtkinsonHyperlegibleNext-italic.woff2'];
