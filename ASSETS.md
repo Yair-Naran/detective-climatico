@@ -46,6 +46,8 @@ Illustrations, logo and animated landscapes: original, drawn in code as SVG and 
 | Anybody (headlines, buttons) | Etcetera Type Co | SIL OFL 1.1 | Fontsource 5.3.0 | `fonts/Anybody-*.woff2`, `fonts/OFL-Anybody.txt` |
 | Atkinson Hyperlegible Next (reading) | Braille Institute | SIL OFL 1.1 | Google Fonts | `fonts/AtkinsonHyperlegibleNext-*.woff2`, `fonts/OFL-AtkinsonHyperlegibleNext.txt` |
 
+App icons (`icons/icon-192.png`, `icons/icon-512.png`) are rendered from the team's own logo SVG. The social-share image (`icons/og.png`) uses the Pachuca annual temperature from `data/series.json` as colored stripes plus the project fonts; made with a script, no third-party artwork.
+
 Final character and zone art from the team (original, animated or drawn style, no likeness of real people or minors) goes in this table with author and tool when it is added.
 
 ## Use of AI (Use of SI)
