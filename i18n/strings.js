@@ -99,7 +99,7 @@ window.I18N = {
     mRef6: 'Servicio Meteorológico Nacional (Conagua): definición de onda de calor. Monitor de Sequía de México: categorías D0 a D4.',
     mRef7: 'Secretaría de Salud: golpe de calor y almacenamiento seguro de agua.',
     mAI: 'El código y los textos se redactaron con ayuda de Claude (Anthropic). No usamos generadores de imágenes con IA. Los cálculos de tendencia se compararon con la biblioteca scipy para comprobar que dan el mismo resultado.',
-    mArt: 'Las ilustraciones, el logo y las animaciones son originales y están dibujados en código (SVG y CSS). Los íconos pequeños son emojis del sistema de tu dispositivo. No hay fotos de personas ni imágenes de menores de edad.',
+    mArt: 'Las ilustraciones, el logo y las animaciones son originales y están dibujados en código (SVG y CSS). Los íconos también están dibujados en código. Las tipografías Archivo y Atkinson Hyperlegible Next tienen licencia libre (SIL OFL). No hay fotos de personas ni imágenes de menores de edad.',
     mFiction: 'Los personajes y las historias son ficticios. Los datos y las tendencias son reales.',
     mCode: 'Código abierto con licencia MIT: github.com/Yair-Naran/detective-climatico',
 
@@ -758,7 +758,7 @@ window.I18N = {
     mRef6: 'National Weather Service of Mexico (Conagua): heat wave definition. Mexico Drought Monitor: categories D0 to D4.',
     mRef7: 'Ministry of Health: heatstroke and safe water storage.',
     mAI: 'The code and texts were written with help from Claude (Anthropic). We did not use AI image generators. The trend calculations were compared with the scipy library to check that they give the same result.',
-    mArt: 'The illustrations, logo and animations are original and drawn in code (SVG and CSS). The small icons are emojis from your device\'s system. There are no photos of people and no images of minors.',
+    mArt: 'The illustrations, logo and animations are original and drawn in code (SVG and CSS). The icons are drawn in code too. The fonts Archivo and Atkinson Hyperlegible Next are free to use (SIL OFL). There are no photos of people and no images of minors.',
     mFiction: 'The characters and stories are fictional. The data and trends are real.',
     mCode: 'Open source under the MIT license: github.com/Yair-Naran/detective-climatico',
 

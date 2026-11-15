@@ -1,0 +1,1003 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-15T02:45:40Z",
+  "title": "Design System: Climate Detective",
+  "extensions": {
+    "colorMeta": {
+      "graphite-ground": {
+        "role": "neutral",
+        "displayName": "Graphite Ground",
+        "canonical": "#0e1116",
+        "oklch": "oklch(17.7% 0.011 260.6)",
+        "tonalRamp": [
+          "#080b10",
+          "#22252b",
+          "#3f4248",
+          "#5e6168",
+          "#7e8389",
+          "#a1a5ac",
+          "#c5c9d1",
+          "#eaeff6"
+        ]
+      },
+      "graphite-deep": {
+        "role": "neutral",
+        "displayName": "Graphite Deep",
+        "canonical": "#0a0c10",
+        "oklch": "oklch(15.4% 0.009 264.3)",
+        "tonalRamp": [
+          "#090b0f",
+          "#23252a",
+          "#3f4247",
+          "#5f6167",
+          "#7f8288",
+          "#a2a5ab",
+          "#c6c9cf",
+          "#ebeef5"
+        ]
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "Panel",
+        "canonical": "#171b22",
+        "oklch": "oklch(22.1% 0.015 261.6)",
+        "tonalRamp": [
+          "#080b12",
+          "#21252d",
+          "#3e424a",
+          "#5d616a",
+          "#7d838c",
+          "#a0a5af",
+          "#c4c9d3",
+          "#e9eff9"
+        ]
+      },
+      "panel-raised": {
+        "role": "neutral",
+        "displayName": "Panel Raised",
+        "canonical": "#1e232b",
+        "oklch": "oklch(25.5% 0.017 259.8)",
+        "tonalRamp": [
+          "#070b12",
+          "#20252d",
+          "#3d424b",
+          "#5c626b",
+          "#7c838d",
+          "#9fa5b0",
+          "#c3cad4",
+          "#e8effa"
+        ]
+      },
+      "panel-high": {
+        "role": "neutral",
+        "displayName": "Panel High",
+        "canonical": "#262c36",
+        "oklch": "oklch(29.2% 0.020 260.6)",
+        "tonalRamp": [
+          "#0a0b0e",
+          "#22252a",
+          "#3e424a",
+          "#5b626c",
+          "#7c838e",
+          "#a0a5ae",
+          "#c5c9d0",
+          "#eceff2"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#2a303a",
+        "oklch": "oklch(30.8% 0.020 260.6)",
+        "tonalRamp": [
+          "#070b14",
+          "#20252f",
+          "#3c424d",
+          "#5b626d",
+          "#7c838f",
+          "#9ea5b2",
+          "#c2cad7",
+          "#e7effc"
+        ]
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Strong Hairline",
+        "canonical": "#3a424e",
+        "oklch": "oklch(37.7% 0.023 258.4)",
+        "tonalRamp": [
+          "#0a0b0e",
+          "#22252b",
+          "#3d424b",
+          "#5a626d",
+          "#7b838f",
+          "#9fa6af",
+          "#c5c9d1",
+          "#eceff3"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#f3f5f8",
+        "oklch": "oklch(96.9% 0.005 258.3)",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#242527",
+          "#404244",
+          "#606164",
+          "#818285",
+          "#a3a5a8",
+          "#c7c9cc",
+          "#edeff1"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Soft Ink",
+        "canonical": "#c9d0da",
+        "oklch": "oklch(85.5% 0.016 257.2)",
+        "tonalRamp": [
+          "#070b12",
+          "#20252d",
+          "#3d424b",
+          "#5c626a",
+          "#7c838c",
+          "#9fa6af",
+          "#c3cad4",
+          "#e8eff9"
+        ]
+      },
+      "mute": {
+        "role": "neutral",
+        "displayName": "Mute",
+        "canonical": "#a1aab7",
+        "oklch": "oklch(73.5% 0.021 257.5)",
+        "tonalRamp": [
+          "#0a0b0e",
+          "#22252a",
+          "#3d424a",
+          "#5b626c",
+          "#7b838e",
+          "#9fa6ae",
+          "#c5c9d0",
+          "#eceff2"
+        ]
+      },
+      "action-red": {
+        "role": "primary",
+        "displayName": "Ember Action Red",
+        "canonical": "#c8432f",
+        "oklch": "oklch(56.8% 0.173 31.3)",
+        "tonalRamp": [
+          "#1b0301",
+          "#451008",
+          "#742115",
+          "#a73322",
+          "#ce5844",
+          "#e68876",
+          "#fab6a8",
+          "#ffe4db"
+        ]
+      },
+      "action-red-deep": {
+        "role": "primary",
+        "displayName": "Banked Ember",
+        "canonical": "#b83a27",
+        "oklch": "oklch(53.0% 0.166 31.4)",
+        "tonalRamp": [
+          "#1a0302",
+          "#44110a",
+          "#722317",
+          "#a53626",
+          "#cc5a47",
+          "#e38978",
+          "#f9b7a9",
+          "#ffe4dc"
+        ]
+      },
+      "action-ink": {
+        "role": "primary",
+        "displayName": "Action Ink",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "rdbu-cold-4": {
+        "role": "secondary",
+        "displayName": "Abyssal Blue",
+        "canonical": "#053061",
+        "oklch": "oklch(31.3% 0.098 255.5)",
+        "tonalRamp": [
+          "#040b16",
+          "#15263c",
+          "#294365",
+          "#3e6392",
+          "#5e84b6",
+          "#89a7cf",
+          "#b5cbe8",
+          "#e3f0ff"
+        ]
+      },
+      "rdbu-cold-3": {
+        "role": "secondary",
+        "displayName": "Deep Blue (Costa deep)",
+        "canonical": "#2166ac",
+        "oklch": "oklch(50.5% 0.130 252.4)",
+        "tonalRamp": [
+          "#020c1a",
+          "#0b2642",
+          "#194370",
+          "#2863a1",
+          "#4b85c6",
+          "#7ca9dc",
+          "#acccf2",
+          "#def1ff"
+        ]
+      },
+      "rdbu-cold-2": {
+        "role": "secondary",
+        "displayName": "Mid Blue (Costa accent)",
+        "canonical": "#4393c3",
+        "oklch": "oklch(63.4% 0.106 238.0)",
+        "tonalRamp": [
+          "#010d16",
+          "#07283b",
+          "#124764",
+          "#1f6891",
+          "#458ab5",
+          "#79acce",
+          "#abcfe7",
+          "#ddf2ff"
+        ]
+      },
+      "rdbu-cold-1": {
+        "role": "secondary",
+        "displayName": "Glacier Blue (Costa highlight, focus)",
+        "canonical": "#92c5de",
+        "oklch": "oklch(79.6% 0.064 229.7)",
+        "tonalRamp": [
+          "#040d11",
+          "#142831",
+          "#284755",
+          "#3d687c",
+          "#5e899e",
+          "#89abbc",
+          "#b6cdda",
+          "#e3f1f8"
+        ]
+      },
+      "rdbu-cold-0": {
+        "role": "secondary",
+        "displayName": "Frost",
+        "canonical": "#d1e5f0",
+        "oklch": "oklch(91.0% 0.026 231.6)",
+        "tonalRamp": [
+          "#080c0e",
+          "#1f262a",
+          "#39444a",
+          "#54646c",
+          "#75858e",
+          "#9aa7ae",
+          "#c1cbd0",
+          "#eaeff2"
+        ]
+      },
+      "rdbu-neutral": {
+        "role": "secondary",
+        "displayName": "Normal White",
+        "canonical": "#f7f7f7",
+        "oklch": "oklch(97.6% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "rdbu-warm-0": {
+        "role": "secondary",
+        "displayName": "Blush",
+        "canonical": "#fddbc7",
+        "oklch": "oklch(91.5% 0.046 52.3)",
+        "tonalRamp": [
+          "#100a07",
+          "#2e221b",
+          "#503d32",
+          "#755b4b",
+          "#977c6c",
+          "#b6a093",
+          "#d6c6bc",
+          "#f6ece7"
+        ]
+      },
+      "rdbu-warm-1": {
+        "role": "secondary",
+        "displayName": "Peach (Centro highlight, trend)",
+        "canonical": "#f4a582",
+        "oklch": "oklch(79.1% 0.106 44.7)",
+        "tonalRamp": [
+          "#150703",
+          "#391c0f",
+          "#61341f",
+          "#8d4e31",
+          "#b16f52",
+          "#cc9780",
+          "#e7bfaf",
+          "#ffe9df"
+        ]
+      },
+      "rdbu-warm-2": {
+        "role": "secondary",
+        "displayName": "Brick (Centro accent)",
+        "canonical": "#d6604d",
+        "oklch": "oklch(63.2% 0.153 31.1)",
+        "tonalRamp": [
+          "#190402",
+          "#42140d",
+          "#6f271c",
+          "#a03c2c",
+          "#c75e4d",
+          "#df8c7c",
+          "#f5b8ac",
+          "#ffe5de"
+        ]
+      },
+      "rdbu-warm-3": {
+        "role": "secondary",
+        "displayName": "Crimson (Centro deep)",
+        "canonical": "#b2182b",
+        "oklch": "oklch(49.2% 0.185 22.4)",
+        "tonalRamp": [
+          "#1c0203",
+          "#470b0f",
+          "#771a20",
+          "#ab2932",
+          "#d35052",
+          "#ea8380",
+          "#feb3af",
+          "#ffe2df"
+        ]
+      },
+      "rdbu-warm-4": {
+        "role": "secondary",
+        "displayName": "Furnace Maroon",
+        "canonical": "#67001f",
+        "oklch": "oklch(32.7% 0.131 14.2)",
+        "tonalRamp": [
+          "#170507",
+          "#3e161b",
+          "#692b33",
+          "#98414c",
+          "#be626d",
+          "#d78e94",
+          "#efb9bd",
+          "#ffe5e7"
+        ]
+      },
+      "brbg-dry-2": {
+        "role": "tertiary",
+        "displayName": "Umber (Norte deep)",
+        "canonical": "#8c510a",
+        "oklch": "oklch(49.3% 0.109 62.5)",
+        "tonalRamp": [
+          "#140801",
+          "#371f06",
+          "#5e3810",
+          "#88531c",
+          "#ac7440",
+          "#c79b74",
+          "#e3c2a7",
+          "#feebdb"
+        ]
+      },
+      "brbg-dry-1": {
+        "role": "tertiary",
+        "displayName": "Dry Ochre (Norte accent)",
+        "canonical": "#bf812d",
+        "oklch": "oklch(65.2% 0.123 70.1)",
+        "tonalRamp": [
+          "#140800",
+          "#371f00",
+          "#5e3800",
+          "#885400",
+          "#ac752e",
+          "#c79c69",
+          "#e3c3a0",
+          "#feebd7"
+        ]
+      },
+      "brbg-dry-0": {
+        "role": "tertiary",
+        "displayName": "Sand (Norte highlight)",
+        "canonical": "#dfc27d",
+        "oklch": "oklch(82.4% 0.094 87.5)",
+        "tonalRamp": [
+          "#100a01",
+          "#2e2308",
+          "#504014",
+          "#755e21",
+          "#987f44",
+          "#b6a376",
+          "#d6c8a8",
+          "#f6eedc"
+        ]
+      },
+      "brbg-wet-1": {
+        "role": "tertiary",
+        "displayName": "Sea-glass",
+        "canonical": "#80cdc1",
+        "oklch": "oklch(79.5% 0.079 183.3)",
+        "tonalRamp": [
+          "#020e0c",
+          "#0b2b27",
+          "#1a4b45",
+          "#296e65",
+          "#4d9086",
+          "#7fb1a8",
+          "#afd2cb",
+          "#e0f3f0"
+        ]
+      },
+      "brbg-wet-2": {
+        "role": "tertiary",
+        "displayName": "Teal",
+        "canonical": "#35978f",
+        "oklch": "oklch(61.8% 0.091 187.5)",
+        "tonalRamp": [
+          "#010e0d",
+          "#032c29",
+          "#094c48",
+          "#127069",
+          "#3f928b",
+          "#77b2ac",
+          "#aad3ce",
+          "#ddf4f1"
+        ]
+      },
+      "alert-yellow": {
+        "role": "tertiary",
+        "displayName": "Alert Yellow",
+        "canonical": "#f2d16b",
+        "oklch": "oklch(86.9% 0.127 91.7)",
+        "tonalRamp": [
+          "#100a00",
+          "#302300",
+          "#533f00",
+          "#795e00",
+          "#9b7f1f",
+          "#b9a463",
+          "#d7c99c",
+          "#f7eed5"
+        ]
+      },
+      "alert-orange": {
+        "role": "tertiary",
+        "displayName": "Alert Orange",
+        "canonical": "#f4a261",
+        "oklch": "oklch(78.1% 0.127 57.9)",
+        "tonalRamp": [
+          "#160700",
+          "#3a1c02",
+          "#633405",
+          "#904e0a",
+          "#b46f36",
+          "#cf976e",
+          "#e8c0a3",
+          "#ffe9d8"
+        ]
+      }
+    },
+    "scales": {
+      "rdbu": {
+        "purpose": "Temperature (anomaly vs 1991-2020). Stripes interpolate linearly across all 11 stops, k in [-1,1] mapped from anomaly / shared max.",
+        "stops": [
+          "#053061",
+          "#2166ac",
+          "#4393c3",
+          "#92c5de",
+          "#d1e5f0",
+          "#f7f7f7",
+          "#fddbc7",
+          "#f4a582",
+          "#d6604d",
+          "#b2182b",
+          "#67001f"
+        ]
+      },
+      "brbg": {
+        "purpose": "Rain and drought. Positive (wetter) = brbg-wet-2, negative (drier) = brbg-dry-1 in charts; stripes chart blends from graphite mid rgb(40,46,56) to the pole with exponent 0.8.",
+        "stops": [
+          "#8c510a",
+          "#bf812d",
+          "#dfc27d",
+          "#80cdc1",
+          "#35978f"
+        ]
+      },
+      "chartPoles": {
+        "t2m": {
+          "pos": "#d6604d",
+          "neg": "#4393c3"
+        },
+        "rain": {
+          "pos": "#35978f",
+          "neg": "#bf812d"
+        },
+        "data": "#92c5de",
+        "trend": "#f4a582",
+        "grid": "rgba(201,208,218,.12)",
+        "axis": "#98a2b0",
+        "cycleEarly": "#4393c3",
+        "cycleLate": "#d6604d"
+      }
+    },
+    "zones": {
+      "costa": {
+        "accent": "#4393c3",
+        "highlight": "#92c5de",
+        "deep": "#2166ac",
+        "city": "Veracruz",
+        "note": "Also the home default."
+      },
+      "centro": {
+        "accent": "#d6604d",
+        "highlight": "#f4a582",
+        "deep": "#b2182b",
+        "city": "Pachuca"
+      },
+      "norte": {
+        "accent": "#bf812d",
+        "highlight": "#dfc27d",
+        "deep": "#8c510a",
+        "city": "Monterrey"
+      }
+    },
+    "semanticRoles": {
+      "focus": "#92c5de",
+      "ok": "#80cdc1",
+      "okLine": "#35978f",
+      "okBg": "rgba(53,151,143,.16)",
+      "bad": "#f4a582",
+      "badLine": "#d6604d",
+      "badBg": "rgba(214,96,77,.14)",
+      "mid": "#dfc27d",
+      "midLine": "#bf812d",
+      "midBg": "rgba(191,129,45,.16)",
+      "alertLevels": {
+        "blue": "#92c5de",
+        "green": "#80cdc1",
+        "yellow": "#f2d16b",
+        "orange": "#f4a261",
+        "red": "#b2182b"
+      },
+      "itemTags": {
+        "vital": "#80cdc1",
+        "useful": "#92c5de",
+        "meh": "#dfc27d",
+        "useless": "#a1aab7",
+        "risky": "#f4a582"
+      },
+      "medals": {
+        "gold": [
+          "#f2c14e",
+          "#a8741a"
+        ],
+        "silver": [
+          "#d5dde6",
+          "#7c8a99"
+        ],
+        "bronze": [
+          "#d98a52",
+          "#8a4a22"
+        ],
+        "ribbon": [
+          "#2166ac",
+          "#b2182b"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Game title on home only. Archivo black, width 125%."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Case title in the hub."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Result percentage, Sea-glass, tabular."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card and screen headings (h2), balanced wrap."
+      },
+      "title-card": {
+        "displayName": "Title Card",
+        "purpose": "Case-card names."
+      },
+      "title-small": {
+        "displayName": "Title Small",
+        "purpose": "h3 inside cards, zone highlight colour, icon-led."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All reading text; Atkinson Hyperlegible Next; 70ch cap; 16px under 520px."
+      },
+      "body-small": {
+        "displayName": "Body Small",
+        "purpose": "Captions, notes, how-to-read lines."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "All buttons except the hero."
+      },
+      "button-hero": {
+        "displayName": "Button Hero",
+        "purpose": "The single uppercase action (JUGAR / PLAY)."
+      },
+      "label-caps": {
+        "displayName": "Label Caps",
+        "purpose": "Status badges; condensed 75%, uppercase."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Chips, axis years, stripe rates; condensed 80%."
+      },
+      "numeric": {
+        "displayName": "Numeric",
+        "purpose": "Readouts, year chip, clocks, scores; tabular figures."
+      }
+    },
+    "fonts": [
+      {
+        "family": "Archivo",
+        "src": "fonts/Archivo-normal.woff2",
+        "weight": "100 900",
+        "stretch": "62% 125%",
+        "license": "OFL (fonts/OFL-Archivo.txt)",
+        "preload": true
+      },
+      {
+        "family": "Atkinson Hyperlegible Next",
+        "src": "fonts/AtkinsonHyperlegibleNext-normal.woff2, fonts/AtkinsonHyperlegibleNext-italic.woff2",
+        "weight": "200 800",
+        "license": "OFL (fonts/OFL-AtkinsonHyperlegibleNext.txt)",
+        "preload": true
+      }
+    ],
+    "shadows": [
+      {
+        "name": "rest-low",
+        "value": "0 1px 2px rgba(0,0,0,.35),0 2px 6px -1px rgba(0,0,0,.3)",
+        "purpose": "Buttons, options, items, language toggle, bubbles, alerts, readouts at rest."
+      },
+      {
+        "name": "rest-card",
+        "value": "0 1px 2px rgba(0,0,0,.4),0 6px 14px -4px rgba(0,0,0,.45),0 18px 36px -12px rgba(0,0,0,.55)",
+        "purpose": "Cards, case cards, places, status bar, stripe labels; hover of small controls."
+      },
+      {
+        "name": "lifted",
+        "value": "0 2px 4px rgba(0,0,0,.4),0 14px 28px -8px rgba(0,0,0,.55),0 34px 64px -18px rgba(0,0,0,.7)",
+        "purpose": "Hovered case/place cards and clue; the cinematic frame."
+      },
+      {
+        "name": "highlight",
+        "value": "inset 0 1px 0 rgba(255,255,255,.05)",
+        "purpose": "Top-edge light paired with every panel shadow."
+      },
+      {
+        "name": "primary-keycap",
+        "value": "inset 0 1px 0 rgba(255,255,255,.18),inset 0 -2px 0 rgba(0,0,0,.18),0 2px 4px rgba(0,0,0,.4),0 10px 24px -8px rgba(0,0,0,.7)",
+        "purpose": "Primary button at rest."
+      },
+      {
+        "name": "primary-keycap-hover",
+        "value": "inset 0 1px 0 rgba(255,255,255,.2),inset 0 -2px 0 rgba(0,0,0,.18),0 4px 8px rgba(0,0,0,.4),0 18px 34px -10px rgba(0,0,0,.8)",
+        "purpose": "Primary button on hover."
+      },
+      {
+        "name": "focus-ring",
+        "value": "outline: 3px solid #92c5de; outline-offset: 3px",
+        "purpose": "Every :focus-visible; fields use border #92c5de + 0 0 0 3px rgba(146,197,222,.35) instead."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(.16,1,.3,1)",
+        "purpose": "Ease-out-expo: every state change, entrance, ripple and tilt settle."
+      },
+      {
+        "name": "colour-transition",
+        "value": ".2s",
+        "purpose": "Background, border and text colour changes."
+      },
+      {
+        "name": "lift",
+        "value": ".35s ease; hover translateY(-2px), active scale(.975) in .08s",
+        "purpose": "Buttons, options (translateX 4px), items."
+      },
+      {
+        "name": "tilt",
+        "value": "perspective(900px), rotateY ±3deg, rotateX ±2.5deg, lift -5px; .12s linear while tracking, .5s ease settle",
+        "purpose": "Case and place cards on fine pointers only; radial light follows the pointer."
+      },
+      {
+        "name": "ripple",
+        "value": ".65s ease, scale 0 to 1 and fade",
+        "purpose": "Press feedback from the press point; case colour on cards, options and items, white on buttons."
+      },
+      {
+        "name": "stripe-wipe",
+        "value": "1.1s ease, clip-path inset(0 100% 0 0) to 0, stagger .12s per row",
+        "purpose": "Hero rows, hub strip, results strip."
+      },
+      {
+        "name": "screen-wipe",
+        "value": ".75s ease, clip-path left-to-right + translateX(-12px)",
+        "purpose": "Every screen entrance except home."
+      },
+      {
+        "name": "hero-sweep",
+        "value": "1700ms cubic ease-out after 1150ms delay",
+        "purpose": "Scrub cursor sweeps 1981 to 2025 once on load; cancelled by any user input."
+      },
+      {
+        "name": "pick",
+        "value": ".55s ease, scale .95 + brightness 1.35 to none",
+        "purpose": "Just-picked option/item/segment/clue."
+      },
+      {
+        "name": "nope",
+        "value": ".45s ease horizontal shake",
+        "purpose": "Wrong answer."
+      },
+      {
+        "name": "shake",
+        "value": ".55s ease shake with ±.4deg",
+        "purpose": "Surprise event card arrival."
+      },
+      {
+        "name": "cine-in",
+        "value": ".8s ease, clip-path from top",
+        "purpose": "Cinematic frame entrance; scene Ken Burns 9s linear."
+      },
+      {
+        "name": "pop",
+        "value": ".8-.9s ease, scale .4 rotate -20deg to none",
+        "purpose": "Medal and ending icon."
+      },
+      {
+        "name": "beacon",
+        "value": "2.2s ease infinite outline pulse",
+        "purpose": "Tutorial clue call to action."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "all animation and transition: none !important; .tilt transform none; JS skips ripple, tilt and hero sweep",
+        "purpose": "prefers-reduced-motion: reduce."
+      },
+      {
+        "name": "no-hover",
+        "value": "hover lifts, tilts and icon tips neutralised",
+        "purpose": "@media (hover: none)."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact",
+        "value": "max-width: 520px",
+        "purpose": "Body 16px, stacked stripe labels, 2-column places, larger chart text."
+      },
+      {
+        "name": "sm",
+        "value": "min-width: 640px",
+        "purpose": "Two-column archive controls, three-column status bar."
+      },
+      {
+        "name": "md",
+        "value": "min-width: 860px",
+        "purpose": "Home intro split 1.5fr/1fr, three-column case cards."
+      }
+    ],
+    "icons": {
+      "grid": "24x24",
+      "stroke": 1.8,
+      "caps": "round",
+      "joins": "round",
+      "fill": "none",
+      "color": "currentColor",
+      "size": "1.25em inline, 22-34px in tiles",
+      "source": "js/icons.js (drawn in code; emoji keys map to drawn icons)"
+    },
+    "layout": {
+      "maxWidth": "1040px",
+      "gutter": "clamp(16px,4vw,40px)",
+      "screenGap": "18px",
+      "heroHeight": "clamp(210px,40vh,400px)",
+      "chartViewBox": "0 0 360 230"
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button (hero)",
+      "kind": "button",
+      "refersTo": "button-hero",
+      "description": "The one warm-red action per screen (JUGAR / PLAY): key-cap shadow, uppercase wide Archivo, lifts on hover and sinks on press.",
+      "html": "<button class=\"ds-btn ds-btn-primary ds-btn-big\">Jugar</button>",
+      "css": ":root{--ground:#0e1116;--ground-deep:#0a0c10;--panel:#171b22;--panel-2:#1e232b;--panel-3:#262c36;--line:#2a303a;--line-2:#3a424e;--ink:#f3f5f8;--ink-2:#c9d0da;--mute:#a1aab7;--act:#c8432f;--act-hi:#b83a27;--zone:#4393c3;--zone-hi:#92c5de;--zone-deep:#2166ac;--focus:#92c5de;--r:14px;--r-sm:10px;--ease:cubic-bezier(.16,1,.3,1);--sh-1:0 1px 2px rgba(0,0,0,.35),0 2px 6px -1px rgba(0,0,0,.3);--sh-2:0 1px 2px rgba(0,0,0,.4),0 6px 14px -4px rgba(0,0,0,.45),0 18px 36px -12px rgba(0,0,0,.55);--sh-3:0 2px 4px rgba(0,0,0,.4),0 14px 28px -8px rgba(0,0,0,.55),0 34px 64px -18px rgba(0,0,0,.7);--hl:inset 0 1px 0 rgba(255,255,255,.05)}.ds-btn{font-family:Archivo,system-ui,sans-serif;font-weight:650;font-size:1rem;display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:12px 22px;border-radius:var(--r-sm);border:1px solid var(--line-2);background:var(--panel-2);color:var(--ink);cursor:pointer;box-shadow:var(--hl),var(--sh-1);transition:transform .35s var(--ease),box-shadow .35s var(--ease),background-color .2s,border-color .2s,color .2s}.ds-btn:hover{transform:translateY(-2px);border-color:var(--zone);box-shadow:var(--hl),var(--sh-2)}.ds-btn:active{transform:translateY(0) scale(.975);box-shadow:var(--sh-1);transition-duration:.08s}.ds-btn:focus-visible{outline:3px solid #92c5de;outline-offset:3px;}.ds-btn-primary{background:var(--act);border-color:transparent;color:#fff;font-weight:800;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),inset 0 -2px 0 rgba(0,0,0,.18),0 2px 4px rgba(0,0,0,.4),0 10px 24px -8px rgba(0,0,0,.7)}.ds-btn-primary:hover{background:var(--act-hi);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),inset 0 -2px 0 rgba(0,0,0,.18),0 4px 8px rgba(0,0,0,.4),0 18px 34px -10px rgba(0,0,0,.8)}.ds-btn-big{font-size:1.15rem;font-weight:850;font-stretch:115%;text-transform:uppercase;letter-spacing:.06em;min-height:62px;padding:16px 26px;min-width:280px}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Graphite raised button for every non-primary action; border takes the zone accent on hover.",
+      "html": "<button class=\"ds-btn\">Abrir el Archivo del detective</button>",
+      "css": ":root{--ground:#0e1116;--ground-deep:#0a0c10;--panel:#171b22;--panel-2:#1e232b;--panel-3:#262c36;--line:#2a303a;--line-2:#3a424e;--ink:#f3f5f8;--ink-2:#c9d0da;--mute:#a1aab7;--act:#c8432f;--act-hi:#b83a27;--zone:#4393c3;--zone-hi:#92c5de;--zone-deep:#2166ac;--focus:#92c5de;--r:14px;--r-sm:10px;--ease:cubic-bezier(.16,1,.3,1);--sh-1:0 1px 2px rgba(0,0,0,.35),0 2px 6px -1px rgba(0,0,0,.3);--sh-2:0 1px 2px rgba(0,0,0,.4),0 6px 14px -4px rgba(0,0,0,.45),0 18px 36px -12px rgba(0,0,0,.55);--sh-3:0 2px 4px rgba(0,0,0,.4),0 14px 28px -8px rgba(0,0,0,.55),0 34px 64px -18px rgba(0,0,0,.7);--hl:inset 0 1px 0 rgba(255,255,255,.05)}.ds-btn{font-family:Archivo,system-ui,sans-serif;font-weight:650;font-size:1rem;display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:12px 22px;border-radius:var(--r-sm);border:1px solid var(--line-2);background:var(--panel-2);color:var(--ink);cursor:pointer;box-shadow:var(--hl),var(--sh-1);transition:transform .35s var(--ease),box-shadow .35s var(--ease),background-color .2s,border-color .2s,color .2s}.ds-btn:hover{transform:translateY(-2px);border-color:var(--zone);box-shadow:var(--hl),var(--sh-2)}.ds-btn:active{transform:translateY(0) scale(.975);box-shadow:var(--sh-1);transition-duration:.08s}.ds-btn:focus-visible{outline:3px solid #92c5de;outline-offset:3px;}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Back and footer-level links; no chrome until hovered.",
+      "html": "<button class=\"ds-btn ds-btn-ghost\"><svg class=\"ds-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" style=\"margin-right:.45em\"><path d=\"M20 12H4.5M10.5 6l-6 6 6 6\"/></svg>Volver</button>",
+      "css": ":root{--ground:#0e1116;--ground-deep:#0a0c10;--panel:#171b22;--panel-2:#1e232b;--panel-3:#262c36;--line:#2a303a;--line-2:#3a424e;--ink:#f3f5f8;--ink-2:#c9d0da;--mute:#a1aab7;--act:#c8432f;--act-hi:#b83a27;--zone:#4393c3;--zone-hi:#92c5de;--zone-deep:#2166ac;--focus:#92c5de;--r:14px;--r-sm:10px;--ease:cubic-bezier(.16,1,.3,1);--sh-1:0 1px 2px rgba(0,0,0,.35),0 2px 6px -1px rgba(0,0,0,.3);--sh-2:0 1px 2px rgba(0,0,0,.4),0 6px 14px -4px rgba(0,0,0,.45),0 18px 36px -12px rgba(0,0,0,.55);--sh-3:0 2px 4px rgba(0,0,0,.4),0 14px 28px -8px rgba(0,0,0,.55),0 34px 64px -18px rgba(0,0,0,.7);--hl:inset 0 1px 0 rgba(255,255,255,.05)}.ds-btn{font-family:Archivo,system-ui,sans-serif;font-weight:650;font-size:1rem;display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:12px 22px;border-radius:var(--r-sm);border:1px solid var(--line-2);background:var(--panel-2);color:var(--ink);cursor:pointer;box-shadow:var(--hl),var(--sh-1);transition:transform .35s var(--ease),box-shadow .35s var(--ease),background-color .2s,border-color .2s,color .2s}.ds-btn:hover{transform:translateY(-2px);border-color:var(--zone);box-shadow:var(--hl),var(--sh-2)}.ds-btn:active{transform:translateY(0) scale(.975);box-shadow:var(--sh-1);transition-duration:.08s}.ds-btn:focus-visible{outline:3px solid #92c5de;outline-offset:3px;}.ds-ic{width:1.25em;height:1.25em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}.ds-btn-ghost{background:transparent;border-color:transparent;color:var(--ink-2);box-shadow:none}.ds-btn-ghost:hover{background:var(--panel-2);border-color:var(--line-2);color:var(--ink);box-shadow:none}"
+    },
+    {
+      "name": "Case Card (tilt card)",
+      "kind": "card",
+      "refersTo": "case-card",
+      "description": "Signature tilt card: real-data stripe strip as its top edge, tinted icon tile, arrow tag that fills with the case colour, chips. Lifts 5px with a deeper shadow on hover.",
+      "html": "<button class=\"ds-lc\"><span class=\"ds-lc-strip\"><svg class=\"ds-strip\" viewBox=\"0 0 21 1\" preserveAspectRatio=\"none\" aria-hidden=\"true\"><rect x=\"0\" width=\"1.04\" height=\"1\" fill=\"#d1e5f0\"/><rect x=\"1\" width=\"1.04\" height=\"1\" fill=\"#fddbc7\"/><rect x=\"2\" width=\"1.04\" height=\"1\" fill=\"#92c5de\"/><rect x=\"3\" width=\"1.04\" height=\"1\" fill=\"#f7f7f7\"/><rect x=\"4\" width=\"1.04\" height=\"1\" fill=\"#fddbc7\"/><rect x=\"5\" width=\"1.04\" height=\"1\" fill=\"#4393c3\"/><rect x=\"6\" width=\"1.04\" height=\"1\" fill=\"#d1e5f0\"/><rect x=\"7\" width=\"1.04\" height=\"1\" fill=\"#f4a582\"/><rect x=\"8\" width=\"1.04\" height=\"1\" fill=\"#92c5de\"/><rect x=\"9\" width=\"1.04\" height=\"1\" fill=\"#fddbc7\"/><rect x=\"10\" width=\"1.04\" height=\"1\" fill=\"#f7f7f7\"/><rect x=\"11\" width=\"1.04\" height=\"1\" fill=\"#f4a582\"/><rect x=\"12\" width=\"1.04\" height=\"1\" fill=\"#d6604d\"/><rect x=\"13\" width=\"1.04\" height=\"1\" fill=\"#fddbc7\"/><rect x=\"14\" width=\"1.04\" height=\"1\" fill=\"#f4a582\"/><rect x=\"15\" width=\"1.04\" height=\"1\" fill=\"#d6604d\"/><rect x=\"16\" width=\"1.04\" height=\"1\" fill=\"#b2182b\"/><rect x=\"17\" width=\"1.04\" height=\"1\" fill=\"#f4a582\"/><rect x=\"18\" width=\"1.04\" height=\"1\" fill=\"#d6604d\"/><rect x=\"19\" width=\"1.04\" height=\"1\" fill=\"#b2182b\"/><rect x=\"20\" width=\"1.04\" height=\"1\" fill=\"#67001f\"/></svg></span><span class=\"ds-lc-body\"><span class=\"ds-lc-head\"><span class=\"ds-lc-icon\"><svg class=\"ds-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"4.2\"/><path d=\"M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6\"/></svg></span><span class=\"ds-lc-tag\"><svg class=\"ds-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 12h15.5M13.5 6l6 6-6 6\"/></svg></span></span><span class=\"ds-lc-title\">Caso Centro: Pachuca</span><span class=\"ds-lc-desc\">Calor extremo.</span><span class=\"ds-lc-meta\"><span class=\"ds-chip\"><svg class=\"ds-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"13.5\" r=\"7.5\"/><path d=\"M12 13.5V9.5M12 13.5l2.6 1.6\"/><path d=\"M9.5 2.5h5M12 2.5V6\"/></svg>8 h</span><span class=\"ds-chip\">Dificultad: difícil</span></span></span></button>",
+      "css": ":root{--ground:#0e1116;--ground-deep:#0a0c10;--panel:#171b22;--panel-2:#1e232b;--panel-3:#262c36;--line:#2a303a;--line-2:#3a424e;--ink:#f3f5f8;--ink-2:#c9d0da;--mute:#a1aab7;--act:#c8432f;--act-hi:#b83a27;--zone:#4393c3;--zone-hi:#92c5de;--zone-deep:#2166ac;--focus:#92c5de;--r:14px;--r-sm:10px;--ease:cubic-bezier(.16,1,.3,1);--sh-1:0 1px 2px rgba(0,0,0,.35),0 2px 6px -1px rgba(0,0,0,.3);--sh-2:0 1px 2px rgba(0,0,0,.4),0 6px 14px -4px rgba(0,0,0,.45),0 18px 36px -12px rgba(0,0,0,.55);--sh-3:0 2px 4px rgba(0,0,0,.4),0 14px 28px -8px rgba(0,0,0,.55),0 34px 64px -18px rgba(0,0,0,.7);--hl:inset 0 1px 0 rgba(255,255,255,.05)}.ds-ic{width:1.25em;height:1.25em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}.ds-lc{--c:#d6604d;--c-hi:#f4a582;display:grid;width:300px;text-align:left;font-family:\"Atkinson Hyperlegible Next\",\"Segoe UI\",system-ui,sans-serif;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:0;cursor:pointer;overflow:hidden;box-shadow:var(--hl),var(--sh-2);transition:transform .5s var(--ease),box-shadow .4s var(--ease),border-color .25s}.ds-lc:hover{transform:perspective(900px) rotateX(1.5deg) rotateY(-2deg) translateY(-5px);border-color:var(--c);box-shadow:var(--hl),var(--sh-3)}.ds-lc:focus-visible{outline:3px solid #92c5de;outline-offset:3px;}.ds-lc-strip{display:block;height:58px;position:relative;overflow:hidden}.ds-strip{position:absolute;inset:0;width:100%;height:100%;display:block;transition:transform .6s var(--ease)}.ds-lc:hover .ds-strip{transform:scaleY(1.12)}.ds-lc-body{display:grid;gap:6px;padding:16px 18px 18px}.ds-lc-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}.ds-lc-icon{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 20%,var(--panel-2));color:var(--c-hi);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 45%,transparent)}.ds-lc-icon .ds-ic{width:26px;height:26px}.ds-lc-tag{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--panel-2);color:var(--c-hi);border:1px solid var(--line-2);transition:transform .45s var(--ease),background-color .25s,color .25s}.ds-lc:hover .ds-lc-tag{transform:translateX(3px);background:var(--c);color:#fff;border-color:transparent}.ds-lc-title{font-family:Archivo,system-ui,sans-serif;font-size:1.18rem;font-weight:800;font-stretch:108%;line-height:1.2}.ds-lc-desc{color:var(--ink-2);font-size:.95rem;line-height:1.45}.ds-lc-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.ds-chip{display:inline-flex;align-items:center;gap:.3em;padding:3px 10px;border-radius:999px;background:var(--panel-3);color:var(--ink-2);font-family:Archivo,system-ui,sans-serif;font-stretch:80%;font-size:.86rem;font-weight:650;letter-spacing:.02em}.ds-chip .ds-ic{width:1.05em;height:1.05em}"
+    },
+    {
+      "name": "Stripes Hero Row",
+      "kind": "custom",
+      "refersTo": "stripe-readout",
+      "description": "One row of the scrubbable stripes band: real anomalies on RdBu, floating city label with Sen slope, white scrub line and a swatch readout chip.",
+      "html": "<div class=\"ds-srow\" role=\"img\" aria-label=\"Pachuca, +0.43 °C por década\"><svg class=\"ds-srow-svg\" viewBox=\"0 0 21 1\" preserveAspectRatio=\"none\" aria-hidden=\"true\"><rect x=\"0\" width=\"1.04\" height=\"1\" fill=\"#d1e5f0\"/><rect x=\"1\" width=\"1.04\" height=\"1\" fill=\"#fddbc7\"/><rect x=\"2\" width=\"1.04\" height=\"1\" fill=\"#92c5de\"/><rect x=\"3\" width=\"1.04\" height=\"1\" fill=\"#f7f7f7\"/><rect x=\"4\" width=\"1.04\" height=\"1\" fill=\"#fddbc7\"/><rect x=\"5\" width=\"1.04\" height=\"1\" fill=\"#4393c3\"/><rect x=\"6\" width=\"1.04\" height=\"1\" fill=\"#d1e5f0\"/><rect x=\"7\" width=\"1.04\" height=\"1\" fill=\"#f4a582\"/><rect x=\"8\" width=\"1.04\" height=\"1\" fill=\"#92c5de\"/><rect x=\"9\" width=\"1.04\" height=\"1\" fill=\"#fddbc7\"/><rect x=\"10\" width=\"1.04\" height=\"1\" fill=\"#f7f7f7\"/><rect x=\"11\" width=\"1.04\" height=\"1\" fill=\"#f4a582\"/><rect x=\"12\" width=\"1.04\" height=\"1\" fill=\"#d6604d\"/><rect x=\"13\" width=\"1.04\" height=\"1\" fill=\"#fddbc7\"/><rect x=\"14\" width=\"1.04\" height=\"1\" fill=\"#f4a582\"/><rect x=\"15\" width=\"1.04\" height=\"1\" fill=\"#d6604d\"/><rect x=\"16\" width=\"1.04\" height=\"1\" fill=\"#b2182b\"/><rect x=\"17\" width=\"1.04\" height=\"1\" fill=\"#f4a582\"/><rect x=\"18\" width=\"1.04\" height=\"1\" fill=\"#d6604d\"/><rect x=\"19\" width=\"1.04\" height=\"1\" fill=\"#b2182b\"/><rect x=\"20\" width=\"1.04\" height=\"1\" fill=\"#67001f\"/></svg><span class=\"ds-srow-label\"><b>Pachuca</b><span class=\"ds-srow-rate\">+0.43 °C por década</span></span><span class=\"ds-scrub\"></span><span class=\"ds-srow-val\">+1.0 °C</span></div>",
+      "css": ":root{--ground:#0e1116;--ground-deep:#0a0c10;--panel:#171b22;--panel-2:#1e232b;--panel-3:#262c36;--line:#2a303a;--line-2:#3a424e;--ink:#f3f5f8;--ink-2:#c9d0da;--mute:#a1aab7;--act:#c8432f;--act-hi:#b83a27;--zone:#4393c3;--zone-hi:#92c5de;--zone-deep:#2166ac;--focus:#92c5de;--r:14px;--r-sm:10px;--ease:cubic-bezier(.16,1,.3,1);--sh-1:0 1px 2px rgba(0,0,0,.35),0 2px 6px -1px rgba(0,0,0,.3);--sh-2:0 1px 2px rgba(0,0,0,.4),0 6px 14px -4px rgba(0,0,0,.45),0 18px 36px -12px rgba(0,0,0,.55);--sh-3:0 2px 4px rgba(0,0,0,.4),0 14px 28px -8px rgba(0,0,0,.55),0 34px 64px -18px rgba(0,0,0,.7);--hl:inset 0 1px 0 rgba(255,255,255,.05)}.ds-srow{position:relative;width:560px;height:110px;background:var(--panel);overflow:hidden;cursor:crosshair}.ds-srow-svg{position:absolute;inset:0;width:100%;height:100%;display:block}.ds-srow-label{position:absolute;left:20px;top:50%;transform:translateY(-50%);display:flex;align-items:baseline;gap:10px;padding:7px 14px;border-radius:8px;background:rgba(10,12,16,.84);box-shadow:var(--sh-2);font-family:Archivo,system-ui,sans-serif;color:var(--ink);transition:transform .35s var(--ease)}.ds-srow:hover .ds-srow-label{transform:translateY(-50%) translateX(4px)}.ds-srow-label b{font-size:1.2rem;font-weight:800;font-stretch:112%}.ds-srow-rate{font-size:.86rem;font-weight:650;font-stretch:80%;color:var(--ink-2);font-variant-numeric:tabular-nums}.ds-scrub{position:absolute;top:0;bottom:0;left:88%;width:2px;margin-left:-1px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.45)}.ds-srow-val{position:absolute;top:50%;left:88%;transform:translate(calc(-100% - 10px),-50%);padding:4px 9px 4px 22px;border-radius:6px;background:rgba(10,12,16,.88);font-family:Archivo,system-ui,sans-serif;font-weight:700;font-size:.85rem;color:var(--ink);font-variant-numeric:tabular-nums;box-shadow:var(--sh-1)}.ds-srow-val::before{content:\"\";position:absolute;left:8px;top:50%;width:8px;height:8px;margin-top:-4px;border-radius:2px;background:#b2182b;box-shadow:0 0 0 1px rgba(255,255,255,.35)}"
+    },
+    {
+      "name": "Answer Options",
+      "kind": "custom",
+      "refersTo": "option",
+      "description": "Answer rows: slide right on hover; good (teal + check), bad (brick + cross), mid (ochre) states with inner ring.",
+      "html": "<div class=\"ds-opts\"><button class=\"ds-opt\">No hay datos suficientes</button><button class=\"ds-opt ds-good\">Sí: la tendencia es significativa (p &lt; 0.05)</button><button class=\"ds-opt ds-bad\">No: solo fue un año caluroso</button><button class=\"ds-opt ds-mid\">Depende de la estación</button></div>",
+      "css": ":root{--ground:#0e1116;--ground-deep:#0a0c10;--panel:#171b22;--panel-2:#1e232b;--panel-3:#262c36;--line:#2a303a;--line-2:#3a424e;--ink:#f3f5f8;--ink-2:#c9d0da;--mute:#a1aab7;--act:#c8432f;--act-hi:#b83a27;--zone:#4393c3;--zone-hi:#92c5de;--zone-deep:#2166ac;--focus:#92c5de;--r:14px;--r-sm:10px;--ease:cubic-bezier(.16,1,.3,1);--sh-1:0 1px 2px rgba(0,0,0,.35),0 2px 6px -1px rgba(0,0,0,.3);--sh-2:0 1px 2px rgba(0,0,0,.4),0 6px 14px -4px rgba(0,0,0,.45),0 18px 36px -12px rgba(0,0,0,.55);--sh-3:0 2px 4px rgba(0,0,0,.4),0 14px 28px -8px rgba(0,0,0,.55),0 34px 64px -18px rgba(0,0,0,.7);--hl:inset 0 1px 0 rgba(255,255,255,.05)}.ds-opts{display:grid;gap:10px;width:440px}.ds-opt{font-family:\"Atkinson Hyperlegible Next\",\"Segoe UI\",system-ui,sans-serif;font-size:1rem;text-align:left;color:var(--ink);background:var(--panel-2);border:1px solid var(--line-2);border-radius:var(--r-sm);padding:14px 18px;min-height:52px;cursor:pointer;position:relative;box-shadow:var(--sh-1);transition:transform .35s var(--ease),background-color .2s,border-color .2s,box-shadow .35s var(--ease)}.ds-opt:hover{border-color:var(--zone);background:var(--panel-3);transform:translateX(4px);box-shadow:var(--sh-2)}.ds-opt:focus-visible{outline:3px solid #92c5de;outline-offset:3px;}.ds-good{border-color:#35978f;background:rgba(53,151,143,.16);box-shadow:inset 0 0 0 1px #35978f;padding-right:44px}.ds-bad{border-color:#d6604d;background:rgba(214,96,77,.14);box-shadow:inset 0 0 0 1px #d6604d;padding-right:44px}.ds-mid{border-color:#bf812d;background:rgba(191,129,45,.16);box-shadow:inset 0 0 0 1px #bf812d}.ds-good::after,.ds-bad::after{content:\"\";position:absolute;right:16px;top:50%;width:20px;height:20px;margin-top:-10px}.ds-good::after{background:#80cdc1;-webkit-mask:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E\") center/contain no-repeat;mask:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E\") center/contain no-repeat}.ds-bad::after{background:#f4a582;-webkit-mask:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round'%3E%3Cpath d='M6 6l12 12M18 6L6 18'/%3E%3C/svg%3E\") center/contain no-repeat;mask:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round'%3E%3Cpath d='M6 6l12 12M18 6L6 18'/%3E%3C/svg%3E\") center/contain no-repeat}"
+    },
+    {
+      "name": "Chips, Badges and Tags",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "Metadata chip (condensed label), zone status badge (condensed caps), warn badge, and item grade tags on scale colours.",
+      "html": "<div class=\"ds-row\"><span class=\"ds-chip\">8 h</span><span class=\"ds-badge\">Gráfica de líneas</span><span class=\"ds-badge ds-badge-warn\">Evento</span><span class=\"ds-tag\" style=\"background:#80cdc1\">Vital</span><span class=\"ds-tag\" style=\"background:#92c5de\">Útil</span><span class=\"ds-tag\" style=\"background:#f4a582\">Riesgoso</span></div>",
+      "css": ":root{--ground:#0e1116;--ground-deep:#0a0c10;--panel:#171b22;--panel-2:#1e232b;--panel-3:#262c36;--line:#2a303a;--line-2:#3a424e;--ink:#f3f5f8;--ink-2:#c9d0da;--mute:#a1aab7;--act:#c8432f;--act-hi:#b83a27;--zone:#4393c3;--zone-hi:#92c5de;--zone-deep:#2166ac;--focus:#92c5de;--r:14px;--r-sm:10px;--ease:cubic-bezier(.16,1,.3,1);--sh-1:0 1px 2px rgba(0,0,0,.35),0 2px 6px -1px rgba(0,0,0,.3);--sh-2:0 1px 2px rgba(0,0,0,.4),0 6px 14px -4px rgba(0,0,0,.45),0 18px 36px -12px rgba(0,0,0,.55);--sh-3:0 2px 4px rgba(0,0,0,.4),0 14px 28px -8px rgba(0,0,0,.55),0 34px 64px -18px rgba(0,0,0,.7);--hl:inset 0 1px 0 rgba(255,255,255,.05)}.ds-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.ds-chip{display:inline-flex;align-items:center;padding:3px 10px;border-radius:999px;background:var(--panel-3);color:var(--ink-2);font-family:Archivo,system-ui,sans-serif;font-stretch:80%;font-size:.86rem;font-weight:650;letter-spacing:.02em}.ds-badge{display:inline-flex;align-items:center;padding:4px 12px;border-radius:999px;background:color-mix(in srgb,var(--zone) 18%,transparent);color:var(--zone-hi);border:1px solid color-mix(in srgb,var(--zone) 45%,transparent);font-family:Archivo,system-ui,sans-serif;font-weight:750;font-stretch:75%;font-size:.86rem;letter-spacing:.06em;text-transform:uppercase}.ds-badge-warn{background:rgba(191,129,45,.16);color:#dfc27d;border-color:rgba(223,194,125,.45)}.ds-tag{display:inline-block;font-family:Archivo,system-ui,sans-serif;font-stretch:75%;font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:2px 9px;border-radius:999px;color:#0e1116}"
+    },
+    {
+      "name": "Select Field",
+      "kind": "input",
+      "refersTo": "select",
+      "description": "Archive selector: recessed graphite well, drawn chevron, Glacier Blue focus halo.",
+      "html": "<label class=\"ds-label\">Ciudad<select class=\"ds-select\"><option>Pachuca</option><option>Veracruz</option><option>Monterrey</option></select></label>",
+      "css": ":root{--ground:#0e1116;--ground-deep:#0a0c10;--panel:#171b22;--panel-2:#1e232b;--panel-3:#262c36;--line:#2a303a;--line-2:#3a424e;--ink:#f3f5f8;--ink-2:#c9d0da;--mute:#a1aab7;--act:#c8432f;--act-hi:#b83a27;--zone:#4393c3;--zone-hi:#92c5de;--zone-deep:#2166ac;--focus:#92c5de;--r:14px;--r-sm:10px;--ease:cubic-bezier(.16,1,.3,1);--sh-1:0 1px 2px rgba(0,0,0,.35),0 2px 6px -1px rgba(0,0,0,.3);--sh-2:0 1px 2px rgba(0,0,0,.4),0 6px 14px -4px rgba(0,0,0,.45),0 18px 36px -12px rgba(0,0,0,.55);--sh-3:0 2px 4px rgba(0,0,0,.4),0 14px 28px -8px rgba(0,0,0,.55),0 34px 64px -18px rgba(0,0,0,.7);--hl:inset 0 1px 0 rgba(255,255,255,.05)}.ds-label{display:grid;gap:6px;width:260px;font-family:Archivo,system-ui,sans-serif;font-weight:650;font-size:.9rem;color:var(--ink-2)}.ds-select{font-family:\"Atkinson Hyperlegible Next\",\"Segoe UI\",system-ui,sans-serif;font-size:1rem;font-weight:500;padding:10px 40px 10px 14px;border-radius:var(--r-sm);border:1px solid var(--line-2);background:var(--ground-deep) url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c9d0da' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E\") no-repeat right 12px center/18px;color:var(--ink);min-height:50px;appearance:none;-webkit-appearance:none;cursor:pointer;transition:border-color .2s,box-shadow .2s}.ds-select:hover{border-color:var(--zone)}.ds-select:focus-visible{outline:none;border-color:var(--focus);box-shadow:0 0 0 3px rgba(146,197,222,.35)}"
+    },
+    {
+      "name": "Segmented Chart Switch",
+      "kind": "nav",
+      "refersTo": "segmented-on",
+      "description": "Chart-type switch in a recessed tray; the selected segment fills with the zone deep step.",
+      "html": "<div class=\"ds-seg\" role=\"group\"><button class=\"ds-seg-btn ds-on\">Líneas</button><button class=\"ds-seg-btn\">Anomalías</button><button class=\"ds-seg-btn\">Franjas</button><button class=\"ds-seg-btn\">Décadas</button></div>",
+      "css": ":root{--ground:#0e1116;--ground-deep:#0a0c10;--panel:#171b22;--panel-2:#1e232b;--panel-3:#262c36;--line:#2a303a;--line-2:#3a424e;--ink:#f3f5f8;--ink-2:#c9d0da;--mute:#a1aab7;--act:#c8432f;--act-hi:#b83a27;--zone:#4393c3;--zone-hi:#92c5de;--zone-deep:#2166ac;--focus:#92c5de;--r:14px;--r-sm:10px;--ease:cubic-bezier(.16,1,.3,1);--sh-1:0 1px 2px rgba(0,0,0,.35),0 2px 6px -1px rgba(0,0,0,.3);--sh-2:0 1px 2px rgba(0,0,0,.4),0 6px 14px -4px rgba(0,0,0,.45),0 18px 36px -12px rgba(0,0,0,.55);--sh-3:0 2px 4px rgba(0,0,0,.4),0 14px 28px -8px rgba(0,0,0,.55),0 34px 64px -18px rgba(0,0,0,.7);--hl:inset 0 1px 0 rgba(255,255,255,.05)}.ds-seg{display:flex;flex-wrap:wrap;gap:4px;padding:4px;background:var(--ground-deep);border:1px solid var(--line);border-radius:12px;width:max-content}.ds-seg-btn{font-family:Archivo,system-ui,sans-serif;font-weight:650;font-size:.85rem;min-height:40px;padding:6px 14px;border-radius:9px;border:0;background:transparent;color:var(--ink-2);cursor:pointer;transition:background-color .25s,color .25s}.ds-seg-btn:hover{background:var(--panel-2);color:var(--ink)}.ds-seg-btn:focus-visible{outline:3px solid #92c5de;outline-offset:3px;}.ds-on,.ds-on:hover{background:var(--zone-deep);color:#fff;box-shadow:var(--sh-1)}"
+    },
+    {
+      "name": "Panel Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Base elevated graphite panel: hairline border, top highlight, rest-card shadow, zone-coloured h3.",
+      "html": "<div class=\"ds-card\"><h2 class=\"ds-h2\">Archivo del detective</h2><p class=\"ds-p\">Elige un lugar, una variable y un periodo. Lee la gráfica y decide si la tendencia es real.</p><h3 class=\"ds-h3\">Tendencia (Sen)</h3><p class=\"ds-small\">+0.43 °C por década · p = 0.001</p></div>",
+      "css": ":root{--ground:#0e1116;--ground-deep:#0a0c10;--panel:#171b22;--panel-2:#1e232b;--panel-3:#262c36;--line:#2a303a;--line-2:#3a424e;--ink:#f3f5f8;--ink-2:#c9d0da;--mute:#a1aab7;--act:#c8432f;--act-hi:#b83a27;--zone:#4393c3;--zone-hi:#92c5de;--zone-deep:#2166ac;--focus:#92c5de;--r:14px;--r-sm:10px;--ease:cubic-bezier(.16,1,.3,1);--sh-1:0 1px 2px rgba(0,0,0,.35),0 2px 6px -1px rgba(0,0,0,.3);--sh-2:0 1px 2px rgba(0,0,0,.4),0 6px 14px -4px rgba(0,0,0,.45),0 18px 36px -12px rgba(0,0,0,.55);--sh-3:0 2px 4px rgba(0,0,0,.4),0 14px 28px -8px rgba(0,0,0,.55),0 34px 64px -18px rgba(0,0,0,.7);--hl:inset 0 1px 0 rgba(255,255,255,.05)}.ds-card{width:420px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--hl),var(--sh-2);color:var(--ink);font-family:\"Atkinson Hyperlegible Next\",\"Segoe UI\",system-ui,sans-serif;font-size:17px;line-height:1.6}.ds-h2{font-family:Archivo,system-ui,sans-serif;font-size:1.6rem;line-height:1.15;font-weight:800;font-stretch:112%;letter-spacing:-.01em;margin:0 0 12px}.ds-p{margin:0 0 10px}.ds-h3{font-family:Archivo,system-ui,sans-serif;font-size:1.06rem;font-weight:750;margin:18px 0 6px;color:var(--zone-hi)}.ds-small{font-size:.9rem;color:var(--mute);margin:0;font-variant-numeric:tabular-nums}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Franjas del clima",
+    "overview": "The warming stripes are the identity, and they are made of real data: annual NASA POWER temperature anomalies for Veracruz, Pachuca and Monterrey, 1981 to 2025, measured against the 1991–2020 normal. Everything else is a deep graphite-ink ground that lets the stripes carry all the colour. The world has no decorative palette. Every hue on screen comes from one of two published diverging climate scales: RdBu (cold blue to warm red) for temperature, and BrBG (dry brown to wet teal) for rain and drought. A colour always means something about the climate. Colour never decorates.\n\nThe density is that of a field notebook on a dark desk. The layout uses elevated graphite panels with layered shadows. Strips of real stripes sit along card edges. Every number uses tabular figures. Type works in two voices. Archivo, a variable face with a width axis, is pushed wide and black for display and narrow for condensed labels and numbers. Atkinson Hyperlegible Next sets everything a teenager has to read. Interaction should feel like detective work. You scrub across the years to read a value. A selection ripples out in the colour of its case. Cards lift and tilt toward the pointer. Each screen enters with a wipe that looks like a stripe being drawn.\n\nThis world turns down two defaults. One is the space-navy-with-neon \"NASA hackathon\" look. The other is the cartoon education game. It must not feel childish, corporate or hard to read.",
+    "keyCharacteristics": [
+      "Graphite ground (`graphite-ground`); colour only from the RdBu and BrBG climate scales.",
+      "Real-data climate stripes as hero, card edges, hub strip, results strip, logo lens and scene skies.",
+      "Archivo across its width axis (125% display, 75–80% labels) with Atkinson Hyperlegible Next for reading.",
+      "Elevated panels: a 1px hairline highlight plus a three-step soft layered shadow scale.",
+      "Zone theming: Costa is blue, Centro is red, Norte is ochre. Each zone swaps one colour triad through the whole UI.",
+      "Line icons drawn in code on a 24px grid, never emoji glyphs.",
+      "Motion is ease-out-expo, interruptible and stagger-wiped, and it switches off fully under reduced motion."
+    ],
+    "rules": [
+      {
+        "name": "The Scale-Only Rule",
+        "body": "Every hue on screen is a step of RdBu or BrBG, applied with its meaning: blue and red mean colder and warmer, brown and teal mean drier and wetter. The single sanctioned exception is the alert-level banner. A new colour that encodes nothing about the climate does not enter the system.",
+        "section": "colors"
+      },
+      {
+        "name": "The Right Scale Rule",
+        "body": "Temperature is always RdBu. Rain and drought are always BrBG, with wet in teal for positive and dry in ochre for negative. Never draw rainfall in red and blue.",
+        "section": "colors"
+      },
+      {
+        "name": "The Zone Triad Rule",
+        "body": "A case sets one triad on the body (accent, highlight, deep): Costa uses `rdbu-cold-2` / `rdbu-cold-1` / `rdbu-cold-3`, Centro uses `rdbu-warm-2` / `rdbu-warm-1` / `rdbu-warm-3`, and Norte uses `brbg-dry-1` / `brbg-dry-0` / `brbg-dry-2`. Home defaults to Costa blue. Components read the triad and never hard-code a case colour. When white text sits on a zone fill, use the deep step (as the selected segmented control does), because white on the Costa accent is only 3.4:1.",
+        "section": "colors"
+      },
+      {
+        "name": "The Width Axis Rule",
+        "body": "Hierarchy comes from width as well as weight. Display runs at 112–125% width, labels and numbers at 75–80%, and buttons and reading-adjacent UI at 100%. Use `font-stretch` on the self-hosted Archivo. Do not swap faces or fake width with letter-spacing.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Figures Rule",
+        "body": "Any number a player compares, whether a rate, anomaly, year, score or clock, is set in tabular figures so that columns and scrubbed readouts don't jitter.",
+        "section": "typography"
+      },
+      {
+        "name": "The Reading Voice Rule",
+        "body": "Paragraphs, options, item names and glossary entries use Atkinson Hyperlegible Next. Archivo never sets running text.",
+        "section": "typography"
+      },
+      {
+        "name": "The Full-Bleed Data Rule",
+        "body": "Only data goes edge to edge. The stripes hero is the single full-bleed band. Panels, text and controls stay in the centred column.",
+        "section": "layout"
+      },
+      {
+        "name": "The Soft Stack Rule",
+        "body": "Every shadow is a blurred stack in pure black with negative spread on the long layer. No hard offset shadows, no coloured glows, and no single-layer drop shadows.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Lift-on-Intent Rule",
+        "body": "Shadows only grow in answer to the pointer or a selection. A static surface never sits at the Lifted step, except the cinematic frame, which is a stage.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do draw every new hue from RdBu (temperature) or BrBG (rain and drought) with its meaning intact. Blue is colder, red is warmer, ochre is drier, teal is wetter.",
+      "Do read the zone triad (accent, highlight, deep) instead of hard-coding a case colour, and use the deep step under white text.",
+      "Do compute stripes from real NASA POWER series against the 1991–2020 normal, on one shared maximum when rows are compared.",
+      "Do set every compared number in Archivo with tabular figures, and all reading text in Atkinson Hyperlegible Next at 17px / 1.6 or larger, capped at 70ch.",
+      "Do use the width axis for hierarchy: 112–125% for display, 75–80% for labels.",
+      "Do pair every panel with the 1px top highlight and a Soft Stack shadow. Step it up on hover and down on press.",
+      "Do keep touch targets at least 44px (buttons 50px, options 52px, items 56px), visible 3px Glacier Blue focus rings at a 3px offset, and keyboard scrubbing (arrows, Home, End) with a live readout on any stripe band.",
+      "Do use the shared ease-out-expo curve `cubic-bezier(.16,1,.3,1)` for state and entrance motion, and make every animation and transition stop under `prefers-reduced-motion`. Tilt resets to flat, the hero cursor sweep is skipped, and ripples are not created.",
+      "Do neutralise hover lifts and tilts on `hover: none` devices.",
+      "Do draw icons as 24px line SVGs (1.8 stroke, round caps) in `currentColor`."
+    ],
+    "donts": [
+      "Don't introduce a colour that encodes nothing about the climate. The only exception is the alert-level yellow and orange.",
+      "Don't draw rainfall in RdBu or temperature in BrBG.",
+      "Don't drift toward space-navy with neon glows, or toward cartoon edu-game styling. The tone must not read as childish, corporate or hard to read.",
+      "Don't use hard offset shadows, coloured glows or single-layer drop shadows.",
+      "Don't run Archivo as body text, or reach for a system face for display.",
+      "Don't render emoji as icons. Map them to drawn line icons.",
+      "Don't put uppercase condensed labels above headings as eyebrows. Badges mark a state or category next to content.",
+      "Don't put white text on the mid-step zone accents (white on the Costa accent is 3.4:1). Use the deep step.",
+      "Don't let anything but data go full-bleed."
+    ]
+  }
+}

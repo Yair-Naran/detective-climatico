@@ -5,14 +5,14 @@
      stripes climate stripes: one colored band per year (anomaly color)
      decades yearly dots + one step per decade at the decade average (labelled)
      cycle   month-by-month average: first 10 years vs last 10 years of the period
-   Colors: dark-surface steps of a validated palette (warm/cool and wet/dry diverging pairs, blue/orange for 2 series). */
+   Colors: RdBu (temperature) and BrBG (rain) diverging steps tuned for the graphite surface; blue/red for 2 series. */
 (function () {
   'use strict';
   var W = 360, H = 230, L = 42, R = 12, T = 18, B = 28;
   var C = {
-    grid: 'rgba(160,190,255,.16)', axis: '#a9bbd8', data: '#4cc9f0', trend: '#ffc247',
-    warm: '#e66767', cool: '#3987e5', wet: '#199e70', dry: '#d95926', mid: [56, 56, 62],
-    early: '#3987e5', late: '#d95926'
+    grid: 'rgba(201,208,218,.12)', axis: '#98a2b0', data: '#92c5de', trend: '#f4a582',
+    warm: '#d6604d', cool: '#4393c3', wet: '#35978f', dry: '#bf812d', mid: [40, 46, 56],
+    early: '#4393c3', late: '#d6604d'
   };
   var TYPES = ['line', 'anom', 'stripes', 'decades', 'cycle'];
   var t = function (k, v) { return App.t(k, v); };
@@ -42,7 +42,7 @@
       s += '<text x="' + X(x) + '" y="' + (H - 9) + '" text-anchor="middle">' + x + '</text>';
     return s;
   }
-  function unitText(u) { return '<text x="6" y="11">' + esc(u) + '</text>'; }
+  function unitText(u) { return '<text x="' + (L + 2) + '" y="12">' + esc(u) + '</text>'; }
   function trendLine(X, Y, tr, x0, x1, shift) {
     if (!tr) return '';
     var a = tr.intercept + tr.slopePerYear * x0 - (shift || 0), b = tr.intercept + tr.slopePerYear * x1 - (shift || 0);
@@ -153,7 +153,7 @@
     [['early', C.early], ['late', C.late]].forEach(function (p) {
       var arr = cd[p[0]];
       s += '<polyline fill="none" stroke="' + p[1] + '" stroke-width="2" stroke-linejoin="round" points="' + arr.map(function (y, i) { return X(i) + ',' + Y(y); }).join(' ') + '"/>';
-      arr.forEach(function (y, i) { s += '<circle cx="' + X(i) + '" cy="' + Y(y) + '" r="3" fill="' + p[1] + '" stroke="#0b1530" stroke-width="1.5"/>'; });
+      arr.forEach(function (y, i) { s += '<circle cx="' + X(i) + '" cy="' + Y(y) + '" r="3" fill="' + p[1] + '" stroke="#11151b" stroke-width="1.5"/>'; });
     });
     // direct labels at the right end (two series -> legend + direct labels)
     var ye = Y(cd.early[11]), yl = Y(cd.late[11]);
@@ -183,8 +183,9 @@
       var x = out.xAt(best), y = out.yAt(best), txt = out.tip(best);
       var ln = g.querySelector('.tip-x'), tx = g.querySelector('.tip-t'), bg = g.querySelector('.tip-bg');
       ln.setAttribute('x1', x); ln.setAttribute('x2', x);
+      g.style.display = '';
       tx.textContent = txt;
-      var w = Math.min(W - 8, txt.length * 5.3 + 12), bx = Math.max(4, Math.min(W - w - 4, x - w / 2)), by = Math.max(2, y - 30);
+      var w = Math.min(W - 8, (tx.getComputedTextLength() || txt.length * 5.3) + 14), bx = Math.max(4, Math.min(W - w - 4, x - w / 2)), by = Math.max(2, y - 30);
       bg.setAttribute('x', bx); bg.setAttribute('y', by); bg.setAttribute('width', w);
       tx.setAttribute('x', bx + w / 2); tx.setAttribute('y', by + 12.5);
       g.style.display = '';
