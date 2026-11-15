@@ -21,92 +21,93 @@
       '<line x1="31.5" y1="31.5" x2="43" y2="43" stroke="#f3f5f8" stroke-width="5.5" stroke-linecap="round"/>', '0 0 48 48', 'art-logo');
   }
 
-  function stars(n, w, h, seed) {
-    var s = '', x = seed;
-    for (var i = 0; i < n; i++) {
-      x = (x * 9301 + 49297) % 233280; var a = x / 233280;
-      x = (x * 9301 + 49297) % 233280; var b = x / 233280;
-      s += '<circle cx="' + (a * w).toFixed(1) + '" cy="' + (b * h).toFixed(1) + '" r="' + (0.6 + (i % 3) * 0.5) + '" fill="#fff" opacity="' + (0.35 + (i % 4) * 0.15) + '"' + (i % 5 === 0 ? ' class="twinkle"' : '') + '/>';
+  /* Scenes live in the game's world: the sky is the case city's real temperature stripes (NASA POWER, anomaly vs
+     1991-2020), muted when calm, nearly hidden in a storm and at full strength in a heat alert. The land is a stack of
+     graphite silhouettes with a contour line in the zone colour. */
+  var CITY = { costa: 'veracruz', centro: 'pachuca', norte: 'monterrey' };
+  var ZONE = { costa: ['#4393c3', '#92c5de'], centro: ['#d6604d', '#f4a582'], norte: ['#bf812d', '#dfc27d'], home: ['#4393c3', '#92c5de'] };
+  var MOOD = { calm: { op: 0.72, base: '#171b22' }, storm: { op: 0.16, base: '#0e1116' }, alert: { op: 0.95, base: '#171b22' } };
+  var G = ['#262c36', '#1b2027', '#12161c', '#0a0c10'];
+
+  function sky(zone, mood) {
+    var m = MOOD[mood], s = '<rect width="400" height="240" fill="' + m.base + '"/>';
+    if (CITY[zone] && window.Stripes && window.App && App.data) {
+      var st = Stripes.series(CITY[zone]), mx = Math.max.apply(null, st.anom.map(Math.abs)) || 1, w = 400 / st.anom.length;
+      s += '<g opacity="' + m.op + '">';
+      st.anom.forEach(function (v, i) { s += '<rect x="' + (i * w).toFixed(2) + '" y="0" width="' + (w + 0.3).toFixed(2) + '" height="240" fill="' + Stripes.color(v / mx) + '"/>'; });
+      s += '</g>';
     }
-    return s;
+    return s + '<rect width="400" height="240" fill="url(#shade)"/>';
   }
 
-  var SKY = {
-    calm:  { costa: ['#4fb8f0', '#d9f4ff'], centro: ['#5aa9f2', '#ffe7b0'], norte: ['#6aa6dd', '#f6dcae'], home: ['#0b1a3a', '#274b86'] },
-    storm: { costa: ['#1b2540', '#56688a'], centro: ['#26304d', '#68789a'], norte: ['#2a3350', '#6d7a96'], home: ['#10172b', '#3b4a6b'] },
-    alert: { costa: ['#3a1c5a', '#ff8a4c'], centro: ['#c43d1c', '#ffbe55'], norte: ['#8a2d12', '#ffb35a'], home: ['#3a1c5a', '#ff8a4c'] }
-  };
-
-  function cloud(x, y, s, col, delay) {
-    return '<g class="cloud" style="animation-delay:' + delay + 's" transform="translate(' + x + ' ' + y + ') scale(' + s + ')" fill="' + col + '">' +
-      '<ellipse cx="0" cy="0" rx="26" ry="10"/><ellipse cx="-14" cy="-6" rx="14" ry="10"/><ellipse cx="8" cy="-9" rx="16" ry="12"/></g>';
+  function cloud(x, y, w, delay, op) {
+    return '<g class="cloud" style="animation-delay:' + delay + 's" fill="#0a0c10" opacity="' + op + '">' +
+      '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="9" rx="4.5"/><rect x="' + (x + w * 0.22) + '" y="' + (y - 11) + '" width="' + (w * 0.5) + '" height="9" rx="4.5"/></g>';
   }
 
   function rain() {
-    var s = '<g class="rain" stroke="#bfe3ff" stroke-width="1.4" stroke-linecap="round" opacity=".7">';
+    var s = '<g class="rain" stroke="#d1e5f0" stroke-width="1.3" stroke-linecap="round" opacity=".55">';
     for (var i = 0; i < 26; i++) { var x = 10 + i * 15.5, y = (i * 37) % 60; s += '<line x1="' + x + '" y1="' + (20 + y) + '" x2="' + (x - 5) + '" y2="' + (34 + y) + '" style="animation-delay:' + ((i % 7) * 0.12) + 's"/>'; }
     return s + '</g>';
   }
 
   function sun(mood, zone) {
     if (mood === 'storm') return '';
-    if (mood === 'alert') {
-      var hot = zone !== 'costa';
-      return '<g transform="translate(300 ' + (hot ? 88 : 150) + ')"><g class="rays" stroke="#ffd166" stroke-width="3" stroke-linecap="round" opacity=".7">' +
-        [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map(function (a) { return '<line x1="0" y1="-' + (hot ? 50 : 38) + '" x2="0" y2="-' + (hot ? 62 : 48) + '" transform="rotate(' + a + ')"/>'; }).join('') +
-        '</g><circle r="' + (hot ? 40 : 30) + '" fill="#ffe08a"/><circle r="' + (hot ? 40 : 30) + '" fill="#ff7b54" opacity=".35"/></g>';
-    }
-    return '<g transform="translate(310 62)"><circle r="40" fill="#fff3b0" opacity=".35"/><circle r="24" fill="#ffe27a"/></g>';
+    var hot = mood === 'alert', col = hot ? '#fddbc7' : '#d1e5f0', y = hot && zone === 'costa' ? 120 : 70;
+    var s = '<g transform="translate(316 ' + y + ')" fill="none" stroke="' + col + '">';
+    if (hot) s += '<g class="rays" stroke-width="2.5" stroke-linecap="round" opacity=".8">' +
+      [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map(function (a) { return '<line x1="0" y1="-38" x2="0" y2="-48" transform="rotate(' + a + ')"/>'; }).join('') + '</g>';
+    return s + '<circle r="26" stroke-width="3"/><circle r="17" stroke-width="1.5" opacity=".6"/><circle r="8" stroke-width="1.5" opacity=".4"/></g>';
+  }
+
+  function ridge(d, fill, edge) {
+    return '<path d="' + d + '" fill="' + fill + '"/>' + (edge ? '<path d="' + d.replace(/ ?V240 H-?\d+z$/, '') + '" fill="none" stroke="' + edge + '" stroke-width="1.6" stroke-linejoin="round" opacity=".85"/>' : '');
   }
 
   function ground(zone, mood) {
-    var dark = mood === 'storm', warm = mood === 'alert';
+    var z = ZONE[zone] || ZONE.home, edge = mood === 'storm' ? '#3a424e' : z[1];
     if (zone === 'costa') {
-      var sea = dark ? ['#16324f', '#0c1f36'] : warm ? ['#5a2a6e', '#2a1245'] : ['#1fa8c9', '#0b6a99'];
-      var palm = dark ? '#0d1a2a' : warm ? '#1c0f2e' : '#0f5c4d';
-      return '<defs><linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + sea[0] + '"/><stop offset="1" stop-color="' + sea[1] + '"/></linearGradient></defs>' +
-        '<rect y="150" width="400" height="90" fill="url(#sea)"/>' +
-        '<path class="wave w1" d="M-40,160 q25,-12 50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 V240 H-40z" fill="#fff" opacity=".22"/>' +
-        '<path class="wave w2" d="M-60,176 q25,-12 50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 V240 H-60z" fill="#fff" opacity=".16"/>' +
-        '<path d="M0,214 q60,-22 120,-8 t140,0 t140,-6 V240 H0z" fill="' + (dark ? '#2b3a4d' : warm ? '#4a2a3a' : '#f2d7a1') + '"/>' +
-        '<g fill="' + palm + '" transform="translate(48 206)"><path d="M0,0 q-2,-34 4,-62 l4,1 q-5,28 -2,61z"/>' +
+      return '<rect y="150" width="400" height="90" fill="' + G[2] + '"/>' +
+        '<path class="wave w1" d="M-40,160 q25,-10 50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0" fill="none" stroke="' + z[1] + '" stroke-width="1.6" opacity=".7"/>' +
+        '<path class="wave w2" d="M-60,178 q25,-10 50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0" fill="none" stroke="' + z[0] + '" stroke-width="1.6" opacity=".6"/>' +
+        '<path class="wave w1" d="M-40,196 q25,-10 50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0" fill="none" stroke="' + z[0] + '" stroke-width="1.2" opacity=".35"/>' +
+        ridge('M0,214 q60,-22 120,-8 t140,0 t140,-6 V240 H0z', G[3], edge) +
+        '<g fill="' + G[3] + '" transform="translate(48 206)"><path d="M0,0 q-2,-34 4,-62 l4,1 q-5,28 -2,61z"/>' +
         '<path d="M5,-62 q-26,-14 -42,6 q22,-10 42,-2z M6,-62 q22,-18 42,-2 q-22,-6 -42,6z M6,-62 q-6,-24 -26,-26 q18,8 22,26z M6,-62 q10,-22 32,-22 q-24,6 -30,22z"/></g>' +
-        '<g fill="' + (dark ? '#1a2740' : warm ? '#2a1a3a' : '#fff') + '" transform="translate(310 190)"><rect x="-26" y="-10" width="52" height="26" rx="2"/><path d="M-30,-10 L0,-32 L30,-10z" fill="' + (dark ? '#0e1a2e' : warm ? '#3a1d2e' : '#e4572e') + '"/></g>';
+        '<g fill="' + G[3] + '" transform="translate(330 200)"><rect x="-22" y="-8" width="44" height="22"/><path d="M-26,-8 L0,-26 L26,-8z"/><rect x="-5" y="2" width="10" height="12" fill="' + z[1] + '" opacity=".8"/></g>';
     }
     if (zone === 'centro') {
-      var h1 = dark ? '#2e3a5a' : warm ? '#7a2e2e' : '#8e6bb8', h2 = dark ? '#222c48' : warm ? '#5b2024' : '#6a4a96', gr = dark ? '#1b2238' : warm ? '#4a1c1c' : '#c79a5a';
-      var boxes = ['#ff6b6b', '#ffd166', '#4cc9f0', '#06d6a0', '#f78fb3', '#ff9f43', '#9b5de5'], hs = '';
+      var hs = '';
       for (var i = 0; i < 14; i++) {
-        var bx = 20 + i * 26 + (i % 3) * 3, by = 150 + ((i * 17) % 38);
-        hs += '<rect x="' + bx + '" y="' + by + '" width="17" height="14" fill="' + boxes[i % boxes.length] + '" opacity="' + (dark ? .45 : .95) + '"/><rect x="' + (bx + 6) + '" y="' + (by + 6) + '" width="4" height="8" fill="#0f1b2d" opacity=".55"/>';
+        var bx = 16 + i * 27 + (i % 3) * 3, by = 160 + ((i * 17) % 34), lit = (i * 7) % 3 === 0;
+        hs += '<rect x="' + bx + '" y="' + by + '" width="18" height="' + (240 - by) + '" fill="' + G[2] + '"/>' +
+          '<rect x="' + (bx + 6) + '" y="' + (by + 5) + '" width="5" height="5" fill="' + (lit ? z[1] : G[0]) + '" opacity="' + (lit ? .9 : .7) + '"/>';
       }
-      return '<path d="M0,170 q60,-70 130,-34 t120,-26 t150,36 V240 H0z" fill="' + h1 + '"/><path d="M0,190 q80,-44 150,-12 t130,-16 t120,18 V240 H0z" fill="' + h2 + '"/>' +
-        '<g>' + hs + '</g><rect y="214" width="400" height="26" fill="' + gr + '"/>';
+      return ridge('M0,170 q60,-70 130,-34 t120,-26 t150,36 V240 H0z', G[0], edge) +
+        ridge('M0,190 q80,-44 150,-12 t130,-16 t120,18 V240 H0z', G[1], null) + hs +
+        '<rect y="216" width="400" height="24" fill="' + G[3] + '"/>';
     }
     if (zone === 'norte') {
-      var m1 = dark ? '#2a3552' : warm ? '#7b3a2a' : '#5b7fa6', m2 = dark ? '#1c263f' : warm ? '#5a281d' : '#41648c', sand = dark ? '#2a2f3c' : warm ? '#a8582e' : '#e0b36b';
-      var cx = dark ? '#16301f' : warm ? '#3a3a14' : '#2e8b57';
-      return '<path d="M0,176 L58,120 L84,140 L112,92 L134,126 L158,104 L190,150 L240,168 L300,128 L350,150 L400,138 V240 H0z" fill="' + m1 + '"/>' +
-        '<path d="M60,196 L120,150 L150,168 L186,126 L220,160 L270,148 L330,184 L400,170 V240 H60z" fill="' + m2 + '"/>' +
-        '<rect y="200" width="400" height="40" fill="' + sand + '"/>' +
-        '<path d="M20,222 l22,-6 l8,10 m40,-6 l20,4 l10,-8 m60,10 l18,-6 l12,8" stroke="#00000033" stroke-width="2" fill="none" stroke-linecap="round"/>' +
-        '<g fill="' + cx + '" transform="translate(330 214)"><rect x="-5" y="-40" width="10" height="42" rx="5"/><rect x="-22" y="-26" width="8" height="18" rx="4"/><rect x="-22" y="-14" width="22" height="8" rx="4"/><rect x="14" y="-30" width="8" height="20" rx="4"/><rect x="0" y="-18" width="22" height="8" rx="4"/></g>' +
-        '<g fill="' + cx + '" transform="translate(70 222) scale(.7)"><rect x="-5" y="-40" width="10" height="42" rx="5"/><rect x="-22" y="-26" width="8" height="18" rx="4"/><rect x="-22" y="-14" width="22" height="8" rx="4"/></g>';
+      var cac = '<rect x="-5" y="-40" width="10" height="42" rx="5"/><rect x="-22" y="-26" width="8" height="18" rx="4"/><rect x="-22" y="-14" width="22" height="8" rx="4"/>';
+      return ridge('M0,176 L58,120 L84,140 L112,92 L134,126 L158,104 L190,150 L240,168 L300,128 L350,150 L400,138 V240 H0z', G[0], edge) +
+        ridge('M60,196 L120,150 L150,168 L186,126 L220,160 L270,148 L330,184 L400,170 V240 H60z', G[1], null) +
+        '<rect y="202" width="400" height="38" fill="' + G[2] + '"/>' +
+        '<path d="M20,222 l22,-6 l8,10 m40,-6 l20,4 l10,-8 m60,10 l18,-6 l12,8" stroke="' + z[0] + '" stroke-opacity=".45" stroke-width="1.5" fill="none" stroke-linecap="round"/>' +
+        '<g fill="' + G[3] + '" transform="translate(330 214)">' + cac + '<rect x="14" y="-30" width="8" height="20" rx="4"/><rect x="0" y="-18" width="22" height="8" rx="4"/></g>' +
+        '<g fill="' + G[3] + '" transform="translate(70 224) scale(.7)">' + cac + '</g>';
     }
-    return '<path d="M0,200 q100,-30 200,-6 t200,-10 V240 H0z" fill="#0a1226"/>';
+    return ridge('M0,200 q100,-30 200,-6 t200,-10 V240 H0z', G[3], edge);
   }
 
   function scene(zone, mood) {
-    zone = SKY.calm[zone] ? zone : 'home'; mood = SKY[mood] ? mood : 'calm';
-    var sky = SKY[mood][zone];
-    var cl = mood === 'storm' ? '#39455f' : mood === 'alert' ? '#ffd9a0' : '#ffffff';
-    var parts = '<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + sky[0] + '"/><stop offset="1" stop-color="' + sky[1] + '"/></linearGradient></defs>' +
-      '<rect width="400" height="240" fill="url(#sky)"/>' +
-      (zone === 'home' || mood === 'alert' && zone === 'costa' ? stars(30, 400, 120, 11) : '') +
-      sun(mood, zone) + cloud(70, 52, 1.1, cl, 0) + cloud(230, 34, .8, cl, -4) + (mood === 'storm' ? cloud(150, 70, 1.4, cl, -8) + cloud(340, 62, 1.1, cl, -2) : '') +
+    zone = ZONE[zone] ? zone : 'home'; mood = MOOD[mood] ? mood : 'calm';
+    var parts = '<defs><linearGradient id="shade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a0c10" stop-opacity=".55"/><stop offset=".55" stop-color="#0a0c10" stop-opacity="0"/></linearGradient></defs>' +
+      sky(zone, mood) + sun(mood, zone) +
+      cloud(40, 52, 90, 0, mood === 'storm' ? .85 : .55) + cloud(210, 34, 64, -4, mood === 'storm' ? .85 : .45) +
+      (mood === 'storm' ? cloud(120, 76, 120, -8, .9) + cloud(300, 62, 80, -2, .9) : '') +
       ground(zone, mood) + (mood === 'storm' ? rain() : '');
     if (mood === 'storm' && zone === 'costa') {
-      parts += '<g class="swirl" transform="translate(320 70)" fill="none" stroke="#dfe9ff" stroke-width="3" opacity=".55" stroke-linecap="round"><path d="M0,0 m-6,0 a6,6 0 1 1 6,6 a14,14 0 1 1 -14,-14 a24,24 0 1 1 24,24"/></g>';
+      parts += '<g class="swirl" transform="translate(320 70)" fill="none" stroke="#d1e5f0" stroke-width="2.5" opacity=".6" stroke-linecap="round"><path d="M0,0 m-6,0 a6,6 0 1 1 6,6 a14,14 0 1 1 -14,-14 a24,24 0 1 1 24,24"/></g>';
     }
     return svg(parts, '0 0 400 240', 'scene-art');
   }

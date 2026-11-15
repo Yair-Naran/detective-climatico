@@ -114,5 +114,18 @@
   /* [icon, text] pair for App.h children */
   function label(key, text) { return [el(key), document.createTextNode(text)]; }
 
+  /* texts from i18n/strings.js that start with an emoji (e.g. "📖 Ver el glosario completo") keep their wording;
+     the leading emoji is drawn as an icon when the text is applied to the page */
+  if (window.App && App.applyI18n) {
+    var apply = App.applyI18n;
+    App.applyI18n = function () {
+      apply.apply(App, arguments);
+      document.querySelectorAll('[data-i18n]').forEach(function (n) {
+        var txt = n.textContent, m = txt.match(/^(\S+)\s+/);
+        if (m && MAP[m[1]]) { n.textContent = ''; label(m[1], txt.slice(m[0].length)).forEach(function (c) { n.appendChild(c); }); }
+      });
+    };
+  }
+
   window.Icons = { el: el, medal: medal, label: label, has: function (k) { return !!(P[k] || MAP[k]); } };
 })();

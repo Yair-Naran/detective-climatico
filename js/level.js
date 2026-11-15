@@ -95,7 +95,9 @@
   }
 
   function renderHub(el) {
-    el.appendChild(h('h2', { class: 'case-title', text: t(k('title')) }));
+    el.appendChild(h('div', { class: 'hub-head' },
+      h('h2', { class: 'case-title', text: t(k('title')) }),
+      h('div', { class: 'hub-strip', 'aria-hidden': 'true' }, Stripes.strip(S.cfg.city))));
     el.appendChild(statusBar());
     if (S.bonus) el.appendChild(h('p', { class: 'pill bonus' }, Icons.label('🎁', t('bonusActive', { b: t('bonus_' + S.bonus) }))));
     el.appendChild(h('p', { class: 'small', text: t('hubIntro') }));
@@ -362,11 +364,12 @@
   function renderResults(el) {
     var f = S.final, sc = S.cfg.scoring;
     el.appendChild(h('div', { class: 'card result-card' },
-      h('p', { class: 'badge' }, t(k('title'))),
+      h('div', { class: 'rc-strip', 'aria-hidden': 'true' }, Stripes.strip(S.cfg.city)),
       h('div', { class: 'medal', 'aria-hidden': 'true' }, Icons.medal(S.medal)),
       h('h2', { text: t('medal_' + S.medal) }),
       h('p', { class: 'big-pct', text: f.total + '%' }),
-      h('p', { class: 'small', text: t('prepLong') })));
+      h('p', { class: 'small', text: t('prepLong') }),
+      h('p', { class: 'rc-case', text: t(k('title')) })));
 
     var seen = (App.store.get('endings_' + S.cfg.id) || []).length;
     el.appendChild(h('div', { class: 'card ending e-' + S.ending },

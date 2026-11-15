@@ -183,8 +183,9 @@
       var x = out.xAt(best), y = out.yAt(best), txt = out.tip(best);
       var ln = g.querySelector('.tip-x'), tx = g.querySelector('.tip-t'), bg = g.querySelector('.tip-bg');
       ln.setAttribute('x1', x); ln.setAttribute('x2', x);
+      g.style.display = '';
       tx.textContent = txt;
-      var w = Math.min(W - 8, txt.length * 5.3 + 12), bx = Math.max(4, Math.min(W - w - 4, x - w / 2)), by = Math.max(2, y - 30);
+      var w = Math.min(W - 8, (tx.getComputedTextLength() || txt.length * 5.3) + 14), bx = Math.max(4, Math.min(W - w - 4, x - w / 2)), by = Math.max(2, y - 30);
       bg.setAttribute('x', bx); bg.setAttribute('y', by); bg.setAttribute('width', w);
       tx.setAttribute('x', bx + w / 2); tx.setAttribute('y', by + 12.5);
       g.style.display = '';
