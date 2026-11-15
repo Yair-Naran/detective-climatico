@@ -38,7 +38,7 @@
       store.set('lang', l);
       var u = new URL(location.href); u.searchParams.set('lang', l);
       history.replaceState(null, '', u.toString());
-      App.applyI18n();
+      App.applyI18n(); App.setHeading();
       listeners.forEach(function (fn) { fn(); });
     },
     onLang: function (fn) { listeners.push(fn); },
@@ -47,7 +47,16 @@
       document.querySelectorAll('.screen').forEach(function (s) { s.hidden = s.id !== 'screen-' + name; });
       if (name !== 'level') document.body.removeAttribute('data-zone');
       App.current = name;
+      App.setHeading();
       window.scrollTo(0, 0);
+    },
+
+    /* one <h1> per screen for screen readers: the home screen has its own visible one */
+    setHeading: function () {
+      var el = document.getElementById('srH1'); if (!el) return;
+      var z = document.body.getAttribute('data-zone'), n = App.current, map = { archive: 'archiveTitle', method: 'methodScreenTitle', glossary: 'glossTitle', tutorial: 'tutorial' };
+      el.hidden = n === 'home' || !n;
+      el.textContent = n === 'level' && z ? App.t('case_' + z) : map[n] ? App.t(map[n]) : App.t('title');
     },
 
     /* h('div', {class:'x', onclick:fn}, child, 'text', [children]) */

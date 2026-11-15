@@ -216,6 +216,16 @@ const STEP = () => {
     });
   }
 
+  await test('offline: after one visit the game, built-in data and the Archive work with no network', async () => {
+    const { page, ctx } = await newPage({ serviceWorkers: 'allow' }); await ready(page);
+    await page.evaluate(() => navigator.serviceWorker.ready); await page.waitForTimeout(800);
+    await page.reload(); await page.waitForFunction(() => navigator.serviceWorker.controller);
+    await ctx.setOffline(true);
+    await page.goto(url + '?lang=en#archivo'); await page.reload(); await page.waitForSelector('#screen-archive:not([hidden])');
+    assert.match(await page.textContent('#result'), /\+0\.19/);
+    await ctx.close();
+  });
+
   await test('sound: starts muted, toggles, survives zone changes, no errors', async () => {
     const { page, errors, ctx } = await newPage(); await ready(page);
     assert.strictEqual(await page.getAttribute('#soundBtn', 'aria-pressed'), 'false');

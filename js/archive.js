@@ -143,7 +143,7 @@
         h('td', { text: vd ? t('short_' + vd) : '—' })));
     });
     tbl.appendChild(tb);
-    box.innerHTML = ''; box.appendChild(h('div', { class: 'cmp-wrap' }, tbl));
+    box.innerHTML = ''; box.appendChild(h('div', { class: 'cmp-wrap', tabindex: '0', role: 'region', 'aria-label': t('cmpTitle') }, tbl));
     $('compareHint').textContent = t('cmpFor', { v: t('var_' + v), s: t('season_' + season), a: from || '', b: to || '' });
   }
 
@@ -218,8 +218,8 @@
 
   function buildTools() {
     var box = $('tools'); box.innerHTML = '';
-    box.appendChild(h('button', { class: 'btn ghost', type: 'button', id: 'dlCsv', text: t('dlCsv'), onclick: exportCsv }));
-    box.appendChild(h('button', { class: 'btn ghost', type: 'button', id: 'dlPng', text: t('dlPng'), onclick: exportPng }));
+    box.appendChild(h('button', { class: 'btn', type: 'button', id: 'dlCsv', text: t('dlCsv'), onclick: exportCsv }));
+    box.appendChild(h('button', { class: 'btn', type: 'button', id: 'dlPng', text: t('dlPng'), onclick: exportPng }));
     var lab = h('label', { class: 'hunch-toggle' });
     var cb = h('input', { type: 'checkbox', id: 'hunchChk' }); cb.checked = hunchOn;
     cb.addEventListener('change', function () { hunchOn = cb.checked; App.store.set('hunchOn', hunchOn); hunchDone = {}; render(); });
