@@ -88,6 +88,8 @@
       axis.classList.toggle('near-start', pct < 9);
       axis.classList.toggle('near-end', pct > 91);
       yearChip.textContent = years[idx];
+      /* the game's title melts to the scrubbed year (Climate Crisis YEAR axis) */
+      document.documentElement.style.setProperty('--year', years[idx]);
       rows.forEach(function (r) {
         var a = r.s.anom[idx];
         r.val.textContent = signed(a, 1) + ' ' + t('unit_t2m');

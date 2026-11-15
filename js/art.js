@@ -13,10 +13,11 @@
   }
 
   function logo() {
-    var cols = ['#2166ac', '#4393c3', '#92c5de', '#f7f7f7', '#f4a582', '#d6604d', '#b2182b'], st = '';
+    /* the lens holds seven RdBu stripes; three warmer ones wait off to the right and slide in on hover */
+    var cols = ['#2166ac', '#4393c3', '#92c5de', '#f7f7f7', '#f4a582', '#d6604d', '#b2182b', '#67001f', '#b2182b', '#d6604d'], st = '';
     cols.forEach(function (c, i) { st += '<rect x="' + (7 + i * 4.3) + '" y="6" width="4.4" height="30" fill="' + c + '"/>'; });
     return svg('<defs><clipPath id="lensClip"><circle cx="21" cy="21" r="13"/></clipPath></defs>' +
-      '<g clip-path="url(#lensClip)">' + st + '</g>' +
+      '<g clip-path="url(#lensClip)"><g class="lens">' + st + '</g></g>' +
       '<circle cx="21" cy="21" r="14.5" fill="none" stroke="#f3f5f8" stroke-width="3.4"/>' +
       '<line x1="31.5" y1="31.5" x2="43" y2="43" stroke="#f3f5f8" stroke-width="5.5" stroke-linecap="round"/>', '0 0 48 48', 'art-logo');
   }

@@ -28,7 +28,8 @@
       var medal = medalOf(c.id), lv = window.LEVELS[c.id];
       list.appendChild(h('button', { class: 'levelcard tilt' + (c.ready ? '' : ' off'), 'data-case': c.id, type: 'button', disabled: !c.ready || !App.data,
         onclick: function () { play(c.id); } },
-        h('span', { class: 'lc-strip', 'aria-hidden': 'true' }, App.data ? Stripes.strip(CITY_OF[c.id]) : null),
+        h('span', { class: 'lc-strip', 'aria-hidden': 'true' }, App.data ? Stripes.strip(CITY_OF[c.id]) : null,
+          App.data ? h('span', { class: 'lc-rate', text: App.data.cities[CITY_OF[c.id]].name + ' ' + App.fmtRate(Stripes.series(CITY_OF[c.id]).tr, 't2m') }) : null),
         h('span', { class: 'lc-body' },
           h('span', { class: 'lc-head' },
             h('span', { class: 'lc-icon', 'aria-hidden': 'true' }, Icons.el(c.icon)),
@@ -44,6 +45,39 @@
 
   function play(id) {
     if (!App.store.get('tutorialDone')) Tutorial.start(); else Level.start(id || 'costa');
+  }
+
+  /* title on two lines (the second is drawn in outline); the text stays the i18n title */
+  function renderTitle() {
+    var el = document.getElementById('homeTitle'), txt = t('title'), cut = txt.indexOf(' ');
+    var parts = cut > 0 ? [txt.slice(0, cut), txt.slice(cut + 1)] : [txt];
+    el.innerHTML = '';
+    el.setAttribute('aria-label', txt);
+    parts.forEach(function (p) { el.appendChild(h('span', { class: 'ttl-line', 'aria-hidden': 'true' }, h('span', { text: p }))); });
+  }
+
+  /* broadcast-style crawl of each city's real warming rate (Sen slope of annual mean temperature, NASA POWER).
+     The swatch is the RdBu colour of that rate on a +-0.6 °C/decade scale. */
+  function renderTicker() {
+    var box = document.getElementById('ticker');
+    if (!App.data) return;
+    var ref = Stripes.series('pachuca'), span = ref.years[0] + '–' + ref.years[ref.years.length - 1];
+    var run = function () {
+      var r = h('span', { class: 'ticker-run' });
+      Object.keys(CITY_OF).forEach(function (id) {
+        var city = CITY_OF[id], s = Stripes.series(city);
+        r.appendChild(h('span', { class: 'tk' },
+          h('i', { style: '--sw:' + Stripes.color(Math.max(-1, Math.min(1, s.tr.slopePerDecade / 0.6))) }),
+          App.data.cities[city].name, h('b', { text: App.fmtRate(s.tr, 't2m') })));
+        r.appendChild(h('span', { class: 'tk-sep' }));
+      });
+      r.appendChild(h('span', { class: 'tk', text: 'NASA POWER · ' + span }));
+      r.appendChild(h('span', { class: 'tk-sep' }));
+      return r;
+    };
+    box.innerHTML = '';
+    box.appendChild(h('span', { class: 'ticker-track' }, run(), run()));
+    box.hidden = false;
   }
 
   var Home = window.Home = {
@@ -69,7 +103,8 @@
     var setLangLabel = function () { langBtn.textContent = t('langBtn'); };
     setLangLabel();
     langBtn.addEventListener('click', function () { App.setLang(App.lang === 'es' ? 'en' : 'es'); });
-    App.onLang(function () { setLangLabel(); if (App.current === 'home') renderLevels(); });
+    renderTitle();
+    App.onLang(function () { setLangLabel(); renderTitle(); renderTicker(); if (App.current === 'home') renderLevels(); });
     document.getElementById('homeBtn').addEventListener('click', function () { Cinematic.stop(); Home.show(); });
     document.getElementById('playBtn').addEventListener('click', function () { play('costa'); });
     document.getElementById('archiveBtn').addEventListener('click', function () { Archive.open({}, function () { Home.show(); }, 'back'); });
@@ -88,6 +123,7 @@
       document.getElementById('archiveBtn').disabled = false;
       Archive.init(); Tutorial.init(); Level.init(); Glossary.init();
       Stripes.hero(document.getElementById('stripesHero'), play);
+      renderTicker();
       App.onLang(function () { Stripes.hero(document.getElementById('stripesHero'), play); });
       route();
     }).catch(function () {

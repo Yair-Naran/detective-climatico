@@ -1,6 +1,6 @@
 ---
 name: Climate Detective
-description: "Franjas del clima: a graphite-ink game world where every colour is a climate scale and the warming stripes are the identity."
+description: "Franjas del clima, con actitud: a graphite-ink game world where every colour is a climate scale, the warming stripes are the identity, and the game's name melts as the years warm."
 colors:
   graphite-ground: "#0e1116"
   graphite-deep: "#0a0c10"
@@ -35,41 +35,41 @@ colors:
   alert-orange: "#f4a261"
 typography:
   display:
-    fontFamily: "Archivo, system-ui, sans-serif"
-    fontSize: "clamp(2.5rem, 7.2vw, 5.4rem)"
-    fontWeight: 900
-    lineHeight: 0.92
-    letterSpacing: "-0.025em"
-    fontVariation: "\"wdth\" 125"
+    fontFamily: "\"Climate Crisis\", Anybody, system-ui, sans-serif"
+    fontSize: "clamp(2.6rem, 8.4vw, 6rem)"
+    fontWeight: 400
+    lineHeight: 1.04
+    letterSpacing: "-0.01em"
+    fontVariation: "\"YEAR\" var(--year)"
   headline:
-    fontFamily: "Archivo, system-ui, sans-serif"
+    fontFamily: "Anybody, \"Atkinson Hyperlegible Next\", system-ui, sans-serif"
     fontSize: "clamp(1.8rem, 4.4vw, 3rem)"
     fontWeight: 900
     lineHeight: 1
     letterSpacing: "-0.02em"
     fontVariation: "\"wdth\" 118"
   figure:
-    fontFamily: "Archivo, system-ui, sans-serif"
+    fontFamily: "Anybody, \"Atkinson Hyperlegible Next\", system-ui, sans-serif"
     fontSize: "clamp(3.6rem, 10vw, 5.6rem)"
     fontWeight: 900
     lineHeight: 1
     fontFeature: "\"tnum\" 1"
     fontVariation: "\"wdth\" 118"
   title:
-    fontFamily: "Archivo, system-ui, sans-serif"
+    fontFamily: "Anybody, \"Atkinson Hyperlegible Next\", system-ui, sans-serif"
     fontSize: "clamp(1.35rem, 2.4vw, 1.7rem)"
     fontWeight: 800
     lineHeight: 1.15
     letterSpacing: "-0.01em"
     fontVariation: "\"wdth\" 112"
   title-card:
-    fontFamily: "Archivo, system-ui, sans-serif"
+    fontFamily: "Anybody, \"Atkinson Hyperlegible Next\", system-ui, sans-serif"
     fontSize: "1.18rem"
     fontWeight: 800
     lineHeight: 1.2
     fontVariation: "\"wdth\" 108"
   title-small:
-    fontFamily: "Archivo, system-ui, sans-serif"
+    fontFamily: "Anybody, \"Atkinson Hyperlegible Next\", system-ui, sans-serif"
     fontSize: "1.06rem"
     fontWeight: 750
     lineHeight: 1.3
@@ -85,31 +85,31 @@ typography:
     fontWeight: 400
     lineHeight: 1.5
   button:
-    fontFamily: "Archivo, system-ui, sans-serif"
+    fontFamily: "Anybody, \"Atkinson Hyperlegible Next\", system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 650
     letterSpacing: "0.005em"
     fontVariation: "\"wdth\" 100"
   button-hero:
-    fontFamily: "Archivo, system-ui, sans-serif"
+    fontFamily: "Anybody, \"Atkinson Hyperlegible Next\", system-ui, sans-serif"
     fontSize: "1.15rem"
     fontWeight: 850
     letterSpacing: "0.06em"
     fontVariation: "\"wdth\" 115"
   label-caps:
-    fontFamily: "Archivo, system-ui, sans-serif"
+    fontFamily: "Anybody, \"Atkinson Hyperlegible Next\", system-ui, sans-serif"
     fontSize: "0.86rem"
     fontWeight: 750
     letterSpacing: "0.06em"
     fontVariation: "\"wdth\" 75"
   label:
-    fontFamily: "Archivo, system-ui, sans-serif"
+    fontFamily: "Anybody, \"Atkinson Hyperlegible Next\", system-ui, sans-serif"
     fontSize: "0.86rem"
     fontWeight: 650
     letterSpacing: "0.02em"
     fontVariation: "\"wdth\" 80"
   numeric:
-    fontFamily: "Archivo, system-ui, sans-serif"
+    fontFamily: "Anybody, \"Atkinson Hyperlegible Next\", system-ui, sans-serif"
     fontSize: "0.85rem"
     fontWeight: 700
     fontFeature: "\"tnum\" 1"
@@ -247,14 +247,14 @@ components:
 
 The warming stripes are the identity, and they are made of real data: annual NASA POWER temperature anomalies for Veracruz, Pachuca and Monterrey, 1981 to 2025, measured against the 1991–2020 normal. Everything else is a deep graphite-ink ground that lets the stripes carry all the colour. The world has no decorative palette. Every hue on screen comes from one of two published diverging climate scales: RdBu (cold blue to warm red) for temperature, and BrBG (dry brown to wet teal) for rain and drought. A colour always means something about the climate. Colour never decorates.
 
-The density is that of a field notebook on a dark desk. The layout uses elevated graphite panels with layered shadows. Strips of real stripes sit along card edges. Every number uses tabular figures. Type works in two voices. Archivo, a variable face with a width axis, is pushed wide and black for display and narrow for condensed labels and numbers. Atkinson Hyperlegible Next sets everything a teenager has to read. Interaction should feel like detective work. You scrub across the years to read a value. A selection ripples out in the colour of its case. Cards lift and tilt toward the pointer. Each screen enters with a wipe that looks like a stripe being drawn.
+The density is that of a field notebook on a dark desk. The layout uses elevated graphite panels with layered shadows. Strips of real stripes sit along card edges. Every number uses tabular figures. Type works in three voices: Climate Crisis for the game's name (its letters melt with the scrubbed year), Anybody wide, black and italic for headlines and buttons and narrow for labels, and Atkinson Hyperlegible Next for everything a teenager has to read. The tone is a youthful game with attitude: crooked case files, rolling button labels, a stripe curtain between screens. Interaction should feel like detective work. You scrub across the years to read a value. A selection ripples out in the colour of its case. Cards lift and tilt toward the pointer. Each screen arrives behind a sweep of RdBu stripes.
 
 This world turns down two defaults. One is the space-navy-with-neon "NASA hackathon" look. The other is the cartoon education game. It must not feel childish, corporate or hard to read.
 
 **Key Characteristics:**
 - Graphite ground (`graphite-ground`); colour only from the RdBu and BrBG climate scales.
 - Real-data climate stripes as hero, card edges, hub strip, results strip, logo lens and scene skies.
-- Archivo across its width axis (125% display, 75–80% labels) with Atkinson Hyperlegible Next for reading.
+- Climate Crisis title bound to the data year; Anybody across its width axis (115–135% italic display, 66–74% labels); Atkinson Hyperlegible Next for reading.
 - Elevated panels: a 1px hairline highlight plus a three-step soft layered shadow scale.
 - Zone theming: Costa is blue, Centro is red, Norte is ochre. Each zone swaps one colour triad through the whole UI.
 - Line icons drawn in code on a 24px grid, never emoji glyphs.
@@ -299,31 +299,30 @@ An 11-step diverging ramp, `rdbu-cold-4` (Abyssal Blue) through `rdbu-neutral` (
 
 ## Typography
 
-**Display Font:** Archivo (self-hosted variable woff2, weight 100–900, width 62–125%), falling back to system-ui
-**Body Font:** Atkinson Hyperlegible Next (self-hosted variable woff2, weight 200–800, roman and italic), falling back to Segoe UI / system-ui
-**Label/Mono Font:** Archivo again, narrowed to 75–80% width with tabular figures, so there is no separate mono face
+**Title Font:** Climate Crisis (self-hosted variable woff2, one weight, YEAR axis 1979–2050). Used only for the game's name on home, uppercase, on two lines.
+**Display Font:** Anybody (self-hosted variable woff2, weight 100–900, width 50–150%, roman and italic), with Atkinson Hyperlegible Next as fallback for "+" and "°", which are excluded from Anybody by `unicode-range` because they read as a dot and an apostrophe at label sizes.
+**Body Font:** Atkinson Hyperlegible Next (self-hosted variable woff2, weight 200–800, roman and italic).
 
-**Character:** One grotesque used across its full width axis. Wide and black, it reads as a headline poster. Narrow and caps, it reads as an instrument label. Its numbers line up in columns. Next to it sits a typeface designed for legibility, so the reading voice is never the hard part.
+**Character:** Three voices, one job each. Climate Crisis was drawn from Arctic sea-ice data: its letters melt along the YEAR axis. The home title's YEAR is bound to the year scrubbed on the stripes band (`--year` on the root), so the name is heavy in 1981 and visibly melted by 2025. Anybody gives the attitude: black, wide and italic it reads like a sports poster or a game cover; narrow and in caps it reads like an instrument label. Atkinson is for everything a teenager has to read.
 
 ### Hierarchy
-- **Display** (900, width 125%, clamp(2.5rem, 7.2vw, 5.4rem), line-height 0.92, -0.025em): The game title on home only.
-- **Headline** (900, width 118%, clamp(1.8rem, 4.4vw, 3rem), line-height 1): The case title in the hub.
-- **Figure** (900, width 118%, clamp(3.6rem, 10vw, 5.6rem), tabular): The result percentage. It is coloured Sea-glass.
-- **Title** (800, width 112%, clamp(1.35rem, 2.4vw, 1.7rem), line-height 1.15): Card and screen headings (h2). Balanced wrap.
-- **Title Card** (800, width 108%, 1.18rem): Case-card names. City names in the stripes labels use 800 at width 112%.
-- **Title Small** (750, width 100%, 1.06rem, line-height 1.3): Section headings (h3) inside cards, in the zone highlight colour, often led by an icon.
-- **Body** (Atkinson 400, 17px, line-height 1.6; 16px under 520px): All reading text, capped at 70ch, with leads at 52ch.
-- **Body Small** (Atkinson, 0.9rem, line-height 1.5, Mute): Captions, notes, how-to-read lines under charts.
-- **Button** (Archivo 650, 1rem) / **Button Hero** (850, width 115%, 1.15rem, uppercase, 0.06em): The hero button is the only uppercase action.
-- **Label Caps** (750, width 75%, 0.86rem, uppercase, 0.06em): Badges. **Label** (650, width 80%, 0.86rem): Chips, axis years, stripe rates.
-- **Numeric** (Archivo 600–700, tabular figures): Every value, rate, year, clock and score.
+- **Title** (Climate Crisis, clamp(2.6rem, 8.4vw, 6rem), line-height 1.04, uppercase, YEAR = scrubbed year): home h1 only.
+- **Headline** (Anybody 900 italic, width 130%, clamp(2rem, 5.2vw, 3.5rem), line-height .95): case title in the hub.
+- **Figure** (Anybody 900 italic, width 135%, clamp(3.8rem, 11vw, 6rem), tabular): result percentage in Sea-glass.
+- **Section** (Anybody 900 italic, width 122%, clamp(1.5rem, 3vw, 2.15rem)): h2 on cards and screens; "Cases" on home grows to 2.8rem and is followed by a 6px RdBu rule.
+- **Card title** (Anybody 900 italic, width 115%, 1.32rem): case-card names. Place names: Anybody 800, width 92%.
+- **Sub-heading** (Anybody 800, width 72%, uppercase, .07em, .98rem, zone highlight): h3 inside cards, often led by an icon.
+- **Body** (Atkinson 400, 17px / 1.6; 16px under 520px), capped at 70ch, leads at 48ch.
+- **Button** (Anybody 750, width 108%, 1.02rem) / **Primary** (850, width 112%) / **Hero** (900 italic, width 128%, uppercase, clamp(1.15rem, 1.9vw, 1.4rem)).
+- **Label** (Anybody 800, width 66–74%, uppercase, .06em): field labels, legends, badges, chips, stripe rates.
+- **Numeric**: every value, rate, year and score uses tabular figures.
 
 ### Named Rules
-**The Width Axis Rule.** Hierarchy comes from width as well as weight. Display runs at 112–125% width, labels and numbers at 75–80%, and buttons and reading-adjacent UI at 100%. Use `font-stretch` on the self-hosted Archivo. Do not swap faces or fake width with letter-spacing.
+**One Job Per Voice Rule.** Climate Crisis sets only the game's name. Anybody sets headlines, buttons and labels and never running text. Atkinson sets every paragraph, option, item and glossary entry.
 
-**The Tabular Figures Rule.** Any number a player compares, whether a rate, anomaly, year, score or clock, is set in tabular figures so that columns and scrubbed readouts don't jitter.
+**The Melting Title Rule.** The title's YEAR axis always shows a real year from the data band; it is never animated for decoration alone.
 
-**The Reading Voice Rule.** Paragraphs, options, item names and glossary entries use Atkinson Hyperlegible Next. Archivo never sets running text.
+**The Tabular Figures Rule.** Any number a player compares is set in tabular figures so columns and scrubbed readouts don't jitter.
 
 ## Layout
 
@@ -338,6 +337,14 @@ Spacing rhythm is a tight 4–6–10–14–18–24 ladder. Use 10px between sta
 
 ### Named Rules
 **The Full-Bleed Data Rule.** Only data goes edge to edge. The stripes hero is the single full-bleed band. Panels, text and controls stay in the centred column.
+
+## Motion
+
+- **Focal moment:** on first load the band wipes in, the title rises line by line, and the scrub cursor sweeps 1981→2025 while the title melts with it.
+- **Screen change:** a stripe curtain (the 9-step RdBu ramp, cold to warm) drops and sweeps away in 0.62s while the new screen's blocks rise in sequence. Content is never delayed or hidden by default.
+- **Data ticker:** a slanted Normal-White crawl of each city's real Sen slope sits between the intro and the cases; it pauses on hover and becomes a static wrapped row under reduced motion.
+- **Celebration:** an earned medal throws stripe confetti in RdBu and BrBG colours; a right answer throws a small teal burst. Nothing celebrates an ordinary click.
+- **Reduced motion:** all animation and transitions off, no curtain, confetti, magnetism or label roll; colour and fill changes still confirm state.
 
 ## Elevation & Depth
 
@@ -364,17 +371,18 @@ Data stays square. Stripe rows, the hub strip and the results strip have no radi
 ## Components
 
 ### Buttons
-Tactile key caps that rise on hover and sink on press.
-- **Shape:** gently rounded (`rounded.sm`, 10px), minimum height 50px (62px for the hero, 56px for the wide secondary).
-- **Primary:** Ember Action Red fill, white text, Archivo 800, with the key-cap shadow. **Hero** variant: full width, uppercase, width 115%, 0.06em tracking. It is used once per screen, for JUGAR / PLAY.
-- **Secondary:** Panel Raised fill, Strong Hairline border, Ink text, Rest-low shadow plus highlight.
-- **Ghost:** no fill, border or shadow, in Soft Ink. Hover fills Panel Raised and shows the border. Used for back and for footer-level links (Glossary, Method).
-- **Hover / Focus / Active:** hover lifts by 2px (0.35s, expo-out), turns the border to the zone accent and steps the shadow up to Rest-card. Active presses back to 0 with scale 0.975 in 0.08s. Every pressable sends a white radial ripple out from the press point (0.65s). Disabled controls drop to 45% opacity with no shadow, and a disabled primary goes to Panel High with Mute text.
-- **Segmented control (chart types):** a Graphite Deep tray (12px) holding 40px segments. The selected segment fills with the zone's deep step and white text.
-- **Language toggle:** a pill (`rounded.full`), Archivo 700, 44px tall, with a Glacier Blue border on hover.
+Every pressable shares one grammar, wired by `js/motion.js` and `css/style.css`.
+- **Label roll:** the label is wrapped in `.roll` with an `aria-hidden` copy waiting below; on hover the label rolls up and the copy takes its place (0.55s, expo-out). Applies to `.btn`, `.lang` and `.seg-btn`.
+- **Light sweep:** a soft diagonal highlight crosses the button on hover (0.8s).
+- **Stripe signature:** primary buttons "heat up": the warm, dark end of RdBu (`#c8432f`, `#b2182b`, `#8a0c25`, `#67001f`, all ≥4.5:1 with white) wipes in as drifting stripes. Every other button draws a 3px cold-to-warm RdBu underline from the left.
+- **Press:** squash to `scale(.96,.93)` in 0.09s and spring back (`--spring`, cubic-bezier(.3,1.45,.5,1)). The spring is reserved for press feedback, icons and case-card straightening.
+- **Hero (JUGAR):** full width, 68px, Anybody 900 italic uppercase, with a live 5px RdBu strip at its foot that drifts slowly. Hero and wide secondary buttons lean up to 5px toward the pointer.
+- **Ghost:** no fill; hover fills Panel Raised and the stripe underline draws inside the padding.
+- **Disabled:** 45% opacity, no shadow, no motion; a disabled primary goes to Panel High with Mute text.
+- **Segmented control:** Graphite Deep tray with 40px segments; the selected one fills with the zone's deep step.
 
 ### Chips, Badges, Pills and Tags
-- **Chip:** a Panel High pill in Archivo Label (80% width), Soft Ink. Metadata on case cards (hours, difficulty, endings), sometimes with a leading icon.
+- **Chip:** a Panel High pill in Anybody Label (66% width), Soft Ink. Metadata on case cards (hours, difficulty, endings), sometimes with a leading icon.
 - **Badge:** a status marker. Pill shape, zone accent at 18% fill and 45% border, zone-highlight text in Label Caps (75% width, uppercase). Variants: **warn** (Sand on ochre tint, for the surprise event) and **new** (Peach on peach tint, for a newly found ending). Badges name a state or a category of what is beside them. They are not decorative headers.
 - **Pill:** a Panel Raised capsule in body text for running state (tutorial step, backpack count). The **bonus** pill uses the Sand tint.
 - **Tag:** small uppercase capsules with dark text (`graphite-ground`) on a scale colour. They grade items: vital = Sea-glass, useful = Glacier Blue, meh = Sand, useless = Mute, risky = Peach.
@@ -385,11 +393,11 @@ Tactile key caps that rise on hover and sink on press.
 - **Shadow Strategy:** Rest-card plus highlight (see Elevation).
 - **Border:** 1px Hairline.
 - **Internal Padding:** fluid `card` spacing (18–30px). Headings inside stack at 10–12px.
-- **Status bar:** the same panel in a 1-column grid that becomes 3 columns, with Archivo labels led by icons over 10px pill progress bars. The time bar uses the zone accent and the preparedness bar uses Teal.
+- **Status bar:** the same panel in a 1-column grid that becomes 3 columns, with Anybody labels led by icons over 10px pill progress bars. The time bar uses the zone accent and the preparedness bar uses Teal.
 - **Case file (disclosure):** a Panel card with a 50px summary row whose chevron (an SVG mask) rotates 180° when open.
 
 ### Tilt Cards (case cards and places)
-The signature surface. A 58px real-data stripe strip forms the top edge of each case card, and the strip scales up 12% vertically on hover. Below it are a 46px tinted icon tile (zone at 20% over Panel Raised, with a 45% inner ring), a 40px round arrow tag that fills with the case colour and slides 3px on hover (or a medal once earned), the title, the description and chips. On fine pointers the card tilts toward the cursor, up to ±3° on Y and ±2.5° on X in a 900px perspective, and lifts 5px. A soft white radial light follows the pointer, and the shadow deepens to Lifted. The border takes the case colour. Places use the same behaviour in a 132px tile with an icon tile that tips -6° and fills solid on hover. Finished places sink to Graphite Deep with a Teal icon and cost, and unaffordable places fade to 45%.
+The signature surface. Case cards rest slightly crooked (−1.4°, 0.9°, −0.7°), like files tossed on a desk, and straighten with a spring when the pointer reaches them (flat under 520px). An 84px real-data stripe strip forms the top edge, carrying a tilted chip with the city's Sen slope per decade; the strip scales on hover. Below it are a 46px tinted icon tile (zone at 20% over Panel Raised, with a 45% inner ring), a 40px round arrow tag that fills with the case colour and slides 3px on hover (or a medal once earned), the title, the description and chips. On fine pointers the card tilts toward the cursor, up to ±3° on Y and ±2.5° on X in a 900px perspective, and lifts 5px. A soft white radial light follows the pointer, and the shadow deepens to Lifted. The border takes the case colour. Places use the same behaviour in a 132px tile with an icon tile that tips -6° and fills solid on hover. Finished places sink to Graphite Deep with a Teal icon and cost, and unaffordable places fade to 45%.
 
 ### Options and Items
 - **Option (answer):** a 52px Panel Raised row in body text, Rest-low. Hover slides 4px right, fills Panel High and borders in the zone accent. Answer states keep the tint plus a 1px inner ring. **Good** is Teal on a teal tint with a drawn check. **Bad** is Brick on a red tint with a drawn cross and a 0.45s shake. **Mid** is Ochre on an ochre tint. Picking plays a 0.55s "pick" pop (scale from 0.95 with a brightness flash).
@@ -402,17 +410,17 @@ Three stacked rows, one per city, coloured on the shared RdBu maximum. Each row 
 Non-interactive stripe SVGs reuse the hero's colour function. They appear at the case-card top edge (58px), as the hub header strip (16px, 3px radius, Rest-low) and as the results-card header strip (44px, bleeding to the card edges). Each wipes in over 1.1s. The logo is a magnifier whose lens holds seven RdBu stripes, and the favicon repeats it.
 
 ### Charts (Detective's Archive and data clues)
-Every chart is an SVG drawn into a 360×230 viewBox, on Graphite Deep with a Hairline border and `rounded.sm`. Gridlines are Soft Ink at 12%. Axis text is Archivo with tabular figures, in Mute, and value labels are Ink 700. There are five types. **Line** shows Glacier Blue dots with a faint polyline and a dashed Peach Sen trend line. **Anomaly** shows bars on the variable's diverging poles around a zero axis. **Stripes** blends from a graphite mid-tone to each pole. **Decades** shows faint dots with thick Peach decade-mean bars, dashed when a decade is partial. **Cycle** compares the early decade in Mid Blue with the late decade in Brick, labelled directly. A crosshair tooltip (dashed white line, Ink capsule with Graphite text, 6px radius) snaps to the nearest mark on pointer or tap. Under every chart sit a legend of swatches, dots and dashes and a Body Small how-to-read line. The verdict panel tints toward Brick for an upward trend and Mid Blue for a downward one, and stays neutral when there is no trend.
+Every chart is an SVG drawn into a 360×230 viewBox, on Graphite Deep with a Hairline border and `rounded.sm`. Gridlines are Soft Ink at 12%. Axis text is Anybody with tabular figures, in Mute, and value labels are Ink 700. There are five types. **Line** shows Glacier Blue dots with a faint polyline and a dashed Peach Sen trend line. **Anomaly** shows bars on the variable's diverging poles around a zero axis. **Stripes** blends from a graphite mid-tone to each pole. **Decades** shows faint dots with thick Peach decade-mean bars, dashed when a decade is partial. **Cycle** compares the early decade in Mid Blue with the late decade in Brick, labelled directly. A crosshair tooltip (dashed white line, Ink capsule with Graphite text, 6px radius) snaps to the nearest mark on pointer or tap. Under every chart sit a legend of swatches, dots and dashes and a Body Small how-to-read line. The verdict panel tints toward Brick for an upward trend and Mid Blue for a downward one, and stays neutral when there is no trend.
 
 ### Inputs / Fields
-- **Style:** Graphite Deep fill, Strong Hairline border, `rounded.sm`, 50px tall (52px for search), and a drawn chevron or magnifier as a background SVG. The field labels above are Archivo 650 in Soft Ink.
+- **Style:** Graphite Deep fill, Strong Hairline border, `rounded.sm`, 50px tall (52px for search), and a drawn chevron or magnifier as a background SVG. The field labels above are Anybody 800 condensed caps in Soft Ink.
 - **Focus:** the border turns Glacier Blue, with a 3px Glacier Blue halo at 35%. Hover borders in the zone accent.
 
 ### Navigation
-A sticky header in Graphite Ground at 94% opacity with a Hairline bottom border. The brand button (logo plus Archivo 800, width 112%) returns home, and its logo tilts -12° and scales to 1.08 on hover. The language toggle sits to the right. There is no other chrome. Navigation within a screen uses ghost back buttons.
+A sticky header in Graphite Ground at 94% opacity with a Hairline bottom border. The brand button (logo plus Anybody 900 italic, width 118%) returns home; on hover its logo tilts −14°, scales up, and three warmer stripes slide into the lens. The language toggle sits to the right. There is no other chrome. Navigation within a screen uses ghost back buttons.
 
 ### Cinematic
-A framed stage (`rounded.md`, Lifted shadow, Hairline border, clamp(380px, 58vh, 520px)) that unwipes from the top over 0.8s. The scene sky is the case city's real stripes. They are muted when calm (72%), nearly hidden in a storm (16%) and at full strength in a heat alert (95%). Graphite ridge silhouettes sit below, outlined in the zone highlight. Scenes move with Ken Burns (9s), drifting stratus lines, falling rain, orbiting sun rays and a spinning cyclone icon. A floating 64px icon disc sits top-left. The narration is Archivo 700 over a gradient to Graphite Deep and rises in. Progress dots go from white at 25% to solid white.
+A framed stage (`rounded.md`, Lifted shadow, Hairline border, clamp(380px, 58vh, 520px)) that unwipes from the top over 0.8s. The scene sky is the case city's real stripes. They are muted when calm (72%), nearly hidden in a storm (16%) and at full strength in a heat alert (95%). Graphite ridge silhouettes sit below, outlined in the zone highlight. Scenes move with Ken Burns (9s), drifting stratus lines, falling rain, orbiting sun rays and a spinning cyclone icon. A floating 64px icon disc sits top-left. The narration is Anybody 800 italic over a gradient to Graphite Deep and rises in. Progress dots go from white at 25% to solid white.
 
 ### Guide and Clue (tutorial)
 A 54px circular avatar in the zone deep step, with a double ring (panel plus zone at 55%), beside a Panel Raised speech bubble with one sharp corner. The clue is a dashed zone-coloured card. A beacon outline pulses around it (2.2s), and on hover it lifts 3px, tilts -0.4° and turns its border solid.
@@ -426,7 +434,7 @@ Line icons drawn in code on a 24×24 grid with a 1.8 stroke, round caps and join
 - **Do** draw every new hue from RdBu (temperature) or BrBG (rain and drought) with its meaning intact. Blue is colder, red is warmer, ochre is drier, teal is wetter.
 - **Do** read the zone triad (accent, highlight, deep) instead of hard-coding a case colour, and use the deep step under white text.
 - **Do** compute stripes from real NASA POWER series against the 1991–2020 normal, on one shared maximum when rows are compared.
-- **Do** set every compared number in Archivo with tabular figures, and all reading text in Atkinson Hyperlegible Next at 17px / 1.6 or larger, capped at 70ch.
+- **Do** set every compared number in Anybody with tabular figures, and all reading text in Atkinson Hyperlegible Next at 17px / 1.6 or larger, capped at 70ch.
 - **Do** use the width axis for hierarchy: 112–125% for display, 75–80% for labels.
 - **Do** pair every panel with the 1px top highlight and a Soft Stack shadow. Step it up on hover and down on press.
 - **Do** keep touch targets at least 44px (buttons 50px, options 52px, items 56px), visible 3px Glacier Blue focus rings at a 3px offset, and keyboard scrubbing (arrows, Home, End) with a live readout on any stripe band.
@@ -439,7 +447,7 @@ Line icons drawn in code on a 24×24 grid with a 1.8 stroke, round caps and join
 - **Don't** draw rainfall in RdBu or temperature in BrBG.
 - **Don't** drift toward space-navy with neon glows, or toward cartoon edu-game styling. The tone must not read as childish, corporate or hard to read.
 - **Don't** use hard offset shadows, coloured glows or single-layer drop shadows.
-- **Don't** run Archivo as body text, or reach for a system face for display.
+- **Don't** run Anybody or Climate Crisis as body text, or reach for a system face for display.
 - **Don't** render emoji as icons. Map them to drawn line icons.
 - **Don't** put uppercase condensed labels above headings as eyebrows. Badges mark a state or category next to content.
 - **Don't** put white text on the mid-step zone accents (white on the Costa accent is 3.4:1). Use the deep step.
