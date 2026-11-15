@@ -12,7 +12,7 @@ Teenagers in Mexico aged 12–17 who hear claims about heat, rain and storms and
 
 ## Product Purpose
 
-Climate Detective is a free, bilingual (ES/EN) web game and data tool. Players read real NASA POWER temperature and rainfall series, test whether a trend is real (Sen's slope + Mann-Kendall, p-value), and use what they find to prepare a community for a cyclone (Veracruz), a heat wave (Pachuca) or a drought (Monterrey). Success: a teen can tell a supported climate claim from an unsupported one and connects that to concrete preparedness actions.
+The Climate Case Files is a free, bilingual (ES/EN) web game and data tool. Players read real NASA POWER temperature and rainfall series, test whether a trend is real (Sen's slope + Mann-Kendall, p-value), and use what they find to prepare a community for a cyclone (Veracruz), a heat wave (Pachuca) or a drought (Monterrey). Success: a teen can tell a supported climate claim from an unsupported one and connects that to concrete preparedness actions.
 
 ## Positioning
 
@@ -34,7 +34,7 @@ The data tool is the core mechanic, not a quiz on top: the player must read the 
 
 ## Brand Commitments
 
-- Name: "Detective climático" / "Climate Detective".
+- Name: "The Climate Case Files" (same in Spanish and English).
 - Not an official NASA product: no NASA logos; footer disclaimer stays.
 - Emojis may be replaced by drawn SVG icons; logo, hero illustration and animated landscapes may be redrawn.
 - Tone confirmed by the team: must not feel childish (primary-school), corporate/governmental, or hard to read.

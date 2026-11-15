@@ -90,13 +90,15 @@
   }
 
   function playIntro(el) {
-    var panels = S.cfg.intro.map(function (p) { return { icon: p.icon, text: t(p.key, { h: S.hours }), scene: p.scene }; });
+    var panels = S.cfg.intro.map(function (p, i) { return { icon: p.icon, text: t(p.key, { h: S.hours }), scene: p.scene, img: Assets.cine(S.cfg.id, 'intro', i) }; });
     panels[panels.length - 1].note = t('fiction');
     Cinematic.play(el, panels, function () { S.phase = 'hub'; render(); }, 0, S.cfg.id);
   }
 
   function renderHub(el) {
+    var late = S.hoursLeft <= S.hours / 2;
     el.appendChild(h('div', { class: 'hub-head' },
+      h('div', { class: 'hub-map' + (late ? ' late' : ''), 'aria-hidden': 'true' }, Assets.map(Assets.hub(S.cfg.id, late), 'hm-img')),
       h('h2', { class: 'case-title', text: t(k('title')) }),
       h('div', { class: 'hub-strip', 'aria-hidden': 'true' }, Stripes.strip(S.cfg.city))));
     el.appendChild(statusBar());
@@ -109,7 +111,7 @@
         class: 'place tilt' + (done ? ' done' : '') + (noTime ? ' off' : ''), type: 'button',
         disabled: done || noTime, onclick: function () { S.phase = 'place'; S.placeId = p.id; S.ui = {}; render(); }
       },
-        h('span', { class: 'place-icon', 'aria-hidden': 'true' }, Icons.el(p.icon)),
+        placeThumb(p, false),
         h('span', { class: 'place-name', text: t(k(p.id + '_name')) }),
         h('span', { class: 'place-cost' }, done ? Icons.label('✓', t('done')) : noTime ? t('notEnoughTime') : Icons.label('⏱️', costLabel(p)))));
     });
@@ -171,10 +173,23 @@
     el.appendChild(card);
   }
 
+  /* avatar (character portrait) when a character stands there, else the place icon */
+  function placeThumb(p, sm) {
+    var who = Assets.portrait(S.cfg.id, p.id);
+    if (who) return h('span', { class: 'place-icon portrait-ph' + (sm ? ' sm' : ''), 'aria-hidden': 'true' }, Assets.char(who, 'ph'));
+    return h('span', { class: 'place-icon' + (sm ? ' sm' : ''), 'aria-hidden': 'true' }, Icons.el(p.icon, '', S.cfg.id, p.id));
+  }
+  /* banner: the case map behind, the character in front */
+  function banner(p) {
+    var map = (S.cfg.id === 'norte' && p.id === 'cold') ? 'mty-snow' : Assets.bannerFor(S.cfg.id, S.cfg.places.indexOf(p)), who = Assets.portrait(S.cfg.id, p.id);
+    return h('div', { class: 'npc-banner', 'aria-hidden': 'true' }, Assets.map(map, 'nb-map'), who ? Assets.char(who, 'nb-char') : null);
+  }
+
   function placeHeader(el, p) {
     el.appendChild(statusBar());
+    el.appendChild(banner(p));
     el.appendChild(h('div', { class: 'row between' },
-      h('h2', { class: 'place-title' }, h('span', { class: 'place-icon sm', 'aria-hidden': 'true' }, Icons.el(p.icon)), t(k(p.id + '_name'))),
+      h('h2', { class: 'place-title' }, placeThumb(p, true), t(k(p.id + '_name'))),
       S.done[p.id] ? null : h('button', { class: 'btn ghost', type: 'button', onclick: backToHub, text: t('back') })));
   }
   function continueBtn() {
@@ -257,7 +272,7 @@
     var m = Chart.mini(S.cfg.city, p.variable, p.season, p.chart), r = m.info, tr = r.tr, right = App.verdict(tr);
     card.appendChild(h('h3', { text: t(k(p.id + '_title')) }));
     card.appendChild(h('p', { text: t(k(p.id + '_text')) }));
-    card.appendChild(h('p', { class: 'badge' }, Icons.label('📊', t('chartType_' + (p.chart || 'line')))));
+    card.appendChild(h('p', { class: 'badge' }, Assets.varIcon(p.variable) ? Assets.icon(Assets.varIcon(p.variable), 'badge-ico') : null, Icons.label('📊', t('chartType_' + (p.chart || 'line')))));
     card.appendChild(m.svg);
     card.appendChild(m.legend);
     card.appendChild(h('div', { class: 'nums' },
@@ -363,11 +378,11 @@
     var hp = doneOf(helpPlace()), helped = hp && hp.opt.pts > 0;
     var I = S.cfg.outroIcons, sc = S.cfg.outroScenes || ['storm', 'storm', 'alert', 'calm', 'calm'];
     var panels = [
-      { icon: I.out1, text: t(k('out1')), scene: sc[0] },
-      { icon: I.out2, text: t(k('out2')), scene: sc[1] },
-      { icon: refOk ? I.ref_ok : I.ref_bad, text: t(k(refOk ? 'out_ref_ok' : 'out_ref_bad')), scene: sc[2] },
-      { icon: packOk ? I.pack_ok : I.pack_bad, text: t(k(packOk ? 'out_pack_ok' : 'out_pack_bad')), scene: sc[3] },
-      { icon: helped ? I.help : I.end, text: t(k(helped ? 'out_help' : 'out_end')), scene: sc[4] }
+      { icon: I.out1, text: t(k('out1')), scene: sc[0], img: Assets.cine(S.cfg.id, 'outro', 0) },
+      { icon: I.out2, text: t(k('out2')), scene: sc[1], img: Assets.cine(S.cfg.id, 'outro', 1) },
+      { icon: refOk ? I.ref_ok : I.ref_bad, text: t(k(refOk ? 'out_ref_ok' : 'out_ref_bad')), scene: sc[2], img: Assets.cine(S.cfg.id, 'outro', 2) },
+      { icon: packOk ? I.pack_ok : I.pack_bad, text: t(k(packOk ? 'out_pack_ok' : 'out_pack_bad')), scene: sc[3], img: Assets.cine(S.cfg.id, 'outro', 3) },
+      { icon: helped ? I.help : I.end, text: t(k(helped ? 'out_help' : 'out_end')), scene: sc[4], img: Assets.cine(S.cfg.id, 'outro', 4) }
     ];
     Cinematic.play(el, panels, function () { S.phase = 'results'; render(); window.scrollTo(0, 0); }, 0, S.cfg.id);
   }
@@ -445,7 +460,7 @@
     x.fillStyle = 'rgba(14,17,22,.82)'; x.fillRect(60, 236, 420, 48);
     x.fillStyle = '#f3f5f8'; x.font = '600 26px ' + D; x.fillText(App.data.cities[S.cfg.city].name + ' · ' + st.years[0] + '–' + st.years[st.years.length - 1], 80, 269);
     x.textAlign = 'center';
-    x.fillStyle = '#f3f5f8'; x.font = 'bold 76px ' + D; x.fillText(t('title'), 540, 410);
+    x.fillStyle = '#f3f5f8'; x.font = 'bold 64px ' + D; x.fillText(t('title'), 540, 410);
     x.fillStyle = '#a7b0bc'; x.font = '40px ' + B; x.fillText(t(k('title')), 540, 470);
     // medal
     var MC = MEDAL_COLOR[S.medal];
@@ -460,16 +475,17 @@
     var y = wrap(x, t('cardFact', { city: App.data.cities[S.cfg.city].name, rate: App.fmtRate(r.tr, 't2m'), y0: r.xs[0], y1: r.xs[r.xs.length - 1] }), 540, 1010, 900, 56);
     x.fillStyle = '#92c5de'; x.font = 'bold 44px ' + D; wrap(x, t('cardCta'), 540, y + 40, 900, 56);
     x.fillStyle = '#a7b0bc'; x.font = '30px ' + B; x.fillText('yair-naran.github.io/detective-climatico', 540, 1290);
+    x.fillStyle = '#6f7a88'; x.font = '24px ' + B; x.fillText('Burros Espaciales', 540, 1326);
     return c;
   }
   function share() {
     var c = makeCard(), text = t('shareText', { pct: S.final.total });
     c.toBlob(function (blob) {
-      var file = new File([blob], 'detective-climatico.png', { type: 'image/png' });
+      var file = new File([blob], 'the-climate-case-files.png', { type: 'image/png' });
       if (navigator.canShare && navigator.canShare({ files: [file] })) {
         navigator.share({ files: [file], text: text, url: location.origin + location.pathname }).catch(function () {});
       } else {
-        var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'detective-climatico.png';
+        var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'the-climate-case-files.png';
         document.body.appendChild(a); a.click(); a.remove();
       }
     }, 'image/png');

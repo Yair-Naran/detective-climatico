@@ -105,6 +105,7 @@
     var c = App.data.cities[cid];
     $('elev').textContent = t('elevation') + ': ' + Math.round(c.elevation_m) + ' m' + (c.custom ? ' · ' + c.lat.toFixed(2) + ', ' + c.lon.toFixed(2) : '');
     $('maxminNote').hidden = !(v === 't2mmax' || v === 't2mmin');
+    $('varIco').src = 'assets/icons/' + Assets.varIcon(v) + '.webp';
     var res = $('result'), svg = $('chart'), lg = $('chartLegend');
     var r = Chart.render(svg, chartType, { city: cid, variable: v, season: season, from: +$('from').value, to: +$('to').value });
     lg.innerHTML = '';
@@ -156,7 +157,7 @@
   function exportCsv() {
     var cid = $('city').value, v = $('variable').value, c = App.data.cities[cid];
     var r = App.trendFor(cid, v, $('season').value, +$('from').value, +$('to').value);
-    var lines = ['# Climate Detective export. Source: NASA POWER (MERRA-2 / GPM IMERG), monthly, community AG. Grid cell ~0.5 x 0.625 deg, not a weather station.',
+    var lines = ['# The Climate Case Files export. Source: NASA POWER (MERRA-2 / GPM IMERG), monthly, community AG. Grid cell ~0.5 x 0.625 deg, not a weather station.',
       '# place: ' + App.cityName(cid) + ' (lat ' + c.lat + ', lon ' + c.lon + ', elevation ' + Math.round(c.elevation_m) + ' m)',
       '# variable: ' + t('var_' + v) + ' [' + t('unit_' + v) + '], season: ' + t('season_' + $('season').value),
       '# Mann-Kendall + Sen slope: ' + App.fmtRate(r.tr, v) + ', p = ' + App.fmtP(r.tr.p) + ', n = ' + r.xs.length,
@@ -173,7 +174,7 @@
       '<style>text{fill:#98a2b0;font-size:10px}text.lbl{fill:#f3f5f8;font-weight:700;font-size:9.5px}</style>' +
       '<rect width="360" height="292" fill="#0e1116"/><text x="12" y="17" style="fill:#f3f5f8;font-size:11px;font-weight:700">' + esc(title) + '</text>' +
       '<g transform="translate(0,24)">' + inner.innerHTML + '</g>' +
-      '<text x="12" y="284" style="font-size:8.5px">' + esc('NASA POWER (MERRA-2 / GPM IMERG) · ' + $('chartTypes').querySelector('.on').textContent + ' · Climate Detective') + '</text></svg>';
+      '<text x="12" y="284" style="font-size:8.5px">' + esc('NASA POWER (MERRA-2 / GPM IMERG) · ' + $('chartTypes').querySelector('.on').textContent + ' · The Climate Case Files') + '</text></svg>';
     var img = new Image();
     img.onload = function () {
       var cv = document.createElement('canvas'); cv.width = 1080; cv.height = 876;

@@ -81,7 +81,7 @@ const STEP = () => {
   await test('home loads in English with no errors, no scroll, and only same-origin requests', async () => {
     const { page, errors, external, ctx } = await newPage(); await ready(page);
     assert.strictEqual(await page.evaluate(() => document.documentElement.lang), 'en');
-    assert.match(await page.textContent('h1'), /CLIMATE\s*DETECTIVE/i);
+    assert.match(await page.textContent('h1'), /CLIMATE\s*CASE\s*FILES/i);
     assert.strictEqual(await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth), false);
     assert.deepStrictEqual(errors, []); assert.deepStrictEqual(external, []);
     assert.strictEqual(await page.locator('#levelList button').count(), 3);
@@ -220,6 +220,22 @@ const STEP = () => {
     const { page, errors, ctx } = await newPage(); await ready(page, '?lang=es#costa'); await page.reload(); await page.waitForSelector('#screen-level:not([hidden])');
     for (let i = 0; i < 400; i++) { const r = await page.evaluate(STEP); if (r === 'results') break; if (i === 40) { const hub = await page.evaluate(() => document.getElementById('screen-level').innerText); assert.ok(!/\b(Home|Radio station|Continue|Choose where)\b/.test(hub), hub.slice(0, 200)); } await page.waitForTimeout(10); }
     assert.ok(await page.isVisible('.result-card')); assert.match(await page.textContent('.ending'), /de 7/); assert.deepStrictEqual(errors, []); await ctx.close();
+  });
+
+  await test('illustrations: name, team names, every image loads (home, hub, place, tutorial)', async () => {
+    const { page, errors, ctx } = await newPage(); await ready(page, '?lang=en');
+    assert.strictEqual(await page.title(), 'The Climate Case Files');
+    const foot = await page.textContent('footer'); for (const n of ['Rafael Alfredo Pérez Acosta', 'Evelyn Amairani Torres Valdez', 'Yair Alejandro Naranjo Rodríguez']) assert.ok(foot.includes(n), n);
+    assert.ok(/AI/.test(foot), 'AI label in footer');
+    const broken = async (label) => { await page.waitForTimeout(700); const b = await page.evaluate(() => [...document.images].filter(i => i.src && i.complete === false || (i.complete && i.naturalWidth === 0)).map(i => i.src)); assert.deepStrictEqual(b, [], label + ' broken images'); };
+    await page.evaluate(() => document.querySelectorAll('img').forEach(i => { i.loading = 'eager'; })); await broken('home');
+    for (const id of ['costa', 'centro', 'norte']) {
+      await page.goto(page.url().split('#')[0] + '#' + id); await page.reload(); await page.waitForSelector('#screen-level:not([hidden])');
+      await page.waitForSelector('.cine-img'); await broken(id + ' intro');
+      await page.click('.cine-skip'); await page.waitForSelector('.places'); await broken(id + ' hub');
+      await page.click('.place:nth-child(2)'); await page.waitForSelector('.npc-banner'); await broken(id + ' place');
+    }
+    assert.deepStrictEqual(errors, []); await ctx.close();
   });
 
   await test('offline: after one visit the game, built-in data and the Archive work with no network', async () => {

@@ -49,8 +49,8 @@
 
   /* title on two lines (the second is drawn in outline); the text stays the i18n title */
   function renderTitle() {
-    var el = document.getElementById('homeTitle'), txt = t('title'), cut = txt.indexOf(' ');
-    var parts = cut > 0 ? [txt.slice(0, cut), txt.slice(cut + 1)] : [txt];
+    var el = document.getElementById('homeTitle'), txt = t('title'), w = txt.split(' '), cut = Math.ceil(w.length / 2);
+    var parts = w.length > 1 ? [w.slice(0, cut).join(' '), w.slice(cut).join(' ')] : [txt];
     el.innerHTML = '';
     el.setAttribute('aria-label', txt);
     parts.forEach(function (p) { el.appendChild(h('span', { class: 'ttl-line', 'aria-hidden': 'true' }, h('span', { text: p }))); });

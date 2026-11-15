@@ -1,5 +1,5 @@
 ---
-name: Climate Detective
+name: The Climate Case Files
 description: "Franjas del clima, con actitud: a graphite-ink game world where every colour is a climate scale, the warming stripes are the identity, and the game's name melts as the years warm."
 colors:
   graphite-ground: "#0e1116"
@@ -239,7 +239,7 @@ components:
     padding: "2px 10px"
 ---
 
-# Design System: Climate Detective
+# Design System: The Climate Case Files
 
 ## Overview
 

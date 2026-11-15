@@ -43,9 +43,9 @@ window.I18N = {
     mTeam: 'Equipo Burros Espaciales (Pachuca, Hidalgo, México): Rafael Alfredo Pérez Acosta, Evelyn Amairani Torres Valdez y Yair Alejandro Naranjo Rodríguez. Proyecto para el reto «¡Sé un detective de tendencias del sistema Tierra!» de NASA Space Apps Challenge 2026.',
     mSecSound: 'Música y sonidos',
     mSound: 'La música y los efectos los genera en vivo nuestro propio código con el navegador (síntesis de sonido, composición original, sin muestras ni archivos de audio). Por eso no tienen derechos de autor. Empiezan apagados; actívalos con el botón de sonido.',
-    mArt: 'Las ilustraciones, el logo y las animaciones son originales y están dibujados en código (SVG y CSS). Los íconos también están dibujados en código. Tipografías con licencia SIL Open Font License: Climate Crisis (título), Anybody (titulares) y Atkinson Hyperlegible Next (lectura). Idea de las franjas de clima: Ed Hawkins; las dibujamos nosotros con datos de NASA POWER.',
+    mArt: 'Los personajes, los mapas de cada caso, la portada, las medallas y los íconos de las fuentes de información y de las variables son ilustraciones generadas con inteligencia artificial por el equipo. Las animaciones, el logo del encabezado y los demás íconos están dibujados en código (SVG y CSS). Tipografías con licencia SIL Open Font License: Climate Crisis (título), Anybody (titulares) y Atkinson Hyperlegible Next (lectura). Idea de las franjas de clima: Ed Hawkins; las dibujamos nosotros con datos de NASA POWER.',
     /* ---- general ---- */
-    title: 'Detective climático',
+    title: 'The Climate Case Files',
     tagline: 'Investiga con datos de la NASA cómo cambia el clima de México y ayuda a tu comunidad a prepararse.',
     homeKicker: 'Un juego de investigación con datos reales',
     play: 'Jugar',
@@ -73,7 +73,10 @@ window.I18N = {
     langBtn: 'English',
     loading: 'Cargando datos…',
     loadError: 'No se pudieron cargar los datos. Abre esta página desde un servidor (no desde un archivo).',
-    footer: 'Proyecto para NASA Space Apps Challenge 2026. No es un producto oficial de la NASA.',
+    footer: 'Proyecto para NASA Space Apps Challenge 2026. No es un producto oficial de la NASA. Ilustraciones generadas con IA.',
+    footerTeam: 'Equipo Burros Espaciales: Rafael Alfredo Pérez Acosta, Evelyn Amairani Torres Valdez y Yair Alejandro Naranjo Rodríguez.',
+    teamKicker: 'Creado por',
+    teamName: 'Burros Espaciales',
     fiction: 'Historia ficticia basada en datos y recomendaciones reales.',
 
     /* ---- Archive (tool) ---- */
@@ -238,7 +241,7 @@ window.I18N = {
     actionsTitle: 'Qué puedes hacer en la vida real',
     shareBtn: 'Compartir mi tarjeta de detective',
     retry: 'Repetir el caso',
-    shareText: 'Resolví un caso en Detective climático con {pct}% de preparación. ¿Puedes superarme?',
+    shareText: 'Resolví un caso en The Climate Case Files con {pct}% de preparación. ¿Puedes superarme?',
     cardFact: 'Dato NASA: la temperatura en {city} cambió {rate} ({y0}–{y1}).',
     cardCta: '¿Tu familia está preparada?',
 
@@ -747,9 +750,9 @@ window.I18N = {
     mTeam: 'Team Burros Espaciales (Pachuca, Hidalgo, Mexico): Rafael Alfredo Pérez Acosta, Evelyn Amairani Torres Valdez and Yair Alejandro Naranjo Rodríguez. A project for the challenge "Be an Earth System Trend Detective!" at NASA Space Apps Challenge 2026.',
     mSecSound: 'Music and sounds',
     mSound: 'The music and sound effects are generated live by our own code in your browser (sound synthesis, original composition, no samples or audio files), so they carry no copyright. They start muted; turn them on with the sound button.',
-    mArt: 'The illustrations, logo and animations are original and drawn in code (SVG and CSS). The icons are drawn in code too. Fonts under the SIL Open Font License: Climate Crisis (title), Anybody (headlines) and Atkinson Hyperlegible Next (reading). The climate stripes idea is by Ed Hawkins; we redraw them ourselves with NASA POWER data.',
+    mArt: 'The characters, the case maps, the cover, the medals and the icons for information sources and variables are illustrations generated with artificial intelligence by the team. The animations, the header logo and the other icons are drawn in code (SVG and CSS). Fonts under the SIL Open Font License: Climate Crisis (title), Anybody (headlines) and Atkinson Hyperlegible Next (reading). The climate stripes idea is by Ed Hawkins; we redraw them ourselves with NASA POWER data.',
     /* ---- general ---- */
-    title: 'Climate Detective',
+    title: 'The Climate Case Files',
     tagline: 'Investigate how Mexico\'s climate is changing with NASA data, and help your community get prepared.',
     homeKicker: 'An investigation game with real data',
     play: 'Play',
@@ -777,7 +780,10 @@ window.I18N = {
     langBtn: 'Español',
     loading: 'Loading data…',
     loadError: 'Could not load the data. Open this page from a server (not from a file).',
-    footer: 'Project for NASA Space Apps Challenge 2026. Not an official NASA product.',
+    footer: 'Project for NASA Space Apps Challenge 2026. Not an official NASA product. Illustrations generated with AI.',
+    footerTeam: 'Team Burros Espaciales: Rafael Alfredo Pérez Acosta, Evelyn Amairani Torres Valdez and Yair Alejandro Naranjo Rodríguez.',
+    teamKicker: 'Created by',
+    teamName: 'Burros Espaciales',
     fiction: 'Fictional story based on real data and recommendations.',
 
     /* ---- Archive (tool) ---- */
@@ -942,7 +948,7 @@ window.I18N = {
     actionsTitle: 'What you can do in real life',
     shareBtn: 'Share my detective card',
     retry: 'Replay the case',
-    shareText: 'I solved a case in Climate Detective with {pct}% preparedness. Can you beat me?',
+    shareText: 'I solved a case in The Climate Case Files with {pct}% preparedness. Can you beat me?',
     cardFact: 'NASA data: temperature in {city} changed {rate} ({y0}–{y1}).',
     cardCta: 'Is your family prepared?',
 
