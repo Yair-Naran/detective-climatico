@@ -1,0 +1,13 @@
+{
+  "name": "detective-climatico",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Climate Detective - NASA Space Apps 2026. Tests: unit (stats vs scipy) and end-to-end (Playwright + Chrome).",
+  "scripts": {
+    "test": "node tests/stats.test.js && node tests/e2e.js",
+    "test:stats": "node tests/stats.test.js",
+    "test:e2e": "node tests/e2e.js"
+  },
+  "devDependencies": { "playwright-core": "^1.48.0" },
+  "license": "MIT"
+}

@@ -86,9 +86,8 @@
 
   function showMethod() { App.show('method'); }
 
-  var initialHash = location.hash.replace('#', '');
   function route() {
-    var hsh = initialHash;
+    var hsh = location.hash.replace('#', '');
     if (hsh === 'archivo' || hsh === 'archive') Archive.open({}, function () { Home.show(); }, 'back');
     else if (hsh === 'metodo' || hsh === 'method') showMethod();
     else if (hsh === 'glosario' || hsh === 'glossary') Glossary.open();
@@ -108,6 +107,7 @@
     document.getElementById('homeBtn').addEventListener('click', function () { Cinematic.stop(); Home.show(); });
     document.getElementById('playBtn').addEventListener('click', function () { play('costa'); });
     document.getElementById('archiveBtn').addEventListener('click', function () { Archive.open({}, function () { Home.show(); }, 'back'); });
+    if (window.Sound) Sound.init();
     var logo = document.getElementById('logoSlot'); logo.appendChild(Art.logo());
     document.getElementById('methodBtn').addEventListener('click', showMethod);
     document.getElementById('glossBtn').addEventListener('click', function () { Glossary.open(); });
@@ -147,6 +147,7 @@
       renderTicker();
       App.onLang(function () { Stripes.hero(document.getElementById('stripesHero'), play); });
       route();
+      window.addEventListener('hashchange', route);
     }).catch(function () {
       document.getElementById('loadMsg').textContent = t('loadError');
     });

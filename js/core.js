@@ -69,6 +69,7 @@
     /* Trend for a city/variable/season, optionally restricted to [from, to]. */
     trendFor: function (cityId, variable, season, from, to) {
       var c = App.data.cities[cityId];
+      if (!c || !c[variable]) return { xs: [], ys: [], tr: null, years: [], values: [] };
       var agg = Stats.aggregate(c[variable], c.start, season || 'annual');
       var xs = [], ys = [];
       agg.years.forEach(function (y, i) {
@@ -79,8 +80,15 @@
 
     /* 'up' | 'down' | 'none' */
     verdict: function (tr) { return tr.p >= 0.05 ? 'none' : tr.slopePerYear > 0 ? 'up' : 'down'; },
+    /* temperature-like variables: t2m, t2mmax, t2mmin (warm/cool palette, 1 decimal); the rest are wet/dry */
+    isTemp: function (variable) { return /^t2m/.test(variable); },
+    /* display name: translated for the three built-in places, the user's own label for a custom place */
+    cityName: function (id) {
+      var c = App.data && App.data.cities[id];
+      return App.has('city_' + id) ? App.t('city_' + id) : (c ? c.name : id);
+    },
     fmtRate: function (tr, variable) {
-      var d = variable === 't2m' ? 2 : 3, v = tr.slopePerDecade;
+      var d = App.isTemp(variable) ? 2 : 3, v = tr.slopePerDecade;
       return (v >= 0 ? '+' : '') + v.toFixed(d) + ' ' + App.t('unitDecade_' + variable);
     },
     fmtP: function (p) { return p < 0.001 ? '< 0.001' : p.toFixed(3); }

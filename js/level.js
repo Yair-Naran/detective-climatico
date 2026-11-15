@@ -6,6 +6,7 @@
   var t = function (k, v) { return App.t(k, v); };
   var S = null; // level state
 
+  function beep(kind) { if (window.Sound) Sound.sfx(kind); }
   function root() { return document.getElementById('screen-level'); }
   function k(suffix) { return S.cfg.id + '_' + suffix; }
   /* level-specific text if it exists, otherwise the generic key */
@@ -158,7 +159,7 @@
     card.appendChild(h('div', { class: 'options' }, ev.options.map(function (o) {
       var cls = 'opt' + (d && d.id === o.id ? (o.good ? ' good' : ' bad') : '');
       return h('button', { class: cls, type: 'button', disabled: !!d, onclick: function () {
-        S.event = { id: o.id, good: !!o.good }; spend(o.cost); render();
+        S.event = { id: o.id, good: !!o.good }; spend(o.cost); beep(o.good ? 'good' : 'bad'); render();
       }, text: t(k('ev_opt_' + o.id)) + (o.cost > 0 ? ' (−' + o.cost + ' h)' : ' (0 h)') });
     })));
     if (d) {
@@ -204,7 +205,7 @@
         }, on ? Icons.el('✓') : null, t('item_' + it.id));
       })));
       card.appendChild(h('button', { class: 'btn primary', type: 'button', disabled: !sel.length, onclick: function () {
-        S.done[p.id] = { sel: sel.slice(), pts: packPoints(p, sel) }; spend(p.cost); render();
+        S.done[p.id] = { sel: sel.slice(), pts: packPoints(p, sel) }; spend(p.cost); beep(S.done[p.id].pts >= 22 ? 'good' : 'bad'); render();
       }, text: t('packConfirm') + ' (−' + p.cost + ' h)' }));
     } else {
       card.appendChild(h('p', { class: d.pts >= 24 ? 'ok' : d.pts >= 15 ? 'warn' : 'bad', text: t('packScore', { pts: d.pts, max: S.cfg.scoring.backpack }) }));
@@ -269,7 +270,7 @@
     card.appendChild(h('div', { class: 'options' }, opts.map(function (o) {
       var cls = 'opt' + (d && d.answer === o[0] ? (d.correct ? ' good' : ' bad') : '') + (d && !d.correct && o[0] === right ? ' good' : '');
       return h('button', { class: cls, type: 'button', disabled: !!d, 'data-ans': o[0], onclick: function () {
-        S.done[p.id] = { answer: o[0], correct: o[0] === right };
+        S.done[p.id] = { answer: o[0], correct: o[0] === right }; beep(o[0] === right ? 'good' : 'bad');
         S.clues.push({ id: p.id, icon: p.icon, vars: { rate: App.fmtRate(tr, p.variable), p: App.fmtP(tr.p) } });
         spend(p.cost); render();
       }, text: t(o[1]) });
@@ -287,7 +288,7 @@
         card.appendChild(h('div', { class: 'options' }, qz.opts.map(function (o) {
           var cls = 'opt' + (d.quiz && d.quiz.id === o.id ? (o.ok ? ' good' : ' bad') : '') + (d.quiz && !d.quiz.ok && o.ok ? ' good' : '');
           return h('button', { class: cls, type: 'button', disabled: !!d.quiz, 'data-quiz': o.ok ? 'ok' : 'no', onclick: function () {
-            d.quiz = { id: o.id, ok: !!o.ok }; render();
+            d.quiz = { id: o.id, ok: !!o.ok }; beep(o.ok ? 'good' : 'bad'); render();
           }, text: o.text });
         })));
         if (d.quiz) card.appendChild(h('p', { class: d.quiz.ok ? 'ok' : 'warn', text: d.quiz.ok ? qz.fbOk : qz.fbNo }));
@@ -314,7 +315,7 @@
       var tooLong = !d && cost > S.hoursLeft;
       var cls = 'opt' + (d && d.opt.id === o.id ? (o.pts === maxPts(p) ? ' good' : o.pts > 0 ? ' mid' : ' bad') : '');
       return h('button', { class: cls, type: 'button', disabled: !!d || tooLong, onclick: function () {
-        S.done[p.id] = { opt: o }; spend(cost); render();
+        S.done[p.id] = { opt: o }; spend(cost); beep(o.pts === maxPts(p) ? 'good' : o.pts > 0 ? 'tick' : 'bad'); render();
       }, text: t(k(p.id + '_opt_' + o.id)) + (cost > 0 ? ' (−' + cost + ' h)' : ' (0 h)') });
     })));
     if (d) {
@@ -351,6 +352,7 @@
     var best = App.store.get('best_' + S.cfg.id) || 0;
     if (S.final.total > best) App.store.set('best_' + S.cfg.id, S.final.total);
     if (S.medal !== 'none' && S.cfg.nextLevel) App.store.set('bonus', { from: S.cfg.id, to: S.cfg.nextLevel, type: S.medal });
+    beep(S.medal === 'none' ? 'tick' : 'medal');
     S.phase = 'outro'; render(); window.scrollTo(0, 0);
   }
 
