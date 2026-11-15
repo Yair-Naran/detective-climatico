@@ -4,7 +4,7 @@ Everything below is in English because the form and linked materials must be in 
 Only one placeholder is left: the demo link (the demo is produced last). The team names are final.
 
 ## Team
-Burros Espaciales: Rafael Alfredo Pérez Acosta, Evelyn Amairani Torres Valdez, Yair Alejandro Naranjo Rodríguez (Pachuca, Hidalgo, Mexico).
+Obsidiana Orbital: Rafael Alfredo Pérez Acosta, Evelyn Amairani Torres Valdez, Yair Alejandro Naranjo Rodríguez (Pachuca, Hidalgo, Mexico).
 
 ## Project Name
 The Climate Case Files

@@ -475,7 +475,7 @@
     var y = wrap(x, t('cardFact', { city: App.data.cities[S.cfg.city].name, rate: App.fmtRate(r.tr, 't2m'), y0: r.xs[0], y1: r.xs[r.xs.length - 1] }), 540, 1010, 900, 56);
     x.fillStyle = '#92c5de'; x.font = 'bold 44px ' + D; wrap(x, t('cardCta'), 540, y + 40, 900, 56);
     x.fillStyle = '#a7b0bc'; x.font = '30px ' + B; x.fillText('yair-naran.github.io/detective-climatico', 540, 1290);
-    x.fillStyle = '#6f7a88'; x.font = '24px ' + B; x.fillText('Burros Espaciales', 540, 1326);
+    x.fillStyle = '#6f7a88'; x.font = '24px ' + B; x.fillText('Obsidiana Orbital', 540, 1326);
     return c;
   }
   function share() {
