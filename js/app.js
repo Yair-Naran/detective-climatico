@@ -18,13 +18,19 @@
     return best >= m.gold ? MEDAL_ICON.gold : best >= m.silver ? MEDAL_ICON.silver : best >= m.bronze ? MEDAL_ICON.bronze : '';
   }
 
+  function endingsOf(id) {
+    var n = (App.store.get('endings_' + id) || []).length;
+    return n ? ' · ' + t('endingsShort', { n: n, total: window.ENDINGS.length }) : '';
+  }
+
   function renderLevels() {
     var list = document.getElementById('levelList'); list.innerHTML = '';
     CASES.forEach(function (c) {
       list.appendChild(h('button', { class: 'levelcard' + (c.ready ? '' : ' off'), 'data-case': c.id, type: 'button', disabled: !c.ready || !App.data,
         onclick: function () { play(c.id); } },
         h('span', { class: 'lc-icon', 'aria-hidden': 'true', text: c.icon }),
-        h('span', { class: 'lc-text' }, h('b', { text: t('case_' + c.id) }), h('span', { class: 'small', text: t('case_' + c.id + '_desc') })),
+        h('span', { class: 'lc-text' }, h('b', { text: t('case_' + c.id) }), h('span', { class: 'small', text: t('case_' + c.id + '_desc') }),
+          h('span', { class: 'lc-meta', text: '⏱️ ' + t('hoursN', { h: window.LEVELS[c.id].hours }) + ' · ' + t('diffLabel') + ': ' + t('difficulty_' + c.id) + endingsOf(c.id) })),
         h('span', { class: 'lc-tag', text: c.ready ? (medalOf(c.id) || '▶') : t('soon') })));
     });
   }
@@ -44,6 +50,7 @@
     var hsh = initialHash;
     if (hsh === 'archivo' || hsh === 'archive') Archive.open({}, function () { Home.show(); }, 'back');
     else if (hsh === 'metodo' || hsh === 'method') showMethod();
+    else if (hsh === 'glosario' || hsh === 'glossary') Glossary.open();
     else if (hsh === 'tutorial') Tutorial.start();
     else if (window.LEVELS[hsh]) Level.start(hsh);
     else Home.show();
@@ -62,6 +69,7 @@
     var logo = document.getElementById('logoSlot'); logo.appendChild(Art.logo());
     document.getElementById('heroArt').appendChild(Art.hero());
     document.getElementById('methodBtn').addEventListener('click', showMethod);
+    document.getElementById('glossBtn').addEventListener('click', function () { Glossary.open(); });
     document.getElementById('methodBack').addEventListener('click', function () { Home.show(); });
     Home.show();
     document.getElementById('playBtn').disabled = true;
@@ -72,7 +80,7 @@
       document.getElementById('loadMsg').hidden = true;
       document.getElementById('playBtn').disabled = false;
       document.getElementById('archiveBtn').disabled = false;
-      Archive.init(); Tutorial.init(); Level.init();
+      Archive.init(); Tutorial.init(); Level.init(); Glossary.init();
       route();
     }).catch(function () {
       document.getElementById('loadMsg').textContent = t('loadError');

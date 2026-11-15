@@ -21,6 +21,9 @@ https://yair-naran.github.io/detective-climatico/?lang=en
 **What we built.** A free web game (no sign-up, no backend) with two parts:
 1. **Detective's Archive (the challenge tool).** The player chooses a variable (air temperature at 2 m or precipitation), a region (Veracruz on the Gulf coast, Pachuca in the central highlands at 2,338 m, Monterrey in the semi-arid north), a time of year (whole year or a season) and a period. The tool draws the time series, fits a linear trend (Sen's slope) and tests it with the Mann-Kendall test. It reports the rate of change per decade and the p-value, and explains in plain words what "significant" means, including that p > 0.05 does not prove that nothing is changing. Seasonal averages remove the seasonal cycle, and only complete seasons are used.
 2. **Three playable cases.** Coast (Veracruz: cyclones and heavy rain), Center (Pachuca: extreme heat) and North (Monterrey: drought, water cuts and winter cold). In each case the player has nine hours to visit places in the community, check a rumor or headline against NASA data, pack an emergency backpack, help a neighbor, choose a safe refuge and share reliable information. Time is limited, so every choice has a cost. The score is a preparedness percentage with a medal, and a good result carries a bonus into the next case. The player can share a result card as an image.
+3. **Difficulty and replay value.** Difficulty rises by case: Center and North give one hour less, include a bonus question on every data clue (what a trend means in 30 years, or what p > 0.05 really means) and give no points for a wrong reading. Each case has a surprise event with light humor (a viral voice message, a power cut, a neighbor washing his truck during rationing). The emergency backpack has more items than slots, including tempting traps, and scores items by priority (vital, useful, helps a little, useless, risky). Seven different endings per case depend on the player's choices, with a counter of endings found.
+4. **More ways to see the data.** The Archive offers five chart types: series with trend line, anomaly bars against 1991–2020, climate stripes, decade averages and the month-by-month cycle (first vs. last 10 years). Every chart has a tap-to-read tooltip and a plain-language note on how to read it.
+5. **Glossary.** A searchable glossary explains every technical term used in the game (T2M, reanalysis, Mann-Kendall, p-value, anomaly, SIAT-CT, drought categories, and more), reachable from the home screen, the Archive and every case.
 
 **What makes it different.** The data tool is the core mechanic, not a quiz added on top: players must read the chart and the p-value to decide whether a claim is true. Some claims are true (Pachuca is warming about +0.4 °C per decade; Pachuca summer rain is decreasing) and some are not supported (annual rainfall trends in Veracruz and Monterrey are not significant). The game teaches both.
 
@@ -48,6 +51,8 @@ https://yair-naran.github.io/detective-climatico/?lang=en
 - Mexico Drought Monitor (Conagua-SMN): drought categories D0 to D4.
 - Ministry of Health of Mexico: heatstroke prevention and first aid; safe water storage.
 - Mann, H.B. (1945) and Kendall, M.G. (1975): trend test. Sen, P.K. (1968): slope estimator.
+- World Meteorological Organization: 1991–2020 climatological standard normal (reference period for anomalies).
+- Ed Hawkins (2018): the "warming stripes" visualization idea (redrawn by the team in code).
 - Code: scipy (used only to validate the tests, not shipped with the game). No third-party libraries or images are shipped with the game.
 - Fonts: system fonts of the user's device. Icons: system emojis.
 

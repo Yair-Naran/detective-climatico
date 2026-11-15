@@ -36,7 +36,7 @@
       <div id="levelList" class="levels"></div>
     </div>
     <p class="small center" data-i18n="noLogin"></p>
-    <div class="home-links"><button id="methodBtn" class="btn ghost" type="button" data-i18n="methodBtn"></button></div>
+    <div class="home-links"><button id="glossBtn" class="btn ghost" type="button" data-i18n="glossBtn"></button><button id="methodBtn" class="btn ghost" type="button" data-i18n="methodBtn"></button></div>
   </section>
 
   <!-- TUTORIAL / LEVEL (rendered by JS) -->
@@ -61,9 +61,9 @@
       </div>
       <p id="elev" class="small"></p>
       <h3 data-i18n="chartTitle"></h3>
-      <svg id="chart" viewBox="0 0 360 230" role="img" aria-label="Time series chart"></svg>
-      <p class="legend"><span class="dot"></span> <span data-i18n="legendData"></span>
-        &nbsp; <span class="dash"></span> <span data-i18n="legendTrend"></span></p>
+      <div id="chartTypes" class="seg" role="group"></div>
+      <svg id="chart" viewBox="0 0 360 230" role="img" aria-label="Chart"></svg>
+      <div id="chartLegend"></div>
       <div id="result" class="result" aria-live="polite"></div>
     </div>
     <div class="card">
@@ -74,6 +74,7 @@
         <dt data-i18n="def_trend_name"></dt><dd data-i18n="def_trend"></dd>
         <dt data-i18n="def_p_name"></dt><dd data-i18n="def_p"></dd>
       </dl>
+      <button id="archiveGloss" class="btn" type="button" data-i18n="glossOpenAll"></button>
     </div>
     <div class="card">
       <h2 data-i18n="methodTitle"></h2>
@@ -83,6 +84,9 @@
       </ul>
     </div>
   </section>
+
+  <!-- GLOSSARY (rendered by js/glossary.js) -->
+  <section id="screen-glossary" class="screen" hidden></section>
 
   <!-- METHOD, SOURCES AND CREDITS -->
   <section id="screen-method" class="screen" hidden>
@@ -114,6 +118,7 @@
 <script src="js/art.js"></script>
 <script src="js/cinematic.js"></script>
 <script src="js/levels-data.js"></script>
+<script src="js/glossary.js"></script>
 <script src="js/archive.js"></script>
 <script src="js/tutorial.js"></script>
 <script src="js/level.js"></script>

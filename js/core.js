@@ -74,7 +74,7 @@
       agg.years.forEach(function (y, i) {
         if ((from === undefined || y >= from) && (to === undefined || y <= to)) { xs.push(y); ys.push(agg.values[i]); }
       });
-      return { xs: xs, ys: ys, tr: xs.length >= 4 ? Stats.trend(xs, ys) : null, years: agg.years };
+      return { xs: xs, ys: ys, tr: xs.length >= 4 ? Stats.trend(xs, ys) : null, years: agg.years, values: agg.values };
     },
 
     /* 'up' | 'down' | 'none' */

@@ -22,6 +22,9 @@ Anotar TODO lo usado (código, texto, imágenes, audio, librerías), aunque sea 
 | Monitor de Sequía de México (Conagua – SMN) | Categorías D0–D4 (Caso Norte) |
 | Secretaría de Salud | Recipientes de agua limpios y tapados (Caso Norte) |
 | Protección Civil Nuevo León | No usar anafres ni braseros dentro de casa (Caso Norte) |
+| Organización Meteorológica Mundial (OMM) | Periodo de referencia 1991–2020 para anomalías y franjas |
+| Ed Hawkins (2018), "warming stripes" | Idea de la gráfica de franjas de clima (dibujada por el equipo en código) |
+| Protección Civil / CENAPRED | Prioridades de la mochila (vital / útil) y riesgo de velas |
 | Secretaría de Salud | Evitar sol 11:00–16:00, señales y primeros auxilios de golpe de calor, llamar al 911 (Caso Centro) |
 
 ## Contenido del equipo

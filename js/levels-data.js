@@ -1,5 +1,9 @@
 /* Level definitions. Same mold for Costa / Centro / Norte: change city, places, options and string keys.
-   All text lives in i18n/strings.js under the keys referenced here (prefix = level id). */
+   All text lives in i18n/strings.js under the keys referenced here (prefix = level id).
+   Difficulty rises by case: Costa 9 h, wrong data answer still worth 1 point, no second question;
+   Centro and Norte 8 h, wrong data answer worth 0, second question on every data clue, fewer backpack slots.
+   Every case has one surprise event (appears after 3 hours are spent). */
+window.ENDINGS = ['legend', 'gossip', 'lucky', 'tourist', 'scientist', 'hero', 'rookie'];
 window.LEVELS = {
   costa: {
     id: 'costa',
@@ -14,14 +18,15 @@ window.LEVELS = {
     ],
     places: [
       { id: 'home', icon: '🎒', cost: 2, type: 'backpack', slots: 6,
+        // v = priority: 3 vital, 2 useful, 1 a little useful, 0 useless, -1 risky (order on screen is shuffled on purpose)
         items: [
-          { id: 'water', ok: true }, { id: 'food', ok: true }, { id: 'docs', ok: true }, { id: 'aid', ok: true },
-          { id: 'light', ok: true }, { id: 'radio', ok: true }, { id: 'whistle', ok: true }, { id: 'contacts', ok: true },
-          { id: 'console', ok: false }, { id: 'dryer', ok: false }, { id: 'speaker', ok: false }
+          { id: 'garrafon', v: 0 }, { id: 'docs', v: 3 }, { id: 'console', v: 0 }, { id: 'whistle', v: 2 }, { id: 'water', v: 3 },
+          { id: 'candles', v: -1 }, { id: 'radio', v: 3 }, { id: 'cash', v: 2 }, { id: 'speaker', v: 0 }, { id: 'aid', v: 3 },
+          { id: 'powerbank', v: 2 }, { id: 'food', v: 3 }, { id: 'contacts', v: 2 }, { id: 'light', v: 3 }
         ] },
       { id: 'radio', icon: '📻', cost: 1, type: 'clue', points: 5 },
-      { id: 'paper', icon: '📰', cost: 1, type: 'data', variable: 't2m', season: 'annual', points: 5 },
-      { id: 'rain', icon: '📚', cost: 1, type: 'data', variable: 'prectotcorr', season: 'annual', points: 5 },
+      { id: 'paper', icon: '📰', cost: 1, type: 'data', variable: 't2m', season: 'annual', points: 5, chart: 'line' },
+      { id: 'rain', icon: '📚', cost: 1, type: 'data', variable: 'prectotcorr', season: 'annual', points: 5, chart: 'anom' },
       { id: 'phone', icon: '📱', cost: 1, type: 'clue', points: 5 },
       { id: 'neighbor', icon: '🏡', type: 'choice', cat: 'help',
         options: [{ id: 'walk', cost: 2, pts: 15 }, { id: 'call', cost: 1, pts: 12 }, { id: 'stay', cost: 0, pts: 0 }] },
@@ -32,6 +37,9 @@ window.LEVELS = {
     ],
     // points if the player never chose a refuge (evacuated by Protección Civil)
     refugeFallback: 5,
+    dataWrongPts: 1,           // Costa is the entry case: a wrong data answer still earns a little
+    quiz: false,               // no second data question here
+    event: { icon: '📲', options: [{ id: 'check', cost: 0, good: true }, { id: 'go', cost: 1 }] },
     medals: { gold: 90, silver: 70, bronze: 45 },
     nextLevel: 'centro',
     alert: 'alert', // SIAT-CT labels
@@ -42,7 +50,7 @@ window.LEVELS = {
   centro: {
     id: 'centro',
     city: 'pachuca',
-    hours: 9,
+    hours: 8,                  // harder: one hour less than Costa
     scoring: { backpack: 30, refuge: 20, info: 20, help: 15, share: 15 },
     intro: [
       { icon: '🌄', key: 'centro_in1', scene: 'calm' },
@@ -52,13 +60,13 @@ window.LEVELS = {
     places: [
       { id: 'home', icon: '🧢', cost: 2, type: 'backpack', slots: 5,
         items: [
-          { id: 'water', ok: true }, { id: 'cap', ok: true }, { id: 'sunscreen', ok: true }, { id: 'lightclothes', ok: true },
-          { id: 'umbrella', ok: true }, { id: 'oralserum', ok: true },
-          { id: 'boots', ok: false }, { id: 'console', ok: false }, { id: 'speaker', ok: false }
+          { id: 'soda', v: 0 }, { id: 'cap', v: 3 }, { id: 'jacket', v: 0 }, { id: 'oralserum', v: 2 }, { id: 'console', v: 0 },
+          { id: 'water', v: 3 }, { id: 'darkshirt', v: 0 }, { id: 'sunscreen', v: 2 }, { id: 'fan', v: 1 }, { id: 'lightclothes', v: 3 },
+          { id: 'boots', v: 0 }, { id: 'umbrella', v: 2 }
         ] },
       { id: 'radio', icon: '📻', cost: 1, type: 'clue', points: 5 },
-      { id: 'paper', icon: '📰', cost: 1, type: 'data', variable: 't2m', season: 'MAM', points: 5 },
-      { id: 'rain', icon: '🌱', cost: 1, type: 'data', variable: 'prectotcorr', season: 'JJA', points: 5 },
+      { id: 'paper', icon: '📰', cost: 1, type: 'data', variable: 't2m', season: 'MAM', points: 5, chart: 'stripes' },
+      { id: 'rain', icon: '🌱', cost: 1, type: 'data', variable: 'prectotcorr', season: 'JJA', points: 5, chart: 'anom' },
       { id: 'phone', icon: '📱', cost: 1, type: 'clue', points: 5 },
       { id: 'neighbor', icon: '🏡', type: 'choice', cat: 'help',
         options: [{ id: 'help', cost: 2, pts: 15 }, { id: 'water', cost: 1, pts: 6 }, { id: 'ignore', cost: 0, pts: 0 }] },
@@ -68,6 +76,9 @@ window.LEVELS = {
         options: [{ id: 'move', pts: 15, good: true }, { id: 'soda', pts: 0 }, { id: 'play', pts: 0 }] }
     ],
     refugeFallback: 5,
+    dataWrongPts: 0,
+    quiz: true,                // second question on each data clue (projection / what p > 0.05 means)
+    event: { icon: '🔌', options: [{ id: 'cool', cost: 0, good: true }, { id: 'search', cost: 1 }] },
     medals: { gold: 90, silver: 70, bronze: 45 },
     nextLevel: 'norte',
     alert: 'heat', // heat level labels
@@ -79,7 +90,7 @@ window.LEVELS = {
   norte: {
     id: 'norte',
     city: 'monterrey',
-    hours: 9,
+    hours: 8,
     scoring: { backpack: 30, refuge: 20, info: 20, help: 15, share: 15 },
     intro: [
       { icon: '🏜️', key: 'norte_in1', scene: 'alert' },
@@ -89,14 +100,13 @@ window.LEVELS = {
     places: [
       { id: 'home', icon: '🪣', cost: 2, type: 'backpack', slots: 4,
         items: [
-          { id: 'drinkwater', ok: true }, { id: 'lidded', ok: true }, { id: 'gel', ok: true }, { id: 'reuse', ok: true },
-          { id: 'oralserum', ok: true },
-          { id: 'pool', ok: false }, { id: 'hose', ok: false }, { id: 'console', ok: false }
+          { id: 'pool', v: 0 }, { id: 'lidded', v: 3 }, { id: 'wipes', v: 1 }, { id: 'opentank', v: -1 }, { id: 'drinkwater', v: 3 },
+          { id: 'console', v: 0 }, { id: 'reuse', v: 2 }, { id: 'hose', v: 0 }, { id: 'gel', v: 2 }, { id: 'oralserum', v: 2 }
         ] },
       { id: 'radio', icon: '📻', cost: 1, type: 'clue', points: 5 },
-      { id: 'paper', icon: '📰', cost: 1, type: 'data', variable: 't2m', season: 'JJA', points: 5 },
-      { id: 'rain', icon: '🏞️', cost: 1, type: 'data', variable: 'prectotcorr', season: 'annual', points: 5 },
-      { id: 'cold', icon: '🐄', cost: 1, type: 'data', variable: 't2m', season: 'DJF', points: 5 },
+      { id: 'paper', icon: '📰', cost: 1, type: 'data', variable: 't2m', season: 'JJA', points: 5, chart: 'decades' },
+      { id: 'rain', icon: '🏞️', cost: 1, type: 'data', variable: 'prectotcorr', season: 'annual', points: 5, chart: 'line' },
+      { id: 'cold', icon: '🐄', cost: 1, type: 'data', variable: 't2m', season: 'DJF', points: 5, chart: 'stripes' },
       { id: 'neighbor', icon: '🌵', type: 'choice', cat: 'help',
         options: [{ id: 'carry', cost: 2, pts: 15 }, { id: 'organize', cost: 1, pts: 12 }, { id: 'ignore', cost: 0, pts: 0 }] },
       { id: 'refuge', icon: '🌳', cost: 1, type: 'choice', cat: 'refuge',
@@ -105,6 +115,9 @@ window.LEVELS = {
         options: [{ id: 'rumor', pts: 0 }, { id: 'calm', pts: 0 }, { id: 'official', pts: 15, good: true }] }
     ],
     refugeFallback: 5,
+    dataWrongPts: 0,
+    quiz: true,
+    event: { icon: '🚿', options: [{ id: 'remind', cost: 0, good: true }, { id: 'film', cost: 1 }] },
     medals: { gold: 90, silver: 70, bronze: 45 },
     nextLevel: null,
     alert: 'water',

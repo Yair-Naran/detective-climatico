@@ -46,3 +46,13 @@ Repositorio, datos, Archivo del detective, tutorial + Nivel Costa, i18n, Centro/
 ## Pendiente de confirmar
 - Hora real del juicio local (¿antes de las 12:59 del domingo o 23:59?).
 - Si el nombre de la integrante menor puede aparecer en el demo (pregunta al Local Lead; no puede aparecer su imagen ni voz).
+
+
+## Cambios del sábado 14 nov (tarde)
+- Dificultad progresiva: Costa 9 h; Centro y Norte 8 h, pregunta extra en cada pista de datos y 0 puntos si se lee mal la gráfica.
+- Mochila: más objetos que espacios, trampas y prioridades (vital, útil, ayuda poco, no sirve, riesgoso) con comentario por objeto.
+- Un imprevisto con humor por caso (audio de la tía Chela, apagón, vecino de la manguera).
+- 7 finales por caso con contador de finales descubiertos.
+- 5 tipos de gráfica en el Archivo (serie, anomalías, franjas, por década, ciclo del año) y repartidas en los casos.
+- Glosario con buscador (`#glosario`).
+- Textos nuevos en `i18n/strings.js` (ES y EN): claves `gl_*`, `itemfb_*`, `*_ev_*`, `*_end_*`, `quiz*`, `chartType_*`.

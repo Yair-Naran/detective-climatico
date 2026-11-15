@@ -3,7 +3,15 @@
   'use strict';
   var $ = function (id) { return document.getElementById(id); };
   var t = function (k, v) { return App.t(k, v); };
-  var backFn = null, backKey = 'back';
+  var backFn = null, backKey = 'back', chartType = 'line';
+
+  function buildTypes() {
+    var box = $('chartTypes'); box.innerHTML = '';
+    Chart.TYPES.forEach(function (ty) {
+      box.appendChild(App.h('button', { type: 'button', class: 'seg-btn' + (ty === chartType ? ' on' : ''), 'aria-pressed': ty === chartType ? 'true' : 'false',
+        'data-type': ty, onclick: function () { chartType = ty; buildTypes(); render(); }, text: t('chartType_' + ty) }));
+    });
+  }
 
   function fillSelect(sel, items, current) {
     sel.innerHTML = '';
@@ -34,14 +42,15 @@
     var cid = $('city').value, v = $('variable').value, season = $('season').value;
     var c = App.data.cities[cid];
     $('elev').textContent = t('elevation') + ': ' + Math.round(c.elevation_m) + ' m';
-    var r = App.trendFor(cid, v, season, +$('from').value, +$('to').value);
-    var res = $('result'), svg = $('chart');
+    var res = $('result'), svg = $('chart'), lg = $('chartLegend');
+    var r = Chart.render(svg, chartType, { city: cid, variable: v, season: season, from: +$('from').value, to: +$('to').value });
+    lg.innerHTML = '';
     if (r.xs.length < 8) {
-      svg.innerHTML = ''; res.className = 'result none';
+      res.className = 'result none';
       res.innerHTML = ''; res.appendChild(App.h('strong', { text: t('notEnough') }));
       return;
     }
-    Chart.draw(svg, r.xs, r.ys, r.tr, t('unit_' + v), v === 't2m' ? 1 : 2);
+    lg.appendChild(Chart.legend(chartType, v, r));
     var vd = App.verdict(r.tr);
     res.className = 'result ' + vd;
     res.innerHTML = '';
@@ -57,13 +66,14 @@
   function rebuild() {
     var keep = { city: $('city').value, variable: $('variable').value, season: $('season').value };
     var f = $('from').value, to = $('to').value;
-    buildControls(keep); buildYears(f, to); render();
+    buildControls(keep); buildYears(f, to); buildTypes(); render();
     $('archiveBack').textContent = t(backKey);
   }
 
   var Archive = {
     init: function () {
-      buildControls(); buildYears(); render();
+      buildControls(); buildYears(); buildTypes(); render();
+      $('archiveGloss').addEventListener('click', function () { Glossary.open(function () { App.show('archive'); }); });
       ['from', 'to'].forEach(function (id) { $(id).addEventListener('change', render); });
       ['city', 'variable', 'season'].forEach(function (id) {
         $(id).addEventListener('change', function () { buildYears($('from').value, $('to').value); render(); });
@@ -71,10 +81,11 @@
       $('archiveBack').addEventListener('click', function () { var fn = backFn; backFn = null; (fn || function () { App.show('home'); })(); });
       App.onLang(function () { rebuild(); });
     },
-    /* preset: {city, variable, season}; onBack: function; backLabelKey: i18n key */
+    /* preset: {city, variable, season, chart}; onBack: function; backLabelKey: i18n key */
     open: function (preset, onBack, backLabelKey) {
       preset = preset || {};
-      buildControls(preset); buildYears(); render();
+      chartType = preset.chart || 'line';
+      buildControls(preset); buildYears(); buildTypes(); render();
       backFn = onBack || null; backKey = backLabelKey || 'back';
       $('archiveBack').textContent = t(backKey);
       App.show('archive');
