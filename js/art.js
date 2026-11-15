@@ -40,9 +40,13 @@
     return s + '<rect width="400" height="240" fill="url(#shade)"/>';
   }
 
+  /* cloud = a few thin strata, like contour lines of a cloud bank */
   function cloud(x, y, w, delay, op) {
-    return '<g class="cloud" style="animation-delay:' + delay + 's" fill="#0a0c10" opacity="' + op + '">' +
-      '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="9" rx="4.5"/><rect x="' + (x + w * 0.22) + '" y="' + (y - 11) + '" width="' + (w * 0.5) + '" height="9" rx="4.5"/></g>';
+    return '<g class="cloud" style="animation-delay:' + delay + 's" stroke="#0a0c10" stroke-width="2.4" stroke-linecap="round" opacity="' + op + '">' +
+      '<line x1="' + (x + w * 0.3) + '" y1="' + (y - 10) + '" x2="' + (x + w * 0.72) + '" y2="' + (y - 10) + '"/>' +
+      '<line x1="' + (x + w * 0.1) + '" y1="' + (y - 4) + '" x2="' + (x + w * 0.9) + '" y2="' + (y - 4) + '"/>' +
+      '<line x1="' + x + '" y1="' + (y + 2) + '" x2="' + (x + w) + '" y2="' + (y + 2) + '"/>' +
+      '<line x1="' + (x + w * 0.18) + '" y1="' + (y + 8) + '" x2="' + (x + w * 0.62) + '" y2="' + (y + 8) + '"/></g>';
   }
 
   function rain() {

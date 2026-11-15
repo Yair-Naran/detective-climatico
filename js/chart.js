@@ -42,7 +42,7 @@
       s += '<text x="' + X(x) + '" y="' + (H - 9) + '" text-anchor="middle">' + x + '</text>';
     return s;
   }
-  function unitText(u) { return '<text x="6" y="11">' + esc(u) + '</text>'; }
+  function unitText(u) { return '<text x="' + (L + 2) + '" y="12">' + esc(u) + '</text>'; }
   function trendLine(X, Y, tr, x0, x1, shift) {
     if (!tr) return '';
     var a = tr.intercept + tr.slopePerYear * x0 - (shift || 0), b = tr.intercept + tr.slopePerYear * x1 - (shift || 0);
